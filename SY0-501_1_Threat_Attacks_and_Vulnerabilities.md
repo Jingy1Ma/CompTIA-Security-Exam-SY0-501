@@ -887,6 +887,300 @@ Answers:
 
 
 
+## 4. Wireless Attacks
+
+### 4.1 Wireless eavesdropping
+
+Wireless networks are insecure by default until administrators add security controls. This is due to the very nature of wireless networks. They use radio transmissions that may be intercepted by anyone with an antenna. Security professionals use encryption to protect the confidentiality of information sent over wireless networks.
+
+### Wireless Networking
+
+- Governed by the IEEE 802.1.1 standard
+- Uses plaintext Service Set Identifiers (SSIDs)
+- Uses "beaconing" to advertise to other devices
+
+### Security Concerns
+
+Wifi introduces security concerns that didn't exist on wired networks. When I'm plugged into a network jack on the wall, eavesdropping on that connection requires either physically tapping the cable, or compromising a network device. Wifi, on the other hand, uses radio signals that anyone can pluck out of the air with some very basic equipment and an antenna. This makes encryption critical for protecting the security of wireless networks. 
+
+### Wireless Encryption
+
+- Protects confidentiality of communication
+- Prevents eavesdropping
+- Allows use of insecure transmission methods
+
+##### Wi-Fi Encryption Options
+
+1. You can opt to use no encryption whatsoever
+2. Wired Equivalent Privacy (WEP) uses a static key (easy to hack)
+3. Wi-Fi Protected Access (WPA) uses the Temporal Key Integrity Protocol (TKIP)
+   - TKIP changes encryption key for each packet preventing an attacker from discovering the key after monitoring the network for a long period of time
+   - Security researchers have demonstrated some theoretical attacks against WPA, but it's still widely used and considered safe
+4. Wi-Fi Protected Access v2 (WPA2) uses Advanced Encryption Standard (AES) via CCMP (Counter Mode Cipher Block Chaining Message Authentication Code Protocol)
+
+#### Hacking WEP
+
+When you set up a new WEP connection, the computer and access point exchange an Initialization Vector, or IV, that helps get the connection established. **This IV is sent without encryption, because it is used to create the encrypted channel**. If an attacker captures enough different Initialization Vectors, he or she can reconstruct the encryption key. 
+
+### ! EXAM TIPS
+
+Know that WEP attacks depend upon capture initialization vectors (IVs)
+
+Use WPA2
+
+
+
+### 4.2 WPA and WPS attacks
+
+#### Wi-Fi Protected Access (WPA)
+
+- Fixes the problems inherent in WEP
+- Uses RC4 with 128-bit key, but adds Temporal Key Integrity Protocol (TKIP)
+- Changes its key constantly, with a new key for each packet
+
+#### Is WPA Secure?
+
+- Known attacks allow injection of packets and some limited decryption
+- These attacks work against the principles of TKIP
+- If you want to play it safe, use WPA2
+- WPA2 throws out all vestiges of WEP
+
+#### Wi-Fi Protected Setup (WPS)
+
+- WPS allows quick setup of devices
+- There're 2 methods for establishing connection:
+  - Pressing buttons on devices
+  - Using 8-digit WPS PIN
+
+#### WPS Attacks
+
+- Flaws in WPS make it trivial to guess the WPS PIN
+- Though there're 10,000,000 possibilities, a flaw requires only 11,000 guesses
+- Got the PIN? You get the WEP/WPA.WPA2 key
+- PIN can't be changed
+
+
+
+### 4.3 Propagation attacks
+
+The open nature of wireless networks makes them perfect targets for attacks that prey upon radio wave propagation. Attackers can simply use strong antennas and pull signals out of the air for analysis.
+
+#### Jamming and Interference
+
+- DoS attacks are easy on wireless network
+- The radio spectrum is open, but in a limited access
+- The loudest signal always wins, so it doesn't have to interfere with another signal
+
+#### War Driving
+
+Attackers will cruise neighborhoods and commercial areas, using tools that capture information about Wi-Fi networks. 
+
+They might notice open wireless networks, or those using weak WEP encryption. War drivers use special software that automatically captures this information, and even correlates it with GPS data to plot it on a map. After driving around gathering information, attackers can return to areas where they want to exploit vulnerable networks.
+
+War driving tools:
+
+- iStumbler: mac tool that shows very detailed info about nearby wireless networks
+- wigle.net: shows all of the wireless networks that others discovered in the area
+
+
+
+### 4.4 Preventing rogues and evil twins
+
+Attackers sometimes use fake wireless access points that pose as legitimate network connections in order to gain sensitive information or network access. 
+
+#### Rogue Access Points
+
+Rogue access points occur when someone connects an unauthorized wireless access point to an enterprise network. The huge risk with rogue access points is that they can bypass other wireless authentication mechanisms. If you spend hours configuring your systems to use WPA2 security, a rogue access point configured to avoid encryption can quickly bypass all of that. Anyone connecting to the rogue AP can then gain unrestricted access to your network. 
+
+A second risk posed by rogue access points is interference. There are a limited number of wifi channels available and rogue APs can quickly interfere with legitimate wireless use. 
+
+![Rogue_AP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_04_Rogue_Access_Points.PNG?raw=true)
+
+#### Rogue AP Detection
+
+- Enterprise-grade wireless has built-in intrusion detection capabilities
+- Unknown radios on the network can be identified (e.g. triangulation by readings of signal strength and direction from 3 or more legitimate access points)
+- Handheld tools can also help pinpoint them
+
+IT staff should monitor their buildings and networks for the presence of rogue access points and shut them down quickly when they are detected. There are several technologies available to help with this. 
+
+#### Evil Twins
+
+Evil twin attacks are cousins of phishing and pharming attacks. A hacker sets up a fake access point with the SSID of a legitimate network. They then lure unsuspecting users who will automatically connect to that network when in the vicinity. 
+
+Since the hacker controls the network he or she can then use DNS poisoning and similar tactics to redirect users to phishing websites. 
+
+Conducting an evil twin attack is easy if attackers use very common SSIDs that millions of computers are configured to automatically connect to:
+
+- linksys
+- netgear
+- xfinitywifi
+- dlink
+- freewifi
+- optimumwifi
+- cablewifi
+- home
+- attwifi
+
+Attackers can automate the evil twin attack using software known as the karma toolkit. 
+
+##### Karma Tookit
+
+- Automates the evil twin process
+- Searches for adjacent networks
+- Creates a matching fake network
+- Redirects traffic to phony sites and capture credentials
+
+
+
+### 4.5 Disassociation attacks
+
+Many attacks against wireless encryption require that the attacker collect a large number of authentication attempts from wireless clients. Disassociation attacks speed up this time-consuming process. They may also be used in denial of service attacks against wireless network. 
+
+**Normally, clients stay connected to wireless networks for extended periods of time**
+
+For example, a client might re-authenticate only once or twice every hour. On a low-traffic network, this means that it can take quite a bit of time before an attacker is able to gather enough information to conduct an attack.
+
+#### Deauthentication Frame
+
+- Immediately disconnects clients
+
+![Legit_DeAuthen](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_05_Legitimate_Deauthentication.PNG?raw=true)
+
+This deauthentication frame is sent by the access point to the client. Therefore, it bears the source MAC address of the access point and the destination Mac address of the client. 
+
+![Disassociation_Attack](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_05_Disassociation_Attack.PNG?raw=true)
+
+Attackers can use this disassociation capability to force a network client to re-authenticate. They do this by simply sending a spoofed data frame that uses the MAC address of the access point as the source address and the MAC address of the client as the destination address. When the client receives this spoofed frame, it believes that it came from the access point and then disconnects from the WiFi network. The client may then try to reestablish the connection by re-authenticating to the network. 
+
+#### Disassociation Attack Goals
+
+- Gather authentication information for cryptographic attacks
+- Conduct DoS attacks on wireless networks
+
+
+
+### 4.6 Understanding Bluetooth and NFC attacks
+
+#### Near Field Communication
+
+- I used for very short range links between devices (30-50 feet)
+- Is most commonly seen in Bluetooth
+- Is commonly used for speakers, headsets, keyboards, and similar devices
+
+#### Bluejacking
+
+- An attacker sends Bluetooth spam to a user's device
+- The attacker tries to entice user to take some action
+- This is essentially Bluetooth spam/phishing
+
+The reality is that Bluejacking attacks are mostly a dated concept and they're rarely seen today. 
+
+#### Bluesnarfing
+
+- An attackers exploits firmware flaw in older Bluetooth devices
+- The attacker forces pairing between devices
+- The connection grants access to the device
+
+You see the forced pairing attacks of Bluesnarfing a lot on television but it doesn't really happen anymore in practice. 
+
+#### NFC Security
+
+- Turn off discoverable mode when not in use
+- Apply firmware updates
+- Watch for suspicious activity
+
+Fortunately, Near Field Communication technologies such as Bluetooth are well-designed and allow for secure use. Organizations should ensure that they follow basic security principles to provide a secure NFC experience for users.
+
+
+
+### 4.7 RFID security
+
+Radio Frequency Identification, or RFID chips, allow organizations to achieve a wide variety of business benefits. 
+
+- RFID chips are embedded in many items and may be read by RFID scanners.
+- Passports bearing the international standard electronic passport symbol contain RFID chips
+- Transit cards and credit cards often contain RFID chips to allow contactless reading
+- Electronic toll systems use RFID
+- Warehouses track inventory with RFID
+
+#### RFID Security Concerns
+
+- Business want strong authentication and encryption to protect the integrity of RFID systems
+- Consumers want privacy safeguards to protect their personal information
+
+RFID is still an emerging area of concern and security professionals should ensure that they address security and privacy issues and remain abreast of new technical and regulatory developments in this field.
+
+
+
+### Chapter Quiz
+
+1. Beth is creating a new wireless network for her organization and wants to protect against eavesdropping attacks.  What encryption technology should she use to protect the network?
+
+   A. WPA2
+
+   B. WPA
+
+   C. WEP2
+
+   D. WEP
+
+   How many digits are allowed in a Wi-Fi Protected Setup (WPS) PIN?
+
+   A. 11
+
+   B. 8
+
+   C. 6
+
+   D. 4
+
+2. Renee notices a suspicious individual moving around the vicinity of her company's buildings with a large antenna mounted in his car.  Users are not reporting any problems with the network. What type of attack is likely taking place?
+
+   A. war chalking
+
+   B. jamming
+
+   C. war driving
+
+   D. WPS cracking
+
+3. What toolkit enables attackers to easily automate evil twin attacks?
+
+   A. NIDS
+
+   B. KARMA
+
+   C. HIPS
+
+   D. iStumbler
+
+4. Chris is attending a hacker convention and overhears someone talking about "force pairing" a mobile device.  What type of attack is the individual discussing?
+
+   A. bluesnarfing
+
+   B. bluedriving
+
+   C. bluechalking
+
+   D. bluejacking
+
+
+
+Answers:
+
+1. WPA2
+2. 8
+3. war driving
+4. KARMA
+5. bluesnarfing
+
+
+
+
+
+
+
 
 
 
