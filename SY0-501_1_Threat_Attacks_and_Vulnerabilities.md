@@ -1177,6 +1177,617 @@ Answers:
 
 
 
+## 5. Application Attacks
+
+### 5.1 Application security
+
+- We're dependent on secure, reliable software
+
+The details of software security vary quite a bit depending upon how organizations acquire their software:
+
+- **Purchased Software** Acquired from software vendors for use in many different organizations
+- **Developed Software** Custom-written to meet the specialized needs of a single organization
+
+We have security responsibilities in either case. Application hardening is one of the core principles of software security.
+
+#### Application Harding
+
+- Use proper authentication
+- Encrypt sensitive data
+- Validate user input
+- Avoid and remediate known exploits
+
+**Prompt Patching Is Critical!** Attackers quickly exploit new vulnerabilities.
+
+#### Application Configuration
+
+- Type of scope of encryption
+- Users with access to the application
+- Access granted to authorized users
+- Security of underlying infrastructure
+
+**Configuration baselines allow quick identification and remediation of security gaps.**
+
+
+
+### 5.2 Preventing SQL injection
+
+SQL injection attacks use web applications as a mechanism to illegitimately access database servers that support web applications and retrieve sensitive information or make unauthorized modifications to the database.
+
+#### Database-Driven Web Applications
+
+For example, an online shopping website that has millions of items in its catalog. Users can visit the site and search for just about anything using any combination of key words. Obviously, the site developers can't imagine every possible search term and create pages in advance. That's where databases come into play. Instead of creating those pages in advance, developers write dynamic web applications. These web applications reach out to databases to obtain content as they build pages that respond to user requests. 
+
+##### Example SQL Query
+
+```sql
+SELECT username, password
+FROM user_account
+WHERE username='mchapple'
+```
+
+Returns:
+
+| Username | Password |
+| -------- | -------- |
+| mcapple  | apple    |
+
+The `Select` statement specifies the information that we want to retrieve from the database. In this case, that's the username and password. The `From` clause tells the database what table contains the information. In this case, that's the user_accounts table. Finally, the `Where` clause limits the results to those matching a certain query. In this case, those for the user mchapple. 
+
+A dynamic web application might plug in information to the `Where` clause from a variable. SQL injection attacks take advantage of this to give the database unexpected instructions. 
+
+```sql
+SELECT username, password
+FROM user_account
+WHERE username='mchapple' OR 1=1
+```
+
+One equals one is just a mathematical statement that's always true. So the `Where` clause now essentially reads "Where username equals mchapple or true." So it's always true. And you see the results that come back from the web application include all of the usernames and passwords from the database. 
+
+| Username | Password   |
+| -------- | ---------- |
+| mcapple  | apple      |
+| john     | mypassword |
+| dennis   | e8amq0ska  |
+| todd     | uoOm99ab!  |
+
+**Example of WebGoat**
+
+Input `Smith' OR 1=1;--`
+
+The purpose of some of the extra characters here is just to make the SQL query work. The rest of this just comments out the single quote that's left over from the query template. The interesting thing here, now, is instead of just seeing the results for the user John Smith, we see all of the users contained within that database and their credit card numbers. We can even get a little more sinister than this. 
+
+Input `Smith'; DELETE FROM user_data;-- `
+
+Remove all of the information from that table in the database
+
+#### Validate all user input
+
+You have to check user input to make sure that it matches the expected format. If you're expecting a last name, you should have letters only. No apostrophes or equals signs in there. 
+
+#### Other Injection Attacks
+
+- LDAP injection
+- XML injection
+- Command injection (arbitrary code execution)
+
+
+
+SQL injection attacks allow dangerous direct interaction between attackers and your databases. Input validation is essential to preventing SQL injection attacks.
+
+
+
+### 5.3 Understanding cross-site scripting
+
+Cross-site scripting attacks are one of the most dangerous web-based attacks on the internet today. They're easily executed by attackers and can take place without the knowledge of the victim. 
+
+#### Cross-Site Scripting (XSS)
+
+Cross-site scripting attacks occur when an attacker embeds malicious scripts in a third-party website that are later run by innocent visitors to that site.
+
+**HTML Enhances Websites with Formatting and Images**
+
+HTML is a markup language that allows web pages to have all sorts of advanced functionality, other than just displaying plain text. HTML authors can add different fonts, include images, link to other sites and even include small programs called scripts that run in the browsers of visitors to the site. HTML uses the concept of tags to perform all of these actions. 
+
+##### HTML Tags
+
+- Mark up text with formatting instructions
+  - \<b>  for bold text
+  -  \<i> for italics
+  - \<a> for links
+- This is \<b>bold text\</b> displays as 
+  - This is <b>bold text</b>
+- This is \<i>italicized text\</i> displays as
+  - This is <i>italicized text</i>
+- \<a href="www.cnn.com">This is a link to CNN\</a>
+  - <a href="www.cnn.com">This is a link to CNN</a>
+
+**The \<Script\> Tag Allows Web Developers to Embed Code in a Page** 
+
+##### Sample Script
+
+```html
+<SCRIPT>
+alert("This site is under construction");
+</SCRIPT>
+```
+
+You might include this code in a webpage that pops up a window in the readers browser saying that the site is under construction. 
+
+**XSS Attackers Embed Scripts in Sites without Permission**
+
+The attacker manages to trick a legitimate website into sending its users copies of a malicious script. This often happens when the site allows users to enter input that is then displayed to other users. 
+
+##### Auction Listing
+
+For example, an online auction site might accept postings from anyone in the world. Users posting to the site may wish to dress up their auction listings with bold characters, images and other enhancements, so the auction site owners allow them to write HTML code in their listings. Maybe someone selling a boat might want to make their boring listing look a little more interesting by including HTML code in their input and then getting a catchier looking description that includes a picture. 
+
+```html
+I am selling my 20-foot pontoon boast.
+It is in <b>excellent condition</b>/
+Priced to sell!
+<img src='pontoon.jpg'>
+```
+
+But what happens if the user includes unexpected HTML in their post? Like a script that takes some malicious action on the viewers computer? If the website simply takes this input and passes it along to other users, the users will see the same auction
+
+```html
+I am selling my 20-foot pontoon boast.
+It is in <b>excellent condition</b>/
+Priced to sell!
+<img src='pontoon.jpg'>
+<script>
+INSERT EVIL CODE HERE
+</script>
+```
+
+If the website simply takes this input and passes it along to other users, the users will see the same auction listing but the malicious script runs in the background without their knowledge. 
+
+#### Use Input Validation!
+
+- Don't allow \<script\> tags in user-supplied input
+
+**Example: OWASP-WebGoat**
+
+Change the Street information from "2211 Hyper Thread Rd." to "2211 Hyper Thread Rd.\<SCRIPT>confirm('You have been attacked');\<SCRIPT\>"
+
+![image-20210319000808625](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210319000808625.png)
+
+XSS attack demonstrates a more serious vulnerability. We can execute our own scripts on a victim's machine. What if, instead of the pop-up window we instructed Jerry's browser to visit a bank's website and transfer cash to Tom. If Jerry wasn't a customer of that bank or wasn't logged into that site, the attack would fail. But if he was logged into the bank's website in another tab, it might succeed. Cross-site scripting attackers try this thousands of times, waiting until they hit the jackpot once. They don't care if they have 999 failures before a single success. As with many types of attack, the attacker is playing a numbers game waiting for that one victim.
+
+
+
+### 5.4 Understanding cross-site request forgery
+
+Another danger of facing web applications is the threat of cross-site request forgery. These attacks are similar to cross-site scripting attacks, but even more nefarious. 
+
+#### !EXAM TIPS
+
+**Cross-site request forgery, CSRF, XSRF, and "sea surf" all refer to the same attack!**
+
+#### Cross-Site Request Forgery
+
+Cross-site request forgery (CSRF or XSRF) attacks leverage the fact that users are often logged in to multiple sites at the same time and use one site to trick the browser into sending malicious requests to another site without the user's knowledge.
+
+(Cross-site request forgery attacks prey upon these persistent authentication sessions in a manner similar to a cross-site scripting attack.)
+
+##### Sample Funds Transfer
+
+```
+http://www.paybuddy.com/transfer_funds.php?amount-500&source=acct1230122&target=acct915284
+```
+
+**XSRF Secretly Sends Request**
+
+Now an attacker that knows this can try to exploit it using a cross-site request forgery attack, by attempting to trick users into sending this command without their knowledge. One of the easiest ways to do this is to include a fake image tag in a webpage that actually executes the desired command. 
+
+##### XSS Auction Listing
+
+```html
+I am selling my 20-foot pontoon boast.
+It is in <b>excellent condition</b>/
+Priced to sell!
+<img src='pontoon.jpg'>
+<script>
+INSERT EVIL CODE HERE
+</script>
+```
+
+This image tag attempts to transfer funds from the user's checking account to the attacker's checking account. When the user loads the page, the boat sales listing looks completely normal, but the invisible image added to the page actually executes the unauthorized bank transfer. 
+
+#### Defending Against CSRF
+
+- Rearchitect web applications
+- Prevent the use of HTTP GET requests
+- Advise users to log out of sites
+- Automatically log out users after an idle period
+
+Defending against cross-site request forgery is very difficult, and often requires rearchitecting web applications to use cryptographically strong tokens in each exchange between authenticated users and a website. Other measures include preventing the use of HTTP get requests to make cross-site request forgery attacks more difficult, advising users to log out when they are finished using a site, and because they probably won't follow that advise, automatically logging users out after a short idle period. This is an end convenience to end users, but it reduces the likely-hood that those users will fall victim to a cross-site request forgery attack.
+
+
+
+### 5.5 Clickjacking
+
+Clickjacking attacks are a form of cross-site request forgery. 
+
+#### Clickjacking Attack
+
+An attack where the attacker hides elements of a webpage behind other elements so that a user cannot see what he or she is actually clicking.
+
+![05_05_Clickjacking](C:\Users\JY\Desktop\Security+\Images\05_05_Clickjacking.PNG)
+
+For example, an attacker might create a simple webpage like this, that shows a user some interesting content, and invites them to join a free mailing list. To join the list, they simply enter their email address and click the subscribe button. Unbeknownst to the user, there's another invisible link lurking behind the subscribe button. That link might go directly to the follow link for a business's Twitter account. If the user happens to be already logged in to Twitter, the clickjacking effort results in a successful cross-site request forgery attack. And the user follows the business on Twitter, building that company's Twitter following. 
+
+##### Cursorjacking 
+
+- A specialized form of clickjacking that tricks the user about the cursor's location on the screen
+
+It can be difficult to detect clickjacking attacks, but there are some security tools that make it easier. The **Noscript** extension for Firefox includes a technology called Clear Click that analyzes webpages before a user clicks on them, and makes sure that the page displayed to the user doesn't contain any visually hidden elements. 
+
+Clickjacking attacks are a dangerous form of cross-site request forgery that may be used for building social media followings, stealing money, and obtaining sensitive personal information.
+
+
+
+### 5.6 Defending against directory traversal
+
+Another common web application security flaw is the directory traversal attack. This attack allows an attacker to manipulate the file system structure on a web server.
+
+**Quick Facts about Unix Filesystems**
+
+- `.` references the current directory
+- `..` references the directory one level higher in the hierarchy
+
+#### Directory Traversal Attacks
+
+When an attacker uses directory navigation references to search for unsecured files on a server
+
+Example of a file system:
+
+![image-20210320004116810](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004116810.png)
+
+- ThreadSafetyProblem: file we're supposed to get
+- tomcat-users.xml: target
+
+ with the web application. 
+
+```bash
+../../../../conf/tomcat-users.xml
+```
+
+We could use ZAP, a web proxy that intercepts web requests and lets us modify them, and WEBGOAT to practice Directory Traversal Attacks
+
+Directory traversal attacks are dangerous, because they allow attackers to bypass normal access controls and view sensitive files stored on a web server. 
+
+There are two ways you can defend your applications against directory traversal attacks. 
+
+- Input validation to prevent the inclusion of periods in user requests
+- Set strict file system access controls to limit the web server users ability to read sensitive files
+
+
+
+### 5.7 Overflow attacks
+
+Buffer overflow attacks also pose a danger to the security of web applications. When software engineers develop applications, they often set aside specific portions of memory to contain variable content. Users often provide answers to questions that are critical to the application's functioning and fill those memory buffers. If the developer fails to check that the input provided by the user is short enough to fit in the buffer, a buffer overflow occurs. The user content may overflow from the area reserved for input into an area used for other purposes and unexpected results may occur.
+
+Example
+
+Valid input
+
+![image-20210320004810791](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004810791.png)
+
+![image-20210320004921679](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004921679.png)
+
+
+
+4096 bit room number
+
+![05_07_Buffer_Overflow](C:\Users\JY\Desktop\Security+\Images\05_07_Buffer_Overflow.PNG)
+
+![image-20210320005154239](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320005154239.png)
+
+The web application has placed in here the names and room numbers of every other guest of the hotel. 
+
+In this example, we saw how a buffer overflow can result in unexpected behavior. More specifically, we exploited a type of buffer overflow known as an integer overflow. The simple use of input validation limiting room numbers to three or four digits would have prevented this problem.
+
+
+
+### 5.8 Explaining cookies and attachments
+
+Cookies small pieces of content that can track users between website visits and across different websites. Understanding the uses of cookies and how to remove them from a system is a critical task for privacy minded security administrators.
+
+#### What are cookies?
+
+- Cookies are data stored by websites in user browsers
+- They are particularly useful to recognize users
+- They are used to remember information
+
+#### Privacy Risks
+
+- Cookies can be used across different websites
+- Cookies can tracker user activity
+- If you log into one site, everything is de-anonymized
+
+Fortunately, the user has a high degree of control over the use of cookies. 
+
+#### Cookies are used in apps, too
+
+While web browsers are the most common place to find cookies, they're not the only cookies in use. Some application platforms use cookies as well. For example, many people are surprised to learn that Adobe Flash has its own cookie system. These Flash cookies are also known as locally shared objects, or LSOs. 
+
+
+
+Cookies track user activity across the web. As a Security Plus certified professional, you should be able to explain these risks to end users, and be knowledgeable about the privacy settings available for cookie management.
+
+
+
+### 5.9 Session hijacking
+
+Cookies are often used for web application authentication. After a user logs into a system, the web server provides a cookie, so that the user doesn't need to continuously log into the system every time he or she requests a new webpage. Presenting the cookie with each request causes the web server to reference the earlier successful login. One major flaw with some web applications is that they don't use random cookies. Instead, they use a guessable value. 
+
+#### Cookie values weak if guessable
+
+![image-20210320005919276](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320005919276.png)
+
+1. Alice's cookie also begins with 65432
+2. They end with a text value
+3. Each of these text values is the same length as the username
+4. The text value at the end of the cookie is actually figured out by taking the username, reversing the letters, and then adding one value to each letter. 
+5. 65432fdjmb
+
+Tamper with the request using a technique known as header manipulation. 
+
+In this example, we analyze the login cookie and guess the correct value because it wasn't very carefully constructed. This is a somewhat sophisticated session hijacking attack. A simpler variation of this attack involves eavesdropping on a user's unencrypted connection. If you can simply view the cookie, you don't need to go through all these hoops to figure out the value yourself.
+
+
+
+### 5.10 Malicious add-ons
+
+Browser add-ons are a valuable way to add functionality for web users, but they can also become malicious. Let's take a look at how add-ons and extensions work and what security risks they pose. 
+
+#### What are Add-ons?
+
+- Are also known as extensions
+- Add new functionality to browsers and other software
+- Are written by third-party developers
+
+#### Security Risks
+
+- You might not know who wrote the code
+- Trojans may perform malicious actions
+- Permission may be overly broad
+- Legitimate browser extensions purchased by malicious individuals, then used for other purposes
+
+Whether attackers write their own malicious add-ons, or purchase and repurpose a popular existing add-on, the extra code inherent in browser add-ons and extensions jeopardizes computer security. Security administrators must be careful to understand, what extensions are running on browsers in their environments, and limit use to trusted add-ons with limited permission to access data.
+
+
+
+### 5.11 Code execution attacks
+
+**Code Execution Attacks** Occur when an attacker exploits a vulnerability in a system that allows the attacker to run commands on that system
+
+#### Key Terms
+
+##### Arbitrary code execution
+
+- Code execution attacks where the attacker runs commands of his or her choice
+
+##### Remote code execution
+
+- Code execution attacks that take place over a network connection
+
+Attackers using code execution vulnerabilities may perform any action they desire on the targeted system. If the process they trick into executing their code is running with administrative privileges, they will gain full access to the system. 
+
+#### Code Execution Objectives
+
+- Install malicious code
+- Join a system to a botnet
+- Steal sensitive information
+- Create accounts for later access
+
+#### Protect Against Code Execution Attacks
+
+##### 1. Limit administrative access
+
+When code execution attacks take place within an application running on a server, the code executes with the permissions of that application process. You should limit that access as much as possible, running application services with restricted accounts that follow the principle of least privilege. This will limit the damage caused by a successful code execution attack. 
+
+##### 2. Patch systems and applications
+
+Code execution attacks almost always exploit vulnerabilities in applications or operating systems. Many of these vulnerabilities are known and have existing patches. Keeping your operating systems and applications patched is an incredibly important and effective security control.
+
+
+
+### 5.12 Driver manipulation
+
+Sophisticated attackers may reach down into device drivers and manipulate them in ways that undermine security. 
+
+**Device Driver** Serves as the software interfaces between hardware devices and the operating system
+
+**Device drivers require low level access to the operating system and therefore run with administrative privileges.** If an attacker can convince a user to install a malicious driver on their computer, that malware can gain complete control of the system. 
+
+#### Refactoring
+
+- Modifying a driver to carry out malicious activities
+- Requires access to the driver source code
+
+#### Shimming
+
+- Wraps a legitimate driver with a malicious shim
+- Does not require access to the legitimate driver's source code
+
+#### Code signing protects against malicious drivers
+
+However, the driver can also carry out its malware payload in the background. Fortunately, modern operating systems all contain protections against malicious drivers. The most important of these protections is code signing. Device manufacturers write drivers and then apply digital signatures to them so that the operating system can verify the driver's authenticity. If the driver is not digitally signed, or the digital signature is incorrect, the operating system may warn the user of the suspicious driver or prevent the driver's installation all together. 
+
+
+
+The privileged nature of drivers gives them deep access to the operating system. Security professionals must ensure that the drivers used in their organization are legitimate and were not modified to carry out malicious activities.
+
+
+
+### 5.13 Error and exception handling
+
+Many security issues occur when software acts in an unexpected manner in response to invalid user input or another error situation. For this reason, appropriately handling errors is a critical component of software security.
+
+Example of a Tax Calculator
+
+State Diagram:
+
+```mermaid
+graph LR
+A[1. Awaiting Input]-->B[2. Calculating Tax]
+B[2. Calculating Tax]-->C[3. Displaying Output]
+```
+
+What happens if an error occurs? For example, what if the user types "apple" into the transaction amount field instead of a dollar amount? 
+
+**Unpredictable States Jeopardize Application Security**
+
+#### Error Handling
+
+- Avoids unpredictable states
+
+New State Diagram
+
+```mermaid
+graph LR
+A[1. Awaiting Input]-->B[2. Validate Input]
+B[2. Validate Input]-->C[3. Calculating Tax]
+B[2. Validate Input]-->E[Displaying Error]
+C[3. Calculating Tax]-->D[4. Displaying Output]
+
+```
+
+**Java's Try..Catch Model**
+
+```java
+int numerator = 10;
+int denominator = 0;
+
+try
+{
+    int quotient = numerator / denominator;
+}
+
+catch (ArithmeticException err)
+{
+    System.out.println("Division By Zero!");
+}
+```
+
+
+
+If you think through the different errors that could result from your code, and provide explicit instructions for handling those errors, your code will be much more secure.
+
+
+
+### Chapter Quiz
+
+1. Which one of the following is not a standard application hardening technique?
+
+   A. encrypt sensitive information
+
+   B. conduct cross-site scripting
+
+   C. validate user input
+
+   D. apply security patches properly
+
+2. What character is essential in input for a SQL injection attack?
+
+   A. '
+
+   B. "
+
+   C. *
+
+   D. !
+
+3. What is the most effective defense against cross-site scripting attacks?
+
+   A. query parameterization
+
+   B. antivirus software
+
+   C. input validation
+
+   D. vulnerability scanning
+
+4. Which one of the following is not an effective defense against XSRF attacks?
+
+   A. user education
+
+   B. automatic logouts
+
+   C. preventing the use of HTTP GET requests
+
+   D. network segmentation
+
+5. Alan is analyzing his web server logs and sees several strange entries that contain strings similar to "../../" in URL requests.  What type of attack was attempted against his server?
+
+   A. cross-site scripting
+
+   B. SQL injection
+
+   C. directory traversal
+
+   D. buffer overflow
+
+6. What type of attack seeks to write data to areas of memory reserved for other purposes?
+
+   A. SQL injection
+
+   B. buffer overflow
+
+   C. XSS
+
+   D. XSRF
+
+7. What type of object must a hacker typically access in order to engage in a session hijacking attack?
+
+   A. hard disk
+
+   B. one-time password generator
+
+   C. network cable
+
+   D. cookie
+
+8. Which one of the following is not a significant risk associated with browser add-ons and extensions?
+
+   A. overly board permissions
+
+   B. sandbox execution
+
+   C. malicious author
+
+   D. resale of legitimate extensions
+
+9. What Java clause is critical for error handling?
+
+   A. try...catch
+
+   B. if...then
+
+   C. while...until
+
+   D. for...next
+
+
+
+Answers:
+
+1. conduct cross-site scripting
+2. '
+3. input validation
+4. network segmentation
+5. directory traversal
+6. buffer overflow
+7. cookie
+8. sandbox execution
+9. try...catch
+
+
+
+
 
 
 
