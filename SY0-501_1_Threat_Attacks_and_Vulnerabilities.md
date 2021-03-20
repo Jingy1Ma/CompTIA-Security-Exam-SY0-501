@@ -1351,7 +1351,7 @@ If the website simply takes this input and passes it along to other users, the u
 
 Change the Street information from "2211 Hyper Thread Rd." to "2211 Hyper Thread Rd.\<SCRIPT>confirm('You have been attacked');\<SCRIPT\>"
 
-![image-20210319000808625](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210319000808625.png)
+![XSS](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_03_XSS.PNG?raw=true)
 
 XSS attack demonstrates a more serious vulnerability. We can execute our own scripts on a victim's machine. What if, instead of the pop-up window we instructed Jerry's browser to visit a bank's website and transfer cash to Tom. If Jerry wasn't a customer of that bank or wasn't logged into that site, the attack would fail. But if he was logged into the bank's website in another tab, it might succeed. Cross-site scripting attackers try this thousands of times, waiting until they hit the jackpot once. They don't care if they have 999 failures before a single success. As with many types of attack, the attacker is playing a numbers game waiting for that one victim.
 
@@ -1443,7 +1443,7 @@ When an attacker uses directory navigation references to search for unsecured fi
 
 Example of a file system:
 
-![image-20210320004116810](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004116810.png)
+![FileSys_Example](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_06_File_Sys_Ex.PNG?raw=true)
 
 - ThreadSafetyProblem: file we're supposed to get
 - tomcat-users.xml: target
@@ -1473,17 +1473,17 @@ Example
 
 Valid input
 
-![image-20210320004810791](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004810791.png)
+![Valid_Input](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_07_Vaild_Input.PNG?raw=true)
 
-![image-20210320004921679](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320004921679.png)
+![Valid_ZAP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_07_Valid_ZAP.PNG?raw=true)
 
 
 
 4096 bit room number
 
-![05_07_Buffer_Overflow](C:\Users\JY\Desktop\Security+\Images\05_07_Buffer_Overflow.PNG)
+![Buffer_Overflow](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_07_Buffer_Overflow.PNG?raw=true)
 
-![image-20210320005154239](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320005154239.png)
+![BO_ZAP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_07_BO_ZAP.PNG?raw=true)
 
 The web application has placed in here the names and room numbers of every other guest of the hotel. 
 
@@ -1525,7 +1525,7 @@ Cookies are often used for web application authentication. After a user logs int
 
 #### Cookie values weak if guessable
 
-![image-20210320005919276](C:\Users\JY\AppData\Roaming\Typora\typora-user-images\image-20210320005919276.png)
+![Cookie_Guess](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_09_Cookie_Guess.PNG?raw=true)
 
 1. Alice's cookie also begins with 65432
 2. They end with a text value
@@ -1784,14 +1784,6 @@ Answers:
 7. cookie
 8. sandbox execution
 9. try...catch
-
-
-
-
-
-
-
-
 
 
 
