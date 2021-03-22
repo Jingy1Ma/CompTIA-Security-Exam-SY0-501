@@ -1787,6 +1787,283 @@ Answers:
 
 
 
+## 6. Vulnerability Scanning and Penetration Testing
+
+### 6.1 Security assessment tools
+
+Security professionals use a variety of assessment tools to help them assess the effectiveness of security controls. 
+
+#### Vulnerability Assessment Tools
+
+**Passive Tools**
+
+- Observe activity
+
+**Active Tools**
+
+- Interact with machines
+
+This might be as innocuous as checking for open ports or it might be more intrusive such as checking exploits against known vulnerabilities. Active tools are much riskier to use because they can disrupt normal system operation. The important thing to remember however is that if an active tool can disrupt your server, so can an attacker.
+
+
+
+**Vulnerability assessment tools may be used for configuration compliance scanning.**
+
+In this mode the assessment tool may reach out to systems, retrieve their configurations, and then compare those configurations to a security standard noting any deviations from the standard and flagging them for remediation. 
+
+
+
+#### Honeypots
+
+- Attractive decoy machines
+
+Honeypots are a type of passive tool that simply sits on a network and waits. Security administrators design honeypots to look very appealing to hackers. They might have obvious vulnerabilities that show up on a security scan, names like credit card server, or contain data such as files called employee social security database. 
+
+Honeypots are also highly instrumented. They have no other purpose so there should be no legitimate activity on the honeypot. Anytime someone interacts with the server, it's probably an attacker. Activity is immediately reported to security administrators and carefully monitored. 
+
+#### Honeynets
+
+- Decoy networks
+
+Honeynets are a variation on honeypots. They are entire networks setup as decoys for attackers. They're also sometimes called dark nets because they typically remain unused or dark. Anyone trying to connect to the honeynet is likely performing reconnaissance for an attack. Honeynets quickly identify other compromised systems on the land when those systems start trying to connect to the honeynet. Some honeynets also exist on the public internet and are used to create DNS blacklists of known malicious IP addresses. 
+
+#### Protocol Analyzers
+
+- Peek into network traffic
+
+peer into the contents of network traffic. This is often very important when diagnosing a network problem or investigating a security incident. Protocol analyzers allow us to see the actual packets exchanged on the network and dig deep into the details of those packets. 
+
+They do however introduce privacy concerns because they provide deep insight into the activity of individual users on the network. The use of protocol analyzers should be carefully restricted.
+
+restricted. The most common protocol analyzer is Wireshark.
+
+
+
+As a security plus professional, you should be familiar with the use of honeypots, honeynets, and protocol analyzers to help identify intruders on a network, contain hacker attacks, and dig deep into network data flows.
+
+
+
+### 6.2 Scanning for vulnerabilities
+
+Security analysts must test for vulnerabilities because if they don't, hackers will. You're much better off if you discover an issue and correct it than if an attacker discovers it and exploits it. Fortunately, vulnerability assessment tools automate the process of vulnerability scanning. There are three major categories of these tools. 
+
+- Port Scanners
+- Vulnerability Scanners
+- Application Scanners: probe deep into web applications to detect flaws
+
+#### Port Scanners
+
+- Scanning ports is like rattling a building's doornobs
+- Scanners probe system for open network ports (check all of possible 65,646 ports)
+- One of the most popular scanner is Nmap
+
+#### Vulnerability Scanners
+
+- These scanners test open ports for active vulnerabilities
+- They also provide important information for remediation
+- however, they also provide a roadmap for exploitation
+- One of the most popular scanners is Nessus
+
+
+
+Tools like Nmap and Nessus provide system administrators with important insight into the current security status of their servers. Organizations with robust security programs use these tools regularly and repeat scans until they obtain satisfactory passing results.
+
+
+
+### 6.3 Assessing threats
+
+Information security professionals tackle a wide variety of risks in their roles. These vary from earthquakes and tornadoes to hackers and viruses. The sheer quantity of forces aligned against you may sometimes be a little overwhelming. Fortunately, we have risk-assessment tools at our disposal that can help us prioritize our response. First, we need a common language. In everyday life, people often use the terms threat, vulnerability, and risk interchangeably. They are actually three different concepts.
+
+#### Threat
+
+- External force
+
+Threats might be naturally occurring, such as hurricanes and wildfires, or manmade, such as hacking and terrorism. You can't normally control what threats are out there. They exist independently. 
+
+#### Vulnerability
+
+- Security weaknesses
+
+Vulnerabilities are weaknesses in your security controls that a threat might exploit to undermine the confidentiality, integrity, or availability of your information or systems. These might include missing patches, promiscuous firewall rules, or other security misconfigurations. You do have control over the vulnerabilities in your environment, and security professionals spend much of their time hunting down and remediating vulnerabilities. 
+
+#### Risk
+
+- Vulnerability + threat
+
+Risks occur when your environment contains both a vulnerability and a corresponding threat that might exploit that vulnerability. For example, if you haven't updated your antivirus signatures recently and hackers release a new virus on the internet, you face a risk. You are vulnerable because you're missing a security control and there's a threat, the new virus. There is no risk if either the threat or vulnerability factor is missing. For example, if you live in an area far from the coast, it doesn't matter if your building is vulnerable to hurricanes because there is no threat of a hurricane in your region. Similarly, if you store your backup tapes in a fireproof box, there is no risk from a building fire because your storage container is not vulnerable to fire. 
+
+
+
+The next stage in the process ranks those risks by two factors, **likelihood** and **impact**. 
+
+The likelihood of a risk is the probability that it will actually occur. For example, there is a risk of earthquake in both California and Wisconsin. When you look at the data, however, you find that the probability of an earthquake occurring is far higher in California, where almost 5,000 significant earthquakes occurred over a 25-year period. During that same time, Wisconsin didn't experience a single major earthquake. Therefore, security professionals in California must be hypervigilant about the risk of earthquakes, while those in Wisconsin can probably ignore it. 
+
+The impact of a risk is the amount of damage that will occur if the risk materializes. For example, an earthquake might cause devastating damage to a data center, while a rainstorm might not cause any damage at all. 
+
+Security professionals use likelihood and impact information to help prioritize the many risks facing their organization each day. Those with higher likelihood and impact ratings require the most attention.
+
+
+
+### 6.4 Threat assessment techniques
+
+When you're ready to begin a security assessment program, where should you start? Let's take a look at 4 common ways to conduct a security assessment: baseline reporting, an attack surface review, code reviews, and architecture reviews. 
+
+#### Baseline Reporting
+
+- Provides an initial review of a system's security status
+- Compares the current configuration to the expected baseline configuration
+- It can be automated with tools
+
+#### Attack Surface Review
+
+- Enumerates the "attack surface", all possible paths of atatck
+- Makes heavy use of port, vulnerability and application scanners
+- Adopts the mindset of an attacker
+
+#### Code Review
+
+- Performs assessments of software security
+- Includes peer code review for an extra set of eyes to detect security issues
+- Should be a mandatory part of promotion and release process for new code
+
+#### Architecture Review
+
+- Dissects how everything fits together
+- Analyzes the interaction of various systems
+
+
+
+Well-designed security programs include a variety of assessment techniques that overlap and complement each other. Using baseline reporting, attack surface reviews, code reviews, and architecture reviews provides the organization with good insight into its current security status.
+
+
+
+### 6.5 Penetration testing
+
+Vulnerability testing merely probes systems for vulnerabilities. Those tests can be active reaching out and interacting with systems, but they are rarely dangerous because they don't typically complete an attack. Actually executing an attack is however, the best way to understand a system's vulnerabilities. 
+
+#### Penetration Testing
+
+- Testers actually attack systems and networks
+- They verify that threats exist and exploit known vulnerabilities
+- They also test security controls by attempting to bypass/defeat them
+
+#### Penetration Testing Process
+
+![PenTest_Process](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_05_PenTest_Process.png?raw=true)
+
+- Gaining Access: Enough data has been gathered in the discovery phase to make an informed attempt to access the target
+- Escalating Privilege: If only user-level access was obtained in the last step, the tester will now seek to gain complete control over the system (admin-level access)
+- System Browsing: The information-gathering process begins again to identity mechanisms to gain access to additional systems
+- Install Additional Tools: Additional penetration testing tools are installed to gain additional information or access or a combination of both
+
+#### Types of Penetration Tests
+
+##### White Box
+
+- Attackers have full knowledge of the network environment 
+
+##### Black Box
+
+- Attackers have no knowledge of the network environment
+
+##### Grey Box
+
+- Attackers have some knowledge of the network environment
+
+Grey approach is commonly used because it combines some of the external perspective benefits of a black box test with the time saving nature of a white box test. 
+
+##### Pivot
+
+- After exploiting a vulnerability in a system, attackers use that system as a base from which to target other systems on the same local network
+
+##### Persistence
+
+- After exploiting a vulnerability in a system, attackers install tools on that system to allow future access - even if the initial vulnerability is corrected
+
+Penetration tests are labor intensive for internal staff and expensive when using external consultants. For this reason, they are not done frequently, but they do provide valuable insight into the security of a system. Therefore, penetration tests should be an occasional part of the security professional's test kit.
+
+
+
+### 6.6 Advanced vulnerability scanning
+
+#### Non-Intrusive Scanning
+
+- A "safe" mode that won't disrupt system operation
+
+This is the safest way to go when you are worried about damaging production services. But this mode does not provide an accurate picture of security because it fails to show you if those attacks would have been successful. 
+
+#### Intrusive Scanning
+
+- A "dangerous" mode that might disrupt system operation
+
+One way to balance these concerns is to run tests against production systems in safe mode but then clone those systems running dangerous mode scans against the images.
+
+#### False Positive
+
+- When a scanner reports a vulnerability that does not actually exist, requiring verification by security administrators
+
+False positives may be burdensome and annoying but the only real danger they pose is that people will become desensitized to vulnerability reports if too many are false alarms. False negative errors on the other hand are far more dangerous. 
+
+#### False Negative
+
+- When a scanner fails to report a vulnerability that does actually exist, making it much more dangerous
+
+This may be due to a misconfiguration of the scanner or it might simply be a vulnerability that the scanner doesn't know about yet. 
+
+
+
+So, far we've spoken about vulnerability scanning as if it were occurring from an external perspective. Sometimes the vulnerability scanner needs to make assumptions about system configuration because of this limited perspective. It is also possible to run vulnerability scans that have full details of system configurations. 
+
+#### Credentialed Scanning
+
+- Vulnerability scanners can only see what the outside world sees
+- As a result, this requires some amount of guessing
+- Providing the scanner a server account allows it to assess the actual configuration, which can reduce the false positive rate
+
+
+
+### Chapter Quiz
+
+1. Wireshark is an example of a ______ tool.
+
+   A. protocol analyzer
+
+   B. honeynet
+
+   C. honeypot
+
+   D. vulnerability assessment
+
+2. Ricky is preparing a threat assessment and works to identify all of the possible avenues of attack against a system.  What technique is he using?
+
+   A. attack surface review
+
+   B. baseline reporting
+
+   C. vulnerability scanning
+
+   D. code review
+
+3. In a ________ penetration test, the attacker has no prior knowledge of the environment.
+
+   A. black box
+
+   B. rainbow box
+
+   C. white box
+
+   D. grey box
+
+
+
+Answers:
+
+1. Wireshark is an example of a protocol analyzer tool.
+2. attack surface review
+3. In a black box penetration test, the attacker has no prior knowledge of the environment.
+
+
+
 
 ## Reference
 
