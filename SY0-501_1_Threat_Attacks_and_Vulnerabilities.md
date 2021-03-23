@@ -2064,6 +2064,180 @@ Answers:
 
 
 
+## 8. Impact of Vulnerabilities
+
+### 8.1 Vendor vulnerabilities
+
+**Every IT organization depends upon products and services provided by outside vendors.**
+
+#### Product End-of-Life
+
+- Introduces security concerns
+
+##### 1. End-of-Sale
+
+- Product will no longer be offered for purchase, but the vendor will support existing customers
+
+##### 2. End-of-Support
+
+- The vendor will reduce or eliminate support existing users of products
+
+##### 3. End-of-Life
+
+- The vendor will no longer provide any support or updates for the product
+
+**Vendors may fail to provide adequate support for existing products.**
+
+This informal lack of vendor support can be just as dangerous as running an unsupported product, but it can be much more difficult to detect.
+
+#### Embedded System
+
+- Adds additional security risk
+
+#### Vendor vulnerabilities
+
+The use of vendors is unavoidable in modern IT environments. Cyber security professionals must monitor all vendor relationships to ensure that they do not jeopardize the security of their own environments.
+
+
+
+### 8.2 Memory vulnerabilities
+
+Information systems must manage the memory resources used by both the operating system and applications. When a single system supports many different uses, it becomes critical to isolate the memory used by each process to prevent it from being read or altered in an unauthorized way.
+
+#### Memory Overflow
+
+- Allows arbitrary code execution
+
+As mentioned earlier in this course, attackers can exploit overflow vulnerabilities to overwrite the contents of memory belonging to other processes and possibly trick the system into executing attacker provided code using administrative privileges.
+
+#### Resource Exhaustion
+
+**Resource exhaustion may slow down or disable a system**
+
+##### Memory Leak
+
+- Fails to release memory for reuse
+
+### Memory Pointers
+
+- Following a pointer is known as pointer dereferencing
+- Null Pointer Dereferencing
+
+If the application tries to de-reference this null pointer, it causes a condition known as a null pointer exception. In the best case, a null pointer exception causes the program to crash providing an attacker with access to debugging information. It may be used for reconnaissance of the application security. In the worse case, a null pointer exception may allow an attacker to bypass security controls. 
+
+#### DLL Injection
+
+- Trick a an application into loading malicious code
+
+DLL injection is another attack technique used by malware to undermine the security of a system. Windows depends upon dynamically linked libraries, or DLLs, to provide common code that applications may share. Applications that wish to use a DLL may load it and then make use of its contents. In a DLL injection attack, the attacker may insert a malicious DLL into an area of memory used by an application and then trick the application into using that malicious DLL. 
+
+
+
+### 8.3 Race condition vulnerabilities
+
+Race conditions are a particularly dangerous security flaw, and require careful attention from software developers and security professionals in order to prevent them. 
+
+#### Race Condition
+
+- Occurs when the proper functioning of a security control depends upon the timing of actions performed by the user or computer
+- Uncontrolled race conditions can be significant security vulnerabilities
+
+##### Time of Check/Time of User (TOCTOU)
+
+- Time elapses between authorization and action
+
+Example of ATM Machine:
+
+1. User inserts ATM card
+2. User enters PIN
+3. Machine verifies PIN and available balance
+4. User requests funds
+5. If the request is less than the balance, the machine dispenses cash and debits the account
+
+**What if 2 users access the same account at the same time?**
+
+User 1 and User 2 might both get to step 3, and both ATM machines would learn that there is \$1,000 available in the account. Then, both users request at the same time to withdraw \$750 from the account. The ATM machines have already learned that the account balance is ​\$1,000, so when they do their check, they each give the user the requested ​\$750, and the account is now overdrawn by ​\$500. 
+
+**Locks prevent simultaneous transactions from causing race conditions.**
+
+We do this by adding a lock that prevents two users from accessing the same account at the same time. When the first user accesses the account at the first ATM, that ATM will put a lock on the account, preventing the second user from starting a transaction before the first transaction completes. 
+
+
+
+Race conditions can have a significant impact on application security. Developers must understand the security risks involved and plan their code to avoid these issues.
+
+
+
+### 8.4 Configuration vulnerabilities
+
+- Default configurations may contain unnecessary open ports, guest accounts, or default admin passwords
+- Follow documented security standards and baselines when configuring systems and applications
+- Carefully manage the permissions assigned to accounts to prevent accidental or intentional misuse
+
+#### Cryptographic Vulnerabilities
+
+- Weak cipher suites
+- Weak cryptographic protocol implementations
+- Poor key management
+- Poor certificate management
+
+#### Least Privilege
+
+- Limits user permissions
+
+
+
+### 8.5 Architectural vulnerabilities
+
+**IT Architecture** Processes and practices used to design systems
+
+- Incorporate security early. Avoid bolt-on security requirements
+- Untrained users and weak business processes can be just as dangerous as technical flaws
+
+**System Sprawl** New devices are connected to a network, not old devices are not promptly disconnected, leading to security vulnerabilities.
+
+**System sprawl is even more risky when assets are undocumented.**
+
+
+
+### Chapter Quiz
+
+1. It is generally a bad practice to run software after the vendor's end of life.
+
+   A. TRUE
+
+   B. FALSE
+
+2. What condition occurs when a software package fails to release memory that it reserved for use?
+
+   A. DDoS
+
+   B. core dump
+
+   C. memory leak
+
+   D. race condition
+
+3. Which one of the following issues is not generally associated with the use of default configurations?
+
+   A. vendor-assigned passwords
+
+   B. SQL injection flaws
+
+   C. open ports
+
+   D. extraneous services running
+
+
+
+Answers:
+
+1. TRUE
+2. memory leak
+3. SQL injection flaws
+
+
+
 
 ## Reference
 
