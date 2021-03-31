@@ -796,28 +796,372 @@ Answers:
 
 
 
+## 3. Managing Secure Networks
+
+### 3.1 Firewall rule management
+
+- Firewalls protect networks: They control access at the network borders.
+- Firewall rules define how the firewall should act when it sees a new connection request.
+
+#### Firewall Rule Example
+
+![03_01_Firewall_Rules](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_01_Firewall_Rules.PNG?raw=true)
+
+For example, if a packet arrives, headed to the email server on Port 25, the firewall checks the rules in order from top to bottom. It first checks rule one, and neither the port nor the destination match, so it moves on to rule two and finds that it does match. The firewall then carries out the specified action, which, in this case, is to allow the traffic. Now let's suppose that someone attempts to connect to the web server, using a secure HTTPS connection on Port 443. When that packet arrives, the firewall checks its rules and finds that it does not match rule one because the ports are different. It also doesn't match rule two, so the firewall denies this connection, according to rule three, the default deny rule. 
+
+**Firewall administrators must watch for rule configuration errors.**
+
+#### Common Configuration Errors
+
+##### Shadowed Rules
+
+Shadowed rules occur when a rule base contains a rule that will never be executed because of its placement in the rule base. 
+
+Suppose we have a set of rules where we want to allow access from the internal network to all websites except a known malicious site with the IP address 1.2.3.4. We might write our rules like this, adding the rule to block access to the malicious site to the bottom of the rule list. 
+
+![03_01_Shadowed_Rules](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_01_Shadowed_Rules.PNG?raw=true)
+
+Unfortunately, this rule will never be executed. When someone attempts to access the malicious site, the firewall will check its rule base in top-down order. It will first find this rule that allows access to any website and execute it without ever checking our more specific rule because the specific rule is shadowed by the general rule. 
+
+We can easily fix this error by rearranging the rule base, so that the more specific rule appears first. 
+
+![03_01_Shadowed_Fixed](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_01_Shadowed_Fixed.PNG?raw=true)
+
+##### Promiscuous rules
+
+- allow more access than necessary
+
+This may be the result of laziness when writing the rules, a lack of understanding of how a system functions, or even a simple typo. Promiscuous rules violate the principle of least privilege and can jeopardize system security.
+
+##### Orphaned rules
+
+- allow access to decommissioned systems and services
+
+They occur when a system or service is decommissioned, but the rules are never removed from the firewall. Orphaned rules present a security challenge because the IP address used by the decommissioned server may be reused in the future, reactivating the orphaned rule and unintentionally allowing external access to an internal system. 
+
+Firewall administrators should regularly conduct firewall rule reviews to check for these common errors and maintain a clean, healthy firewall rule base.
+
+
+
+### 3.2 Router configuration security
+
+- Routers perform basic filtering: They can reduce the load on firewall
+
+#### ! EXAM TIPS
+
+You won't need to know the syntax of router access control list commands
+
+You should, however, be familiar with the type of filtering that you can perform on a router and how it differs from the capabilities of a firewall.
+
+#### Router Access Control Lists
+
+- Restrict network traffic
+
+##### Standard Access Control List
+
+- Perform filtering based upon source IP address
+
+For example, assume that we want to write a standard access control list that blocks all inbound traffic from network addresses in the range 10.3.1.0 to 10.3.1.255. 
+
+```
+access-list [number] [permit/deny] [source]
+# access-list 1 deny 10.3.1.0 0.0.0.255
+```
+
+Noting that this is based on Cisco syntax. Standard lists are limiting because they only allow blocking in a very blunt way by source IP address. That's okay if you're trying to block an address or network completely, but it doesn't provide much flexibility. 
+
+##### Extended Access Control Lists
+
+- Block traffic based upon more advanced criteria, such as source and destination IP addresses, source and destination ports, and the protocols used for a communication
+
+#### Firewalls vs. Routers
+
+- Firewalls are purpose-specific and efficient.
+- Firewalls have advanced rule capabilities.
+- Firewalls offer advanced security functionality.
+
+Firewalls can incorporate thread intelligence, perform application inspection and integrate with intrusion prevention systems to provide enhanced protection to a network. 
+
+While firewalls do offer advanced security protection, administrators may still choose to place some access control lists as the router level to filter traffic before it reaches the firewall. This reduces the burden on downstream devices.
+
+
+
+### 3.3 Switch configuration security
+
+**Maintain Physical Switch Security** An attacker who gains physical access to your switch controls that portion of the network
+
+**VLAN Security** Disable automatic trunk negotiation to prevent VLAN hopping attacks
+
+VLANs may be used to increase the security of networks by isolating unrelated systems and users from each other. 
+
+#### VLAN Pruning
+
+- Limit the unnecessary exposure of VLANs by limiting the number of switches where they are trunked, especially for sensitive VLANS
+
+For example, if you have a VLAN for the sales department, and the sales department is contained entirely within a single building, you should only trunk the sales VLAN within that building and not into other buildings.
+
+#### VLAN Trunk Negotiation
+
+- Deny the use of automatic VLAN trunk negotiation to limit the effectiveness of VLAN hopping attacks
+
+Malicious users may attempt an attack known as VLAN hopping, to switch from their authorized VLAN to one containing resources they would like to attack. Attackers might do this through a variety of means, but most of these techniques rely upon pretending to be a switch and asking the switch to trunk VLANs to the malicious user's device. 
+
+#### Port Security
+
+- Limit the devices that may connect to a network switch port by MAC address
+
+This protects against attackers disconnecting an authorized device from the wired network and replacing it with a rogue device that may eavesdrop on other users or attempt to access secure network resources. 
+
+##### 1. Static Port Security
+
+- Administrators manually configure valid MAC addresses for each port
+
+This is very time consuming, but it is the most secure way to implement port security. 
+
+##### 2. Dynamic Port Security
+
+- Switches memorize the first MAC address they see on each port and limit access to that address
+
+This makes configuration much faster, but it can be risky if you have unused, but active, switch ports.
+
+
+
+### 3.4 Maintaining network availability
+
+Sometimes attackers try to undermine network security by denying legitimate users access to the network. 
+
+**Flooding Attacks** Overwhelm network devices
+
+**SYN Floods** Fill connection state tables on firewalls with half-open connection entries
+
+**MAC Floods** Fill switch's MAC address table with many entries, causing it to flood traffic on all ports
+
+MAC Flooding occurs when attackers send large numbers of different MAC address's to a switch, hoping to over flow the switches MAC address table and cause it to forget where devices are, and then flood traffic out to every switch port, allowing the attacker to eaves drop on sensitive communications. 
+
+#### Flood Guard Technology
+
+- protects network devices against these attacks
+
+Flood guard works by controlling the number of open connections that each source system may have. 
+
+**Port security is also effective against MAC flooding.**
+
+
+
+**Routing Loops** Allow broadcast storms
+
+Routing loops occur when there are multiple physical paths between two network devices, and the devices mistakenly begin routing broadcast traffic in a redundant fashion. If this happens, the network quickly fills up with these broadcast messages, and no capacity is left for legitimate use. This condition is known as a broadcast storm. 
+
+#### Spanning Tree Protocol (STP)
+
+- prevents broadcast storms by implementing loop prevention
+
+These protocols allow multiple physical connections between devices but restrict logical connections to remove the final links that would allow a loop. Broadcast storms can't occur at this case, but the networks still benefits from the redundant links. Because if an outage occurs, the routing protocol can recompute network paths to cut out the dead device and make use of redundant links. 
+
+Using **flood guards** and **loop prevention** helps administrators maintain secure, highly available networks.
+
+
+
+### 3.5 Network monitoring
+
+#### Firewall Log Details
+
+- Details about attempted connections
+- Timestamps
+- Relevant firewall rule
+
+#### Firewall Log Uses
+
+- Security incident investigation
+- Network issue troubleshooting
+- Anomalous activity detection
+
+Administrators may also want information about network connections that did not traverse the firewall, such as the connections within a data center that's behind a firewall. The most comprehensive source of information would be to conduct full packet capture and record the full content of every packet for future analysis. However, this approach is not practical because it requires massive amounts of storage. Instead, administrators often turn to **network flow, or net flow data**. 
+
+#### Netflow Records Capture
+
+- Source and destination systems
+- Source and destination ports
+- Timestamps
+- Amount of data transferred
+
+**Netflow data is quite useful** It doesn't capture what was communicated but does identify who, when, and how much.
+
+#### Security Information and Event Management (SIEM)
+
+- Network security systems that automate the collection and analysis of logs from many different systems for security purposes
+
+#### SIEM Log Sources
+
+- Firewalls
+- Network devices
+- Servers
+- Applications
+
+**SIEMs facilitate rapid analysis.**
+
+Log analysis is a critical part of network security that facilitates investigations, assists in network troubleshooting, and allows the detection of suspicious activity.
+
+
+
+### 3.6 SNMP
+
+The simple network management protocol or SNMP, provides network administrators with a means to centrally configure and monitor network devices. 
+
+**Managing network devices manually is impractical. SNMP automates these tasks.**
+
+#### SNMP Components
+
+or higher level monitoring. Let's take a look at how SNMP works. There are three components involved in SNMP network administration. 
+
+- Managed devices: all the network devices around your organization, including routers, switches, wireless access points, firewalls and any other device that supports SNMP
+- SNMP agent: a piece of software that runs on the managed device and allows it to communicate with the SNMP service. 
+- Network management system: central system responsible for communicating with SNMP agents and managing the network. 
+
+#### SNMP Requests
+
+![03_06_SNMP_Request](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_06_SNMP_Request.PNG?raw=true)
+
+Under normal circumstances the network management system reaches out to the agents on a periodic basis and requests whatever information administrators configured it to retrieve. This might include information about network activity, device performance or other metrics. When the network management system wants to retrieve information from a managed device, it sends an SNMP command called a GET request, and the managed device then sends the information back, in an SNMP response. 
+
+#### SNMP Configuration
+
+![03_06_SNMP_Config](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_06_SNMP_Config.PNG?raw=true)
+
+The network management system can also reconfigure devices when necessary. For example, the administrator might want to push out commands to all wireless access points, telling them to broadcast a new SS ID. The network management system sends these commands using an SNMP set request telling the agent to set a configuration on the device. The agent then sends back an SNMP response, telling the network management system whether the configuration setting was successfully applied or not. 
+
+#### SNMP Traps
+
+![03_06_SNMP_Traps](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/03_06_SNMP_Traps.PNG?raw=true)
+
+Managed devices may also initiate communication with the network management system, when they have unusual news to report. In this case, the agent sends an SNMP trap to the network management system, which can then respond appropriately. For example, if a network link goes down on a router, the router may send an SNMP trap to the network management system informing it of this event. The management system may then respond by sending alerts to network administrators. 
+
+#### ! EXAM TIPS
+
+Use SNMPv3! Earlier versions have critical security flaws
+
+Administrators should be sure to use this version on all network devices because earlier versions have known vulnerabilities, including sending passwords in clear text. 
+
+
+
+### 3.7 Storage networks
+
+**Storage networks demand large quantities of dedicated bandwidth.**
+
+#### Types of Network Storage
+
+##### Network Attached Storage (NAS)
+
+- Simple, self-contained storage devices that commonly use CIFS (Windows) and NFS (Linux)
+
+##### Storage Area Networks (SAN)
+
+- Complex, massive storage systems that required dedicated networks
+
+#### SANs vs. NAS
+
+- SANs present raw storage to devices, rather than file systems
+- SANs are connected to devices over dedicated networks
+  - Fibre Channel: Uses direct fiber-optic connections between SAN and devices
+  - FC over Ethernet: Replaces fiber-optic cables with Ethernet links
+  - iSCSI: Runs the SCSI (Small Computer Systems Interface) standard over network connections
+
+#### Storage Network Security
+
+- Storage networks carry sensitive information, often in unencrypted form
+- Storage traffic should run on dedicated infrastructure or VLANs
+- Storage VLANs should be carefully trunked
+
+
+
+### Chapter Quiz
+
+1. What type of firewall rule error occurs when a service is decommissioned but the related firewall rules are not removed?
+
+   A. shadowed rule
+
+   B. typographical error
+
+   C. promiscuous rule
+
+   D. orphaned rule
+
+2. What router technology can be used to perform basic firewall functionality?
+
+   A. flood guard
+
+   B. spanning tree
+
+   C. IPS
+
+   D. access control lists
+
+3. What technique should network administrators use on switches to limit the exposure of sensitive network traffic?
+
+   A. Spanning tree
+
+   B. VLAN pruning
+
+   C. Loop prevention
+
+   D. VLAN hopping
+
+4. What technology can help prevent denial of service attacks on a network?
+
+   A. flood guard
+
+   B. VLAN hopping
+
+   C. BGP
+
+   D. VLAN pruning
+
+5. What information is not found in network flow data?
+
+   A. packet content
+
+   B. source address
+
+   C. destination port
+
+   D. destination address
+
+6. What message can an SNMP agent send to a network management system to report an unusual event?
+
+   A. SetRequest
+
+   B. Trap
+
+   C. GetRequest
+
+   D. Response
+
+7. What type of storage network requires the use of dedicated connections?
+
+   A. iSCSI
+
+   B. fibre channel over Ethernet
+
+   C. CIFS
+
+   D. fibre channel
+
+
+
+Answers:
+
+1. orphaned rule
+2. access control lists
+3. VLAN pruning
+4. flood guard
+5. packet content
+6. Trap
+7. fibre channel
+
+
+
 ## Reference
 
-[1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-1-threats-attacks-and-vulnerabilities/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Reference
-
-[1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-1-threats-attacks-and-vulnerabilities/
+[1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
