@@ -1,8 +1,6 @@
 # CompTIA Security+ Exam (SY0-501): Technologies and Tools
 
-- This domain accounts for 22% of the questions on the real exam
-
-We'll be focusing on 
+This domain accounts for 22% of the questions on the real exam. We'll be focusing on 
 
 - installing and configuring network components to support enterprise security
 - using tools to assess the security posture of an organization
