@@ -1160,6 +1160,264 @@ Answers:
 
 
 
+## 4. Wireless Networking
+
+### 4.1 Wireless network
+
+- The Wi-Fi standard governs communications on many wireless networks
+- Wi-Fi devices replace network cables with radio transmitters and receivers
+- Wireless access points (WAPs) connect wireless networks to wired networks and the Internet
+
+#### Wi-Fi Standards
+
+- 802.11 (1997) allow 2 Mbps communication.
+- 802.11b (1999) allow 11 Mbps communication.
+- 802.11g (2003) allow 22 Mbps communication.
+- 802.11n (2009) allow 600 Mbps communication.
+- 802.11ac (2014) allow 1 Gbps+ communication.
+
+#### ! EXAM TIPS
+
+Wi-Fi signals travel over open airwaves and are subject to undetectable interception!
+
+
+
+### 4.2 Basic wireless security
+
+**Service Set Identifiers (SSID)** Identify wireless networks
+
+#### Disabe SSID broadcasting 
+
+- "hides" networks in plain sight.**
+
+#### MAC Filtering
+
+- Screens Wi-Fi connections
+
+##### Problem: Time consuming
+
+- Maintaining lists of approved MAC addresses is an administrative burden.
+
+##### Problem: Ineffective
+
+- Skilled attackers can easily change their MAC addresses to bypass filtering
+
+#### VPNs
+
+- can allow the secure use of insecure wireless networks (for end users).
+
+
+
+### 4.3 WEP, WPA, and WPA2
+
+- Encryption hides the contents of network communications from eavesdroppers.
+
+#### No Encryption
+
+- Insecure option that sends all wireless communications unencrypted
+
+#### Wired Equivalent Privacy (WEP)
+
+- Insecure encryption technology that is susceptible to attack
+
+#### Wi-Fi Protected Access (WPA)
+
+- Uses the Temporal Key Integrity Protocol (TKIP) to implement strong encryption
+
+TKIP changes the encryption key for each packet, preventing an attacker from discovering the key after monitoring the network for a long period of time. Security researchers have demonstrated some theoretical attacks against WPA. But it is still widely used and considered safe. 
+
+#### Wi-Fi Protected Access v2 (WPA2)
+
+- Uses CCMP to apply the Advanced Encryption Standard (AES) to wireless networks
+
+The current best practice for Wi-Fi security, is using WPA version 2. WPA2 uses an encryption protocol that is based upon the advanced encryption standard, or AES. This protocol has a really long name. It's Counter Mode Cipher Block Chaining Message Authentication Code Protocol. But you just need to know it as CCMP.
+
+
+
+### 4.4 Wireless authentication
+
+#### Preshared Keys (PSK)
+
+- Require entry of a password
+
+##### Hexadecimal String
+
+- 64 hexadecimal characters that encode a 256-bit encryption key
+
+##### Password
+
+- 8-13 ASCII characters that are converted to a 256-bit encryption key using PBKDF2
+
+#### Limitations of Preshared Keys
+
+- Changing the network encryption key is a tremendous burden.
+- Identifying users and revoking individual user access is impossible
+
+#### Enterprise Authentication
+
+- Uses username and password
+
+Authentication takes place on these networks using versions of the Extensible Authentication Protocol, or EAP.
+
+#### 3 Major Version of EAP
+
+##### Lightweight EAP (LEAP)
+
+- Insecure protocol that relies upon MS-CHAP
+
+##### EAP
+
+- Broad framework with many variants, some secure, some not
+
+For example, the EAP-TLS variant uses Transport Layer Security to protect EAP communications and is considered highly secure. On the other hand, the EAP MD5 variant relies upon the insecure MD5 hashing function, and should not be used. 
+
+##### Protected EAP (PEAP)
+
+- Tunnels EAP inside an encrypted TLS session
+
+#### EAP-TLS
+
+- Uses Transport Layer Security (TLS) to protect authentication session
+
+#### EAP-TTLS
+
+- Uses Tunneled TLS (TTLS) to protect authentication sessions
+
+#### EAP-FAST
+
+- Provides flexible authentication via Secure Tunneling (FAST) using a Cisco protocol
+
+**802.1x uses EAP to provide network access control.**
+
+
+
+### 4.5 Wireless signal propagation
+
+\- [Instructor] The radio waves that carry wireless network traffic are affected by many different characteristics as they travel across an area. Building materials, antenna placement, wireless power levels, and many other characteristics can alter the flow, or propagation, of wireless signals. 
+
+**Antenna-type influences signal patterns**
+
+#### Omnidirectional Antennas
+
+- send a signal in all directions
+
+#### Directional Antennas
+
+- direct all of the power from an access point in a single direction
+
+The use of a directional antenna greatly increases the range of the network by focusing the power in a single direction. 
+
+#### Beamforming
+
+- is an 802.11ac feature that "steers" a network signal in the direction of client devices
+
+![04_05_Beamforming](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/04_05_Beamforming.PNG?raw=true)
+
+With beamforming, the access point uses multiple antennas that look like simple omnidirectional antennas to detect the location of a device connecting to the access point, and then steer the signal in the direction of the device. You can think of beamforming as a virtual directional antenna that can shift as needed based upon device location. 
+
+**Optimal access point placement depends upon building characteristics.**
+
+Many different characteristics of a building will affect wireless signal propagation, and engineers must take those into account to prevent dead spots while also ensuring that physically adjacent access points don't interfere with each other.
+
+#### Site Survey
+
+- Determines optimal AP placement
+
+While it is possible to sketch out diagrams and place access points based upon a theoretical design, the best way to place wireless access points is to conduct a wireless site survey that uses specialized hardware and software to measure signal strength and provide optimal wireless signal coverage in a building.
+
+#### Power Levels
+
+- Manipulating power levels modifies wireless signal range
+
+Network engineers have the ability to manipulate the power levels transmitted by each access point to tweak coverage and prevent interference. These power levels may be manually adjusted, or automatically managed by wireless controllers.
+
+
+
+### 4.6 Wireless network equipment
+
+#### Fat Access Points
+
+- Contain all of the hardware and software needed tow operate a wireless network
+
+They are capable of operating independently or working in coordination with other access points. When an administrator wants to make a change to the configuration of a fat access point, he or she connects to that access point and alters the configuration. This may be done through a centralized management tool, but either way, the access point itself is being updated. 
+
+#### Thin Access Points
+
+- Rely upon wireless controllers for configuration and to serve as the "brains" of the wireless network
+
+They are simply radios that handle the wireless communication, but they depend upon wireless controllers to do the heavy lifting. 
+
+#### Wireless Controllers
+
+- manage configurations, optimize performance, and reduce interference among APs
+
+Wireless controllers sit in a data center and run the wireless network over a broad area, serving as the brains of the thin access points and reconfiguring fat access points. In addition to making wireless networks easier to manage, they can improve performance by coordinating the power levels, antenna patterns and other signal characteristics of individual access points to optimize coverage and decrease interference between access points. 
+
+#### Wireless Scanners
+
+- Search for rogue networks and test wireless security
+
+**Aircrack-ng is a popular wireless security testing tool**
+
+
+
+### Chapter Quiz
+
+1. SIEMs correlate security information received from other devices.
+
+   A. TRUE
+
+   B. FALSE
+
+2. Gary is setting up a wireless network for his home office. He wants to limit access to the network to specific pieces of hardware. What technology can he use to achieve this goal?
+
+   A. WPA
+
+   B. SSID broadcasting
+
+   C. WEP
+
+   D. MAC filtering
+
+3. Brad is configuring a new wireless network for his small business. What wireless security standard should he use?
+
+   A. WPA2
+
+   B. WPA
+
+   C. WEP2
+
+   D. WEP
+
+4. Fran is choosing an authentication protocol for her organization's wireless network. Which one of the following protocols is the most secure?
+
+   A. EAP-MD5
+
+   B. PEAP
+
+   C. LEAP
+
+   D. TACACS
+
+
+
+
+
+Answers:
+
+1. TRUE
+2. MAC filtering
+3. WPA2
+4. PEAP
+
+
+
+
+
+
+
+
+
 ## Reference
 
 
