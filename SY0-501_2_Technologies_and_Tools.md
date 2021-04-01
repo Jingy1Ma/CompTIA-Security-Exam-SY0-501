@@ -1413,8 +1413,366 @@ Answers:
 
 
 
+## 5. Security and Monitoring Technologies
+
+### 5.1 Correlating security information
+
+- Systems generate far too many log records for manual analysis
+- Artificial intelligence can help solve security data overload
+
+#### Security Information and Event Management (SIEM)
+
+##### 1. Central, secure collection point for logs
+
+- All systems send log entries directly to the SIEM.
+
+##### 2. Source of artificial intelligent (AI)
+
+- SIEMs detect patterns that other systems might miss
+
+In a hierarchical organization, network engineers might have access to firewall logs, system engineers might have operating system logs, and application administrators may have the application logs. This silent approach means that attacks may go unnoticed if the signs of the attack are spread across multiple departments. Each administrator may see a piece of the puzzle, but can't put the whole picture together. 
+
+**SIEMs have access to log entries from across the organization.**
+
+The SIEM has access to all of the puzzle pieces, and performs an activity known as **log correlation** to recognize combinations of activity that may indicate a security incident. 
+
+```mermaid
+graph TD
+A[IDS: Triggers the inital alert] --> Y[SIEM]
+B[Firewall Log: Suspicious connection] --> Y[SIEM]
+C[Web Server Log: SQL injection attack] --> Y[SIEM]
+D[Database Log: Large query]  --> Y[SIEM]
+E[Router Log: Large outbound data flow]  --> Y[SIEM]
+```
+
+For example, an IDS, might notice the unique signature of an attack in inbound network traffic, triggering an event within the SIEM that pulls together other information. From there, a firewall may note an inbound connection to a web server from an unfriendly country. The web server might report suspicious queries that include signs of a SQL injection attack. The database server might report a large query from a web application that deviates from normal patterns. And a router might report a large flow of information from the database server to a system located on the internet. In isolation, each of these activities may seem innocuous, but when the SIEM puts those pieces together, a pattern of suspicious activity emerges. SIEMs provide security professionals with a valuable tool for the centralized collection and correlation of security event information.
 
 
+
+### 5.2 Tuning and configuring SIEMs
+
+**Point relevant security logs to the SIEM's log repository**
+
+The centralized log repository associated with the SIEM should be configured to act as what we call a WORM repository. 
+
+#### Write once, read many (WORM)
+
+- Prevent unauthorized changes
+
+Once a system sends a log entry to the repository, that log entry is permanently recorded and can't be modified. Many users can read the information in the repository, but it is not possible to edit it. 
+
+The log repository also can notice when it was receiving similar alerts about the same event for multiple systems, correlate those alerts, and perform event de-duplication. 
+
+#### Synchronizing system clocks
+
+- Enables consistent analysis
+
+When you're reconstructing events, you'll want to be able to put things in the correct sequence. The simple solution to this problem is using a centralized time server running the Network Time Protocol (NTP). 
+
+- Network Time Protocol (NTP) servers simply clock synchronization
+
+#### SIEM Performance Tuning
+
+- Customize the configuration for your environtment
+- Modify rules to prevent false positive alerts
+- Block trivial and irrelevant SIEM alerts
+
+Out of the box, a SIEM can produce a large number of alerts that will drive administrators batty and cause them to ignore future alerts. By investing time and tuning the SIEM, the device can become much more useful to the organization.
+
+
+
+### 5.3 Continuous security monitoring
+
+Instead of simply focusing on the periodic review of logs for unusual activity, they conduct this analysis in real time and can even take action in response to suspicious events. 
+
+**Continuous Security Monitoring** Maintaining ongoing awareness of information security, vulnerabilities, and threats to support organizational risk management decisions (NIST)
+
+#### Monitoring Process
+
+![05_03_NIST_Cont_Monitor](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_03_NIST_Cont_Monitor.PNG?raw=true)
+
+They begin with three core characteristics of a continuous monitoring program:
+
+- Maps to risk tolerance
+- Adapts to ongoing needs
+- Actively involves management
+
+Around these core principles, we have six steps of the continuous monitoring process given to us by NIST:
+
+```mermaid
+graph LR
+A[Define] --> B[Establish] --> C[Implement] --> D[Analyze/Report] --> E[Respond] --> F[Review/Update] --> A[Define]
+```
+
+1. Define a continuous monitoring strategy based upon risk tolerance that maintains clear visibility into assets, vulnerabilities, threats, and business impact. 
+
+2. Establish a monitoring program by outlining the metrics we're going to use and the frequency at which we're going to monitor and assess our security. 
+
+3. Implement the program by collecting the metrics, performing the assessments, and building reports. These tasks should be as automated as possible. 
+
+4. Analyze and report findings from the collected data. 
+
+5. Respond to those findings by mitigating, avoiding, transferring, or accepting the risk. 
+
+6. Review and update the monitoring program, adjusting our monitoring strategy and maturing our measurement capabilities. 
+
+**SIEMs assist with security data analytics and correlation.**
+
+Continuous monitoring approaches require the use of other techniques that correlate data across time. 
+
+#### Anomaly (Heuristic) Analysis
+
+- Detects outlier data points
+
+![05_03_Anomaly_Analysis](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_03_Anomaly_Analysis.PNG?raw=true)
+
+#### Trend Analysis
+
+- Detects changes over time
+
+![05_03_Trend_Analysis](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_03_Trend_Analysis.PNG?raw=true)
+
+#### Behavioral Analysis
+
+- Detects unusual user activity
+
+Behavioral analysis looks at the activity of users and identifies suspicious actions. This might be done using signatures or heuristic analysis. For example, you could apply heuristic anomaly analysis to user login times to learn that I normally login to my computer around 8am each weekday. If I suddenly login at 3am, that's a behavioral anomaly that merits investigation. 
+
+#### Availability Analysis
+
+- Provides uptime information
+
+Availability analysis depends upon monitoring systems that continuously monitor system status and detect periods of downtime. 
+
+
+
+### 5.4 Data loss prevention (DLP)
+
+Organizations handle many different types of sensitive information on a regular basis. This includes trade secrets, proprietary business plans, health records, and the personal identifying information, or PII, of employees and customers. Unwanted disclosures of sensitive information could lead to very serious security incidents that expose an organization to fines, sanctions, and reputational damage. 
+
+**Data Loss Prevention (DLP)** Technology solutions that search systems and monitor networks for sensitive information that is unsecured and provide the ability to remove the information, block the transmission ,or encrypt the stored data.
+
+#### Host-Based DLP
+
+- Uses software agents installed on a single system
+
+These searches often turn up social security numbers, credit card numbers, and other sensitive information in the most unlikely places. Detecting the presence of stored sensitive information allows security professionals to take prompt action to either remove it or secure it with encryption.
+
+Host-Based DLP can also monitor system configurations and user actions, blocking undesirable actions. For example, some organizations use Host-Based DLP to block users from accessing USB based removable media devices that those users might use to carry information out of the organization's secure environment. 
+
+#### Network-Based DLP
+
+- Scans network transmissions for sensitive information
+
+They monitor outbound network traffic, watching for any transmissions that contain unencrypted, sensitive information. Network-Based DLP solutions can then block those transmissions, preventing the unsecure loss of sensitive information. DLP systems may simply block traffic that violates the organization's policy, or in some cases, they may automatically apply encryption to the content. This automatic encryption is commonly used with DLP systems that focus on email. 
+
+#### Patten Matching
+
+- Recognizes known patterns of sensitive information, such as SSNs
+
+#### Watermarking
+
+- Identifies sensitive information using electronic tags
+
+In a watermarking approach, systems or administrators apply electronic tags to sensitive documents. And then, the DLP system can monitor systems and networks for unencrypted content containing those tags. 
+
+**Example.Spirion (Host-Base DLP) **
+
+![05_04_DLP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_04_DLP.PNG?raw=true)
+
+**Cloud-based DLP systems operate as managed security services.**
+
+This service delivery mode relieve customers from operating and maintaining the DLP system themselves.
+
+
+
+### 5.5 Network access control
+
+**Network Access Control** Intercepts network traffic coming from unknown devices and verifies that the system and user are authorized before allowing further communication
+
+**NAC uses 802.1x authentication.**
+
+There are 3 systems involved in any 802.1x transaction:
+
+1. The device that wishes to connect to the NAC-protected network. This device must be running a special piece of software called a supplicant. This supplicant is responsible for performing all of the NAC-related tasks on behalf of the user and system. 
+2. The switch that the device connects to in the case of a wired network. This device, which receives credentials from the end user, is known as the authenticator in NAC terms. On a wireless network, the wireless controller serves as the authenticator. 
+3. The back-end authentication server. This is a centralized server that performs authentication for all of the authenticators on the network. In fact, the back-end authentication server often performs authentication for many different services. NAC authentication is just one of those supported services. 
+
+Here's how they work:
+
+![05_05_NAC](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_05_NAC.PNG?raw=true)
+
+First, a user with a NAC supplicant attempts to join the network by plugging into a network jack or connecting to a wireless network. The NAC supplicant provides the authenticator with the required authentication credentials. When the authenticator receives those credentials, it then passes them along to the authentication server for verification. This happens over a RADIUS connection. If you'd like to learn more about RADIUS, watch my security plus identity and access management course. If the credentials are authentic, the authentication server sends the authenticator a RADIUS accept message, and the authenticator allows the device to access the network. If the credentials don't verify correctly, the authentication server sends a RADIUS reject message, and the user is often prompted to try again. Network Access Control can do more than just simple authentication, however. It can also perform two other tasks, role-based access and posture checking. In role-based access, once the authenticator learns the identity of the user from the authentication server, it also makes
+
+#### NAC Roles
+
+- User and device authentication
+- Role-based access
+- Posture checking
+
+#### Role-Based Access
+
+- Authentication server provides additional user information
+- Authenticator places user on a role-appropriate network based upon that information
+
+![05_05_Role_Based_Access](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_05_Role_Based_Access.PNG?raw=true)
+
+For example, in a university environment, the authenticator might place students on a separate network from faculty and staff. This is normally done through the use of VLAN assignments. Students go on the student VLAN, and faculty and staff go on an administrative VLAN. Making these network assignments separates different types of users from each other. 
+
+#### Posture Checking (Health Checking)
+
+- Verifying antivirus software presence
+- Validating current signatures
+- Ensuring proper firewall configuration
+- Verifying presence of security patches
+
+Networks using posture checking technology verify that the devices connecting to the network comply with the organization's security policy before granting broader access. 
+
+**Devices failing posture checks go into a quarantine VLAN.**
+
+If a device fails this posture check, NAC might place it in a special quarantine VLAN where it has limited internet access and no access to internal resources. The device may then use this limited access to obtain necessary patches and updates. Once the user remediates the device, the posture check repeats, and NAC moves the device from the quarantine network to the appropriate user VLAN. 
+
+The posture checking performed by NAC may come in three different forms
+
+##### Persistent Agent
+
+- NAC software permanently installed on endpoint devices
+
+The most common approach. The NAC software remains on the device permanently and communicates with a NAC controller. The difficulty of managing this approach leads some organizations to move to a dissolvable agents.
+
+##### Dissolvable Agent
+
+- NAC software downloaded from a portal for temporary endpoint use
+
+##### Agentless
+
+- NAC systems that don't require installation of an agent
+
+They can monitor network traffic and inspect centralized configuration management systems in an attempt to determine enough configuration information to make a decision about network access without installing any software on the endpoint.
+
+
+
+### 5.6 Mail gateways
+
+Phishing messages often serve as the first volley of an advanced threat, and email attachments are a frequent source of accidental data loss. 
+
+#### Secure Mail Gateways
+
+![05_05_Role_Based_Access](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_06_Secure_Mail_Gateway.PNG?raw=true)
+
+Secure mail gateways sit in between email users and the broader internet. They act as the SMTP server that first receives mail for an organization from the outside world before relaying it to the actual mail servers. They also serve as an SMTP relay for messages leaving the organization. This unique position on the network allows them to intercept and scan messages for security reasons before deciding whether and how to pass them on. 
+
+#### Mail Gateway Actions
+
+1. Allows a message to proceed to its destination
+2. Blocks or quarantines a message
+3. Tags a message with a warning to the recipient
+4. Encrypts a message before delivery
+
+##### Text Analysis
+
+- Blocks spam and phishing
+
+##### Signature Detection
+
+- Blocks viruses and other malware
+
+##### URL Filtering
+
+- Blocks unknown malicious websites
+
+**Secure mail gateways are available as on-premises appliances or as cloud services.**
+
+**Alter DNS records for inbound mail, and SMTP servers for outbound mail.**
+
+
+
+### 5.7 Data sanitization tools
+
+Erasing files from a disk does not completely remove the data that they contain. Erasure leaves remnants that may still be accessible using specialized tools. Data sanitization tools correct this problem by completely removing data from devices, making them suitable for disposal or reuse. 
+
+#### File Systems
+
+![05_07_File_System](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/05_07_File_System.PNG?raw=true)
+
+When you write a file to a hard drive, the operating system may store pieces of the file in different physical locations on the drive. These locations are a sign based upon what space is available on the disk at any given time. There isn't a special place set aside for different folders. The operating system then needs some way to put all of those pieces back together and present your data back to you in its original form. The operating system does this by maintaining file system information, known as metadata, that includes details about the name of a file, its creation date, access permissions, and, most importantly, the location of that file's data on the disk. 
+
+In Linux-based OS, this information is stored in data structures known as inodes, while in Windows, it is stored in a master file table. 
+
+When you delete a file from your computer, the OS simply removes the inode or the table entry corresponding to that file so that it no longer appears in direct relistings and the space is available for use by another file. If you then throw away the disk and someone finds it, they can look at the raw data on your disk and reassemble the contents of the file. 
+
+**Data sanitization programs overwrite the data stored on disk.**
+
+You should always sanitize disks before disposing of any data storage media. 
+
+#### ! EXAM TIPS
+
+Multiple overwrites are not necessary with modern technology.
+
+
+
+### 5.8 Steganography
+
+**Steganography** Hides data in large files
+
+It is the art of hiding information in plain sight, and it is a particularly valuable communication secrecy tool for those who do not want others to know that they are even communicating in the first place. 
+
+- Steganography often uses innocent-looking high-resolution images.
+- Slight modifications to image pixels may hide information.
+- Images with embedded text may be posted in plain sight.
+
+
+
+### Chapter Quiz
+
+1. During what phase of continuous security monitoring does the organization define metrics?
+
+   A. implement
+
+   B. establish
+
+   C. define
+
+   D. analyze/report
+
+2. What DLP technique tags sensitive content and then watches for those tags in data leaving the organization?
+
+   A. pattern recognition
+
+   B. host-based dlp
+
+   C. intrusion detection
+
+   D. watermarking
+
+3. What is the piece of software running on a device that enables it to connect to a NAC-protected network?
+
+   A. supplicant
+
+   B. authenticator
+
+   C. SNMP agent
+
+   D. authentication server
+
+4. Jasmine comes across a file sent out of her organization that she suspects contains proprietary trade secrets but appears to be an innocuous image. What technique might the sender have used to hide information in the image?
+
+   A. rasterization
+
+   B. steganography
+
+   C. elliptic curves
+
+   D. polymorphism
+
+
+
+Answers:
+
+1. <font color=red>establish</font>
+2. watermarking
+3. supplicant
+4. steganography
 
 
 
