@@ -2957,6 +2957,174 @@ Answers:
 
 
 
+## 11. Securing Protocols
+
+### 11.1 TLS and SSL
+
+#### Transport Layer Security (TLS)
+
+- Encrypts network communications
+
+Digital certificates allow for the secure exchange of public encryption keys over otherwise untrusted networks. Transport encryption technology, such as TLS, uses those certificates to facilitate secure communication over those same public networks. 
+
+#### ! EXAM TIPS
+
+TLS depends upon pairings of encryption and hash functions known as cipher suites.
+
+(TLS is not a cryptographic algorithm itself. Therefore, you can't encrypt something with TLS. You can use TLS to apply other encryption algorithms.)
+
+(Those cipher suites are only as strong as the algorithms they include. Therefore, it is possible to use TLS in an insecure manner by choosing a weak or insecure cipher suite. It's very important to choose strong cipher suites. )
+
+#### TLS Process
+
+![11_01_TLS](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/11_01_TLS.png?raw=true)
+
+
+
+
+
+1. Server tells the client which of the cipher suites it would like to use for the communication. 
+2. Server sends the client the server's digital certificate, which contains the server's public encryption key. 
+3. Client checks what certificate authority issued the certificate and uses the CA's public key to verify the digital signature on the certificate. It also verifies that the server name on the certificate matches the DNS name of the server and that the certificate has not been expired or revoked. 
+4. Once the client is satisfied about the server's identity, the client creates a random encryption key called the session key. This is a symmetric encryption key that will be used for this one communication session between the client and the server. 
+5. Client then uses the server's public key to encrypt the session key and sends that encrypted key to the server. 
+6. When the server receives the encrypted key, it uses its own private key to decrypt it. 
+
+The two systems may then communicate for as long as they like, using the session key. Once they close the connection, the session key is destroyed and the TLS handshake starts over the next time the two systems wish to communicate. 
+
+#### ! EXAM TIPS
+
+Session keys are also known as ephemeral keys.
+
+#### Secure Sockets Layer (SSL)
+
+- Insecure predecessor to TLS
+
+There are known security flaws in SSL, so it should no longer be used. Unfortunately, many people use the term SSL as a generic term, when they are really talking about TLS. This can be very confusing, so be careful to dig deeper whenever you hear someone use the term SSL. Find out if they're really talking about the insecure SSL protocol or the secure alternative, TLS.
+
+
+
+### 11.2 Protocol security use cases
+
+**Voice and video communications should leverage TLS encryption whenever possible.**
+
+**RTP-based VoIP services should use the secure SRTP protocol.**
+
+**Network Time Protocol (NTP)** Synchronizes system clocks
+
+After a string of security exploits allowed NTP servers to be used and distributed denial of service attacks, a group of developers created a more secure version of NTP called **NTP Sec**. 
+
+#### Email Protocols
+
+| Protocol | Unencrypted Port | Encrypted Port |
+| -------- | ---------------- | -------------- |
+| POP      | 110              | 995            |
+| IMAP     | 143              | 993            |
+| SMTP     | 25               | 465            |
+
+**Encrypt email messages and attachments with S/MIME.**
+
+- Use SSH instead of Telnet for router and switch administration
+- Replace older versions with SNMPv3
+- Use DNSSEC to add digital signatures to DNS
+- Limit authorized DHCP servers
+
+Attackers may attempt to insert false DNS records into intermediate DNS servers in an attempt to fool unsuspecting clients into accessing fake sites. The DNSSEC protocol adds digital signatures to DNS, allowing clients to verify that the DNS records they receive are authentic. 
+
+Network devices obtain IP addresses dynamically, through the use of the dynamic host configuration protocol. DHCP, this protocol runs without authentication, but in a windows environment, you can limit the servers allowed to run DHCP services to prevent rogue DHCP servers on your network. 
+
+**LDAPS offers a secure alternative to LDAP.** 
+
+
+
+### 11.3 Securing common protocols
+
+Just as TCP/IP was built without security in mind, many common protocols that we rely upon today do not have built-in encryption and require modification to support encryption technology. 
+
+**HTTPS** Adds TLS to web browsing
+
+**Telnet uses insecure command-line access. SSH is a secure alternative.**
+
+The secure shell, or SSH protocol, solves this problem by providing the same functionality as Telnet, with the added benefit of encryption. SSH runs over TCP port 22 and uses public key cryptography to exchange an ephemeral session key in the same manner as TLS. 
+
+#### File Transfers
+
+- FTP is insecure
+- FTP Secure (FTPS) adds TLS to FTP
+- Secure FTP (SFTP) transfers files over SSH
+- Secure Copy (SCP) provides secure command-line file transfer over SSH
+
+#### ! EXAM TIPS!
+
+The Trivial File Transfer Protocol (TFTP) is rarely used and is not secure.
+
+
+
+### 11.4 Cryptographic hardware
+
+Cryptography requires a great deal of mathematical computation, and therefore it's fairly slow. Engineers often make cryptography more efficient by building special-purpose hardware that is designed specifically for encryption and decryption. 
+
+**Selecting ciphers and generating session keys is time-consuming.**
+
+For that reason it is often a bottleneck for web servers and other devices that participate in many different TLS sessions simultaneously. 
+
+#### SSL/TLS Accelerators
+
+- Provide dedicated hardware for SSL/TLS handshakes
+
+Using encryption accelerators can greatly boost the performance of devices that engage in large numbers of SSL and TLS sessions.
+
+**Encryption can make it difficult to perform intrusion detection and data loss prevention.**
+
+Because those systems depend upon analyzing unencrypted network traffic. 
+
+#### SSL/TLS Decryption
+
+- Performs a man-in-the-middle attack against local users
+
+SSL/TLS decrypter presents a wildcard certificate to the endpoint device that appears to be legitimate for any other site on the Internet. The endpoint device is already configured to trust the certificate, and opens a connection to the decrypter, which then opens a legitimate SSL/TLS connection to the real destination. The decrypter then receives all traffic from the client, decrypts and inspects it, and then re-encrypts it for delivery to the final destination. When the remote server responds, the decrypter follows the same process in reverse. 
+
+**While controversial, many firewalls perform SSL/TLS decryption.**
+
+#### Hardware Security Modules (HSM)
+
+- Manage encryption keys and perform cryptographic operations
+
+**HSMs are expensive, but extremely effective.**
+
+One of their core benefits is that they can create and manage encryption keys without exposing them to a single human being, dramatically reducing the likelihood that those keys will be compromised. 
+
+
+
+### Chapter Quiz
+
+1. SSL is acceptable for use if and only if you use version 2.5 or higher.
+
+   A. TRUE
+
+   B. FALSE
+
+2. Which one of the following is NOT a secure, encrypted protocol?
+
+   A. SFTP
+
+   B. HTTPS
+
+   C. Telnet
+
+   D. SSH
+
+
+
+
+
+Answers:
+
+1. FALSE
+2. Telnet
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
