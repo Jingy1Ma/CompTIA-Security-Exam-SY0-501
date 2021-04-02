@@ -1774,8 +1774,206 @@ Answers:
 
 
 
+## 6. Security Assessment Tools
+
+### 6.1 Protocol analyzers
+
+**Protocol Analyzers** Allow deep inspection on traffic
+
+#### Protocol Analyzer Uses
+
+- Troubleshoot network issues
+- Investigate security incidents
+- Eavesdrop on confidential communications
+
+**Wireshark** Open-source GUI protocol analyzer
+
+**tcpdump** Open-source command-line protocol analyzer
+
+**Wireshark and tcpdum are both built on the <font color=red>libpcap</font> library.**
+
+**There are *many* more packet capture tools available on the market**
+
+
+
+### 6.2 Network scanning
+
+#### Network mapping
+
+- Detects active systems
+
+Looking for systems that are willing to respond to a variety of connection types. This is by nature an imperfect activity, because many systems are configured to ignore unsolicited connection attempts. It's particularly useful at performing rogue system detection. 
+
+**Nmap**
+
+![06_02_Nmap](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/06_02_Nmap.PNG?raw=true)
+
+```
+nmap 172.31.57.0/24
+```
+
+It seems that there aren't any hosts running on this network. However, that's not true, and we do have one host running on this network. This is because we ran Nmap without any arguments, which means do an ICMP ping request to find out what servers are running on the network. Many administrators  configure servers to ignore ping requests, so Nmap concluded incorrectly that there weren't any hosts running on the network. 
+
+```
+nmap 172.32.57.167 -Pn
+```
+
+This tells Nmap to target a single host that we know is up and running,  not to do the ping, and to scan the host anyway. This time we see that there is a server running here and listening on Port 3389 (Microsoft Remote Desktop service). So I've accomplished two things with this scan. 
+
+#### Nmap OS Fingerprinting
+
+##### Banner Grabbing
+
+- Retrieves information over a network connection that **explicitly** identifies the OS and version
+
+##### Network Fingerprinting
+
+- Analyzes details of network communications to find oddities particular to a specific OS and version
+
+#### ! EXAM TIPS
+
+Get some hands-on experience with nmap.
+
+(Just remember, you should never scan a network without permission)
+
+
+
+### 6.3 Exploitation frameworks
+
+#### Metasploit
+
+- Most common exploitation framework
+- Unfortunately, Metasploit is also available to attacks!
+
+![06_03_Metasploit](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/06_03_Metasploit.PNG?raw=true)
+
+#### ! EXAM TIPS
+
+Get some hands-on experience with Metasploit
+
+https://www.linkedin.com/learning/penetration-testing-essential-training/
+
+
+
+### 6.4 Command line network tools
+
+**ping** Checks whether a remote system is responding
+
+#### ICMP and ping
+
+![06_04_ICMP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/06_04_ICMP.PNG?raw=true)
+
+This is helpful, if you're having connectivity issues, and aren't sure where the issue resides. 
+
+#### Troubleshooting with ping
+
+1. Ping the remote system.
+2. Ping another system on the Internet
+3. Ping a system on your local network
+
+4. Try the same process from a different computer 
+
+**Some systems don't respond to ping requests.**
+
+#### Traceroute
+
+- Determines the network path between two systems
+
+**The `traceroute` command is abbreviated `tracert` on Windows systems**
+
+#### ifconfig
+
+- Displays Mac and Linux network configuration information
+
+#### ipconfig
+
+- Displays Windows network configuration information
+
+**The `ifconfig` and `ipconfig` commands can also modify network settings.**
+
+#### Address Resolution Protocol (ARP)
+
+- Translates between IP addresses used at the network layer and MAC addresses used at the ethernet layer.
+- You can view a system's ARP cache using the `arp` command
+
+ARP only works on local networks, where all the systems are communicating over ethernet.
+
+#### netstat
+
+- Displays network statistics on Mac and Windows systems
+
+#### ss
+
+- Displays network statistics  on Linux systems
+
+#### nc
+
+- Opens raw network connections on Mac and Linux
+
+#### Command Summary
+
+| Mac        | Linux      | Windows  |
+| ---------- | ---------- | -------- |
+| ping       | ping       | ping     |
+| traceroute | traceroute | tracert  |
+| ifconfig   | ifconfig   | ipconfig |
+| arp        | arp        | arp      |
+| netstat    | ss         | netstat  |
+| nc         | nc         | --       |
+
+#### ! EXAM TIPS
+
+Take the time to get hands-on practice with these commands.
+
+
+
+### 6.5 DNS harvesting
+
+**The Domain Name Service (DNS) translates between domain names and IP addresses.**
+
+#### dig
+
+- Performs DNS lookups on Mac and Linux systems
+
+#### nslookup
+
+- Performs DNS lookups on Windows systems
+
+#### Whois
+
+- Discovers ownership information about domains and IP addresses
+
+#### Reverse Whois
+
+- Discovers domains associated with a name or email address
+
+This can be a very useful reconnaissance tool, helping you to learn about domain names that are related to each other.
+
+
+
+### Chapter Quiz
+
+1. Which one of the following tools is a protocol analyzer?
+
+   A. Wireshark
+
+   B. Ping
+
+   C. Nessus
+
+   D. Nmap
+
+
+
+
+
+Answers:
+
+1. Wireshark
+
+
+
 ## Reference
 
-
-
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
+
