@@ -2176,9 +2176,204 @@ Answer:
 
 
 
+## 8. Personnel Security
+
+### 8.1 Personnel security
+
+Personnel are often the weakest link in the security chain. And personnel security should be an important part of the foundation of any cybersecurity program.
+
+**Your security programs should be built upon a solid policy foundation.**
+
+**Handle policy violations carefully!**
+
+This is often a tricky situation that requires coordination between cybersecurity teams, managers throughout the organization, the legal team, and the human resources department. You should never approach an individual about a policy violation without first consulting with management.
+
+**What use of personal resources is acceptable on cooperate networks and with corporate data?**
+
+If you allow the use of personal resources, you should have procedures for vetting those uses to ensure that they comply with security policies and remain in compliance over time.
+
+**Education is the best defense against social engineering attacks.**
+
+**The insider threat is significant. 25% of data breaches come from internal sources.**
+
+#### Insider Threat Defense
+
+- Background investigations
+- Monitoring
+- Manager training
+- Data loss prevention (DLP)
+
+
+
+### 8.2 Security in the hiring process
+
+**Employees pose a significant threat to enterprise security, known as the "insider threat."**
+
+**Preemployment screening checks the background of potential employees.**
+
+#### Preemployment Screening
+
+- Criminal records checks
+- Sex offender registry
+- Reference checks
+- Education and employment verification
+- Credit checks
+
+#### Employment Agreements
+
+- Should include nondisclosure agreements (NDAs)
+- Should discuss return of information and physical assets at termination
+
+**Include security policies in orientation sessions.**
+
+
+
+### 8.3 Employee termination process
+
+**Every employee eventually leaves the organization.**
+
+#### Exit Interview
+
+- Provide a change do debrief departing employees
+- Use it to remind employees of their NDA
+
+**Revoke access promptly, but not prematurely!**
+
+#### Retrieve Organization Property
+
+- Keys
+- Access badges
+- Laptops and mobile devices
+- Paper and electronic files
+
+
+
+### 8.4 Employee privacy
+
+#### Sensitive Personal Information
+
+- Background check results
+- Social Security numbers
+- Salary and payroll information
+- Health and benefit records
+
+**Organizations have a legal and ethical responsibility to protect personal information.**
+
+#### Minimization
+
+- Collect minimal information and store it only as long as it is needed
+
+#### Limit Access
+
+- As few employees as possible should have access
+
+#### Encryption
+
+- Uses cryptography to render information unreadable without the necessary decryption key
+
+#### Masking
+
+- Removes portions of sensitive information to reduce its sensitivity
+
+e.g. 078-05-1120 -> xxx-xx-1120
+
+
+
+### 8.5 Social networking
+
+**Many attacks hijack legitimate accounts.**
+
+#### Prevent Account Hijacking
+
+- Use multifactor authentication
+
+#### Social Media Management Tools
+
+- Offer approval workflows for posts
+- Schedule postings across accounts
+- Manage comments and replies
+- Track social media statistics
+
+e.g. Buffer, Hootsuite
+
+**Evaluate the security of social media tools carefully.**
+
+**Adopt a social media policy.**
+
+https://insidesocialmedia.com/social-media-policies/ibms-social-media-policy/
+
+
+
+### 8.6 Personnel safety
+
+**Employers should always make personnel security their highest priority.**
+
+#### ! EXAM TIPS
+
+Watch for tricky questions that ask you to prioritize other actions over personal safety!
+
+**Pay particular attention to monitoring the safety of isolated employees.**
+
+#### Duress Monitoring
+
+##### 1. Panic Buttons
+
+- Silently alert security personnel to a dangerous situation when pressed
+
+##### 2. Duress Codes
+
+- Appear to function normally but trigger an emergency security response
+
+For example, an employee might be given two alarm codes, a normal code and a duress code. If the employee enters the duress code on the alarm panel, the alarm still deactivates normally to avoid alerting the intruder. However, it also notifies security responders that there is a duress situation. 
+
+**Monitor the safety of employees who travel, particularly to unusual locations.**
+
+
+
+### Chapter Quiz
+
+1. Which one of the following agreements is most directly designed to protect confidential information after an employee has left the organization?
+
+   A. BAA
+
+   B. Asset return
+
+   C. NDA
+
+   D. SLA
+
+2. Rick recently worked with his HR department to replace the first five digits of employee Social Security Numbers with Xs. What technique did he use?
+
+   A. masking
+
+   B. hashing
+
+   C. truncation
+
+   D. encryption
+
+3. Catherine is developing a disaster plan for her employer. Which one of the following shoudl be her highest priority?
+
+   A. fault tolerance
+
+   B. life safety
+
+   C. data protection
+
+   D. high availability
+
+
+
+Answers:
+
+1. NDA
+2. masking
+3. life safety
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
-
 
 
