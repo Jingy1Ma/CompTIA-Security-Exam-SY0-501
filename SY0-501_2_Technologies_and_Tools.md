@@ -1973,7 +1973,212 @@ Answers:
 
 
 
+
+## 7. Security Troubleshooting
+
+### 7.1 Troubleshooting authentication and authorization
+
+**The use of unencrypted credentials is an extremely serious security issue.**
+
+#### Replace Unencrypted Protocols
+
+| Unencrypted Protocol | Encrypted Protocol |
+| -------------------- | ------------------ |
+| Telnet               | SSH                |
+| FTP                  | SFTP               |
+| HTTP                 | HTTPS              |
+
+If you're using a protocol that doesn't have a secure version, another alternative is to add encryption at the network layer.
+
+#### VPNs and SSH tunnels
+
+- Add security to insecure protocols
+
+**Permission issues require careful troubleshooting.**
+
+#### Troubleshooting Permission Issues
+
+1. Verify that the password is correct
+2. Use a different account to access the service
+3. Access a different service with the same account
+4. Investigate authentication logs
+
+**Access violations should be thoroughly investigated.**
+
+If you suspect that the user was intentionally trying to undermine security, you should contact management for further instructions before involving the user. 
+
+
+
+### 7.2 Troubleshooting digital certificates
+
+**Don't ignore certificate errors!**
+
+#### Expired certificates
+
+- Require renewal
+
+![07_02_ExpiredCert](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/07_02_ExpiredCert.PNG?raw=true)
+
+#### Mismatched names
+
+- Indicate a serious problem
+
+![07_02_Mismatched_Names](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/07_02_Mismatched_Names.PNG?raw=true)
+
+Its security certificate is from *.badssl.com. The wild card certificate that's in use here is giving an error because there are two levels of domains. If this were host.badssl.com, it would work fine, but the reason they've called it wrong.host.badssl.com is to illustrate this error. So I can see here that this certificate is not valid for this website.
+
+#### Untrusted CAs
+
+- Are reason for caution
+
+Anyone can issue a digital certificate for any site. The real key thing is that you should only trust certificates from known and trusted certificate authorities.
+
+![07_02_Untrusted_CA](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/07_02_Untrusted_CA.PNG?raw=true)
+
+#### Revoked certificates
+
+- Should **never** be trusted!
+
+Certificates may become compromised and the owners of a certificate can revoke them if they lose control. If you see an error about a certificate being revoked, this means that either the owner or certificate authority believes that the certificate was compromised and no longer trusts it. 
+
+![07_02_RevokedCert](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/07_02_RevokedCert.PNG?raw=true)
+
+#### Cryptographic errors
+
+- Indicates potential insecurity
+
+![07_02_Cryptographic_Errors](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/07_02_Cryptographic_Errors.PNG?raw=true)
+
+
+
+### 7.3 Troubleshooting device configurations
+
+#### Patch Devices Regularly
+
+- Avoid security issues
+
+#### Avoid Weak Cryptography
+
+##### Weak algorithms
+
+- Data Encryption Standard (DES)
+- Rivest Cipher 4 (RC4)
+
+##### Weak hash functions
+
+- Message Digest (MD4)
+- Message Digest (MD5)
+- Secure Hash Algorithm 1 (SHA-1)
+
+**Use a key length that is appropriate for your algorithm and data!**
+
+#### Disable default accounts
+
+- Especially if they have administrative access
+
+#### Troubleshooting Content Filters
+
+- Verify that category filters are appropriate
+- Manage policy exception
+
+#### Troubleshooting Wireless Network
+
+- When troubleshooting authentication issues, try another system first.
+- Wireless controllers can help address signal propagation and interference issues.
+
+
+
+### 7.4 Change and configuration management
+
+**Change is good. But it must be controlled.**
+
+#### Change Management
+
+- Ensures that an organization follows a standard process for requesting, reviewing, approving, and implementing changes to information systems
+
+#### Request for Change (RFC)
+
+- Description of change
+- Expected impact
+- Risk assessment
+- Rollback plan
+- Identity of those involved
+- Proposed schedule
+- Affected configuration items
+
+**Changes must be approved by relevant authorities.**
+
+**Routine changes may be preapproved.**
+
+#### Configuration Management
+
+- Tracks specific device settings
+
+#### Baselines
+
+- Provide a configuration snapshot
+
+#### Software Configuration Management
+
+- Detect unauthorized software
+- Verify license compliance
+
+#### Versioning
+
+- Assigns numbers to each version
+
+Version numbers are frequently written as three-part decimals, with the first number representing the major version of the software, the second number representing the major update, and the third number representing minor updates. 
+
+
+
+### 7.5 Physical asset management
+
+#### Build an Asset Inventory
+
+- Integrate it with other process
+
+The hardware inventory process should be integrated with the provisioning and decommissioning processes that occur throughout the life cycle of a piece of hardware. 
+
+**Asset management should follow a lifecycle approach.**
+
+#### Hardware Lifecycle
+
+1. A user requests a new hardware device.
+2. The receiving clerk updates the inventory and assigns the hardware to an IT staff member.
+3. The IT staff member configures the device and assigns it to an owner, who may then use the device for years.
+4. The device is reassigned to another user or properly disposed.
+
+**Data updates are critical!**
+
+As soon as someone misses an update, the data may become very inaccurate. For this reason, many asset management system include automation technology that can correlate inventory records with devices present on a network, pointing out any inconsistencies to inventory managers.
+
+#### Media Management
+
+- Tracks highly sensitive data
+
+In most cases, the asset management system used to track hardware assets can also be used to track media. 
+
+
+
+#### Chapter Quiz
+
+1. RFCs should contain a plan to roll back the change if it fails.
+
+   A. TRUE
+
+   B. FALSE
+
+
+
+Answer:
+
+1. TRUE
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
+
+
 
