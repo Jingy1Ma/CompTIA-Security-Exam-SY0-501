@@ -2626,7 +2626,337 @@ Answers:
 
 
 
+## 10. Mobile Device Security
+
+### 10.1 Mobile connection methods
+
+#### Cellular Networks
+
+- Available in most urban and suburban areas
+- Cover distances of 20+ miles
+- Rated according to generation of service
+
+#### Wi-Fi Networks
+
+- Cover shorter distances with higher bandwidth
+
+#### Satellite Communications
+
+- Work almost anywhere but are slow and expensive
+
+**Other communication requirements cover mush shorter distances.**
+
+#### Near-field communication (NFC)
+
+- Covers distances measured in centimeters using electromagnetic induction
+
+NFC is typically used for short, transactional communication such as mobile payments. Apple Pay and Android Pay use NFC technology to complete secure payment transactions.
+
+#### Bluetooth Networks
+
+- Covers distances of around 30 feet
+
+Bluetooth is commonly used for connections between mobile devices and computers as well as for speakers, headsets, and car audio integration. 
+
+#### ANT Networks
+
+- Allow communications between sensors and controllers
+
+#### Infrared Communications
+
+- Require a clear path between the transmitter and receiver
+
+#### USB Connections
+
+- Allow wired connectivity for mobile devices
+
+Many devices have the ability to access network connections on a laptop or desktop computer when connected to those devices by USB. At the same time, a laptop or desktop may also use the mobile device's cellular network when they share a USB connection. That use case is known as **device tethering**. 
+
+
+
+### 10.2 Mobile device security
+
+#### Passcode
+
+- Four-digit passcodes do not provide adequate security
+- Use a complex alphanumeric passcode instead
+
+#### Biometric
+
+- Offer a convenient, secure alternative access method
+
+#### Full Device Encryption
+
+- Protects sensitive information
+
+#### Remote Wiping
+
+- Removes data from lost or stolen devices
+
+ It's important to remember that you'll only be able to wipe the device if it's connected to a network. This is not a full proof technology.
+
+#### Lock Screen
+
+- Lock mobile devices automatically after a period of inactivity
+
+
+
+### 10.3 Mobile device management
+
+**Security Management of Many Mobile Devices across an Organization**
+
+#### MDM Features
+
+- Perform device configuration management
+- Prevents users from modifying security settings
+- Control data stored on devices
+- Manage applications installed on devices
+
+##### Application Blacklisting
+
+- Prohibit the installation of specified applications on mobile devices
+
+##### Application Whitelisting
+
+- Only allow the installation of approved applications on mobile devices
+
+##### Storage Segmentation
+
+- Separates sensitive information
+
+Some MDM packages allow the segmentation of storage on mobile devices, allocating portions for business use, personal use, and the storage of sensitive information. Those segments may have different levels of encryption and different access controls.
+
+##### Containerization
+
+- Process sensitive data inside a secure, encrypted mobile app
+
+Normally, this runs inside of a mobile app. The information inside the container cannot be accessed by other apps running on the device, and the apps inside the container can't access the rest of the device. 
+
+**Content management controls supplement segmentation and containerization.**
+
+e.g. Google Management 
+
+
+
+### 10.4 Mobile device tracking
+
+**Loss of mobile devices introduces confidentiality and financial risks.**
+
+**Over 3.1 million mobile devices are stolen annually.**
+
+#### Asset Tracking Software
+
+- Manages device inventories
+
+Asset tracking software should manage the entire life cycle of a device:
+
+```mermaid
+graph LR;
+A[Device Request]  --> B[Ordering and Receiving] --> C[Intial Configuration] --> D[Device Management] --> E[Device Decommissioning] --> A[Device Request]
+```
+
+**Geolocation allows the real-time and historical location of GPS-enabled devices.**
+
+#### Geofencing
+
+- Alerts when a device leaves a defined area
+
+#### GPS Use Limits
+
+- Limited access to GPS data
+- Ability for monitored individual to disable tracking
+- Automated disabling outside working hours
+- Clear disclosure of use
+
+
+
+### 10.5 Mobile application security
+
+**Mobile Apps Use Sensitive Data. They require strong security controls.**
+
+**Limits the Apps that Users May Install on a Device**
+
+#### Authentication
+
+- Use strong credential management
+- Rely upon central authentication
+
+**Using External Authentication Places Great Trust in External Organizations**
+
+#### Content-Aware Authentication
+
+Changes authentication requirements using a real-time risk assessment based upon characteristics of the user's request the operating environment
+
+#### Contextual Factors
+
+- Physical location
+- Type of request
+- Specific device
+- Privileged access rights
+- User behavior
+
+#### Encrypt Sensitive Information
+
+- Encrypt information in transit
+- Encrypt information at rest
+- Practice strong key management
+
+#### Geotagging
+
+- May disclose sensitive locations
+
+
+
+### 10.6 Mobile security enforcement
+
+**MDM solutions are allow the lockdown of mobile device configurations.**
+
+**Third-part app stores may contain unsafe code.**
+
+Installing apps from unofficial sources is known as sideloading, because it bypasses the normal application loading procedure. This is much more of a problem on Android devices that follow an open app store model than Apple devices, which generally restrict users to the official app store. 
+
+**Jailbreaking phones creates added security risks.**
+
+When jailbreaking a device, the user loads a customized version of the operating system firmware on the device that lacks the security controls found in the official version. 
+
+**Mobile devices must be patched with current operating system firmware.**
+
+Most modern mobile devices receive their firmware updates automatically, using a process known as over-the-air, or OTA, updates. 
+
+**Device unlocking allows portability among service providers.**
+
+#### Restricting Device Feature Use
+
+- Cameras
+- Messaging
+- External media
+- USB On-The-Go (allows the mobile device itself to be used as a hard drive, potentially allowing users to smuggle information outside of your facilities)
+- Microphone
+- GPS tagging
+- Wi-Fi usage
+- Device tethering
+- Mobile payments
+
+
+
+### 10.7 Bring your own device (BYOD)
+
+**BYOD IS a Radical Shift. Employees want to use their own technology at work.**
+
+**Gartner predicts that, within the next two years, half of all employers will <font color=red>require</font> BYOD**
+
+#### BYOD Policy Issues
+
+- Who may bring devices to the workplace?
+- What devices may they bring?
+- How will the security of those devices be managed?
+
+The core issues around BYOD relate to ownership. 
+
+![10_07_BYOD](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/2_Technologies_and_Tools/10_07_BYOD.PNG?raw=true)
+
+In a BYOD environment, the user may own the device and both the user and the company may own the data. Unless policy is clearly defined, IT staff may find themselves in a situation where they don't know the scope of their support services. 
+
+#### BYOD Legal and Privacy Issues
+
+- Users should understand monitoring
+- User acceptance of intrusive monitoring is unlikely!
+- Organizations should obtain legal advice before implementing policies
+
+#### BYOD Onboarding
+
+- Ensure the device meets security requirements and is safely configured
+
+#### BYOD Offboarding
+
+- Remove all corporate information from the personally owned device
+
+**Consider the Impact of BYOD on the Organization's Technical Infrastructure**
+
+When the organization purchases devices, it's easy to standardize on hardware, operating systems, and applications. When users bring their own devices, however, this standardization is often impossible. BYOD organizations must be prepared to support a wide variety of hardware, operating systems, and applications. 
+
+#### BYOD Technical Issues
+
+- Mobile device management
+- Patching and antivirus management
+- Camera use
+- Forensic procedures
+
+
+
+### 10.8 Mobile deployment models
+
+**BYOD strategies limit corporate control of devices.**
+
+#### Choose Your Own Device
+
+- Users select devices
+
+**CYOD strategies normally provide users with a menu of devices from which to choose.**
+
+#### Company Owned, Personally Enabled
+
+- Allows personal use of corporate devices
+
+**MDM provides a policy enforcement mechanism.**
+
+#### Virtual Desktop Infrastructure
+
+- Desktops in the cloud or data center
+
+Those desktops may be carefully configured to meet organizational security requirements and then employees may use their personal devices to connect to the virtual desktop. Data never leaves the safe confines of the virtualization environment and the employee can work efficiently. 
+
+
+
+### Chapter Quiz
+
+1. Apple devices running current versions of iOS use full device encryption by default.
+
+   A. TRUE
+
+   B. FALSE
+
+2. In what application control approach may users install only approved software on their devices?
+
+   A. bluelist
+
+   B. blacklist
+
+   C. whitelist
+
+   D. greylist
+
+3. What technology allows administrators to pinpoint the location of a mobile device?
+
+   A. TLS
+
+   B. SSL
+
+   C. HTTPS
+
+   D. GPS
+
+4. The core issues around BYOD relate to _____.
+
+   A. standards
+
+   B. administration
+
+   C. ownership
+
+   D. process
+
+
+
+Answers:
+
+1. <font color=red>TRUE</font>
+2. whitelist
+3. GPS
+4. The core issues around BYOD relate to ownership .
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
-
