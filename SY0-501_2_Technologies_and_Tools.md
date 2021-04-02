@@ -2368,12 +2368,265 @@ Answers:
 
 1. NDA
 2. masking
-3. life safety
+
+
+
+## 9. Host Security
+
+### 9.1 Operating system security
+
+**OS Security is Critical! Compromised systems are a gateway to compromised networks!**
+
+#### Operating System Security Issues
+
+- Security settings
+- Patch management
+- Trusted operating systems
+
+##### Security Settings
+
+- Limit administrative access
+
+##### Patch management
+
+**Analyze the output of patch management activities to ensure systems are properly patched.**
+
+Configuration management tools can assist you with automating this work. 
+
+**System Harding** Locking down configurations
+
+#### System Harding Tasks
+
+- Remove unnecessary software and operating system components (reduce the attack surface)
+- Lock down the host firewall configuration
+- Disable default accounts and passwords
+
+#### Trusted Operating Systems
+
+- Have undergone formal evaluation
+
+#### ! EXAM TIPS
+
+Be familiar with the definition of trusted operating systems for the exam.
+
+
+
+### 9.2 Malware prevention
+
+#### Viruses
+
+- Spread by human action
+
+#### Worms
+
+- Spread by themselves
+
+#### Trojan Horses
+
+- Disguise themselves
+
+#### Spyware
+
+- Gathers information
+
+**Antimalware software protects against many different threats.**
+
+#### Signature Detection
+
+- Watches for known pattern of virus activity
+
+When you are using signature detection, it's critical that you frequently update the virus definition file to ensure that you have current signatures for newly discovered malware.
+
+#### Behavior Detection
+
+- Watches for deviations from normal patterns of activity
+
+Behavioral detection techniques are found in advanced malware protection tools. They perform deep instrumentation of endpoints. They analyze memory and processor usage, registry entries, network communications, and other system behavior characteristics. In addition, they often have the capability of performing sandboxing. 
+
+#### Sandboxing
+
+- Advanced malware detection technique that executes suspicious code in a safe environment, where it is monitored for signs of malicious activities
+
+#### ! EXAM TIPS
+
+The same software packages perform antimalware and antispyware functions.
+
+#### Spam Filtering
+
+- Removes unwanted email
+
+**Malware logs should be sent to a centralized system for storage and analysis.**
+
+
+
+### 9.3 Application management
+
+#### Application Control
+
+Restricts software that may run
+
+##### Whitelisting
+
+- Administrators create a list of all the applications that may run on system.
+
+This works well in a very tightly controlled environment, but can be difficult to administer if you have many different applications and roles. 
+
+##### Blacklisting
+
+- Administrators create a list of the applications that are prohibited on a system.
+
+The blacklisting approach offers users much more flexibility. Instead of listing the applications that users are allowed to run, administrators list prohibited applications. This is much easier for users, but reduces the effectiveness of application control. 
+
+**Send application control logs to your SIEM or log repository for analysis.**
+
+**Applications Also Require Patching**
+
+#### Host Software Baselining
+
+- Identifies expected system software
+
+
+
+### 9.4 Host-base network security controls
+
+**Default Deny Principle** Block anything not explicitly allowed
+
+#### Network Firewalls
+
+- Hardware devices that regulate connections between two networks
+
+#### Host Firewalls
+
+- Software components of an operating system that limit connections to a server
+
+#### ! EXAM TIPS
+
+Granting network access requires configuring both network and host firewalls!
+
+#### Intrusion Detection Systems (IDS)
+
+- Alert administrators to suspicious network activity
+
+#### Intrusion Prevention Systems (IPS)
+
+- Take proactive measures to block suspicious network activity
+
+**IDS and IPS Technology: Network Based or Host Based**
+
+**Send host firewall and host IDS and IPS logs to your SIEM or log repository for analysis.**
+
+
+
+### 9.5 File integrity monitoring
+
+**Defense in depth strategies require the use of diverse, overlapping security controls**
+
+#### File integrity monitoring
+
+- Watches for unexpected file modifications
+
+##### Hash Function
+
+- one-way functions that transform a variable length input into a unique fixed-length output.
+
+**File integrity monitoring systems periodically verify that the hash values of critical files have not changed.**
+
+#### Tuning is critical
+
+- Adjust the FIM system for your organization's needs/
+
+For example, you would certainly expect log files to change regularly on a computer system as new events arrive in the logs. If the file integrity monitoring system alerted each time a log entry appeared, you'd quickly go nuts and turn it off. However, it would be noteworthy if a log file either disappeared or shrank in size. On the other hand, if some of the core operating system executables change, that can be an indication of a malware infection and should be investigated carefully.
+
+#### ! EXAM TIPS
+
+Analyzing the output of a file integrity monitoring system would make a good exam question.
+
+For example, if a system administrator applied security patches last night, you should expect many operating system files will change and trigger alerts. However, if the same files change without a scheduled patch, that might indicate a problem. 
+
+**File integrity monitoring is often a compliance requirement.**
+
+For example, the Payment Card Industry Data Security Standard contains a clear requirement for using this technology. You can see here how that plays out in PCI DSS requirement 11.5. Other organizations may find that their industry-specific regulations or audit requirements demand this type of monitoring.
+
+e.g. Tripwire
+
+File integrity monitoring systems often serve as the last line of defense against particularly tricky attacks.
+
+
+
+### 9.6 Removable media control
+
+In a high security environment you may implement many security controls designed to prevent users from stealing sensitive information over the network. However these controls may be easily defeated by a user who simply attaches a USB drive to a system, copies data onto that drive, and then walks out of the building with it.
+
+#### Securing Removable Media
+
+- Limit the use of removable media
+- Track attempts to copy data to removable media
+
+**Send logs to your SIEM or log repository for analysis.**
+
+
+
+### 9.7 Data execution prevention (DEP)
+
+- Microsoft technology that enforces specific restrictions on the acceptable locations for executable code
+- DEP prevents attack that attempt to execute cod from space assigned to a process
+
+
+
+### Chapter Quiz
+
+1. What command is used to apply operating system updates on some Linux distributions?
+
+   A. ps
+
+   B. update
+
+   C. yum
+
+   D. systeminfo
+
+2. What type of malware prevention is most effective against known viruses?
+
+   A. behavior analysis
+
+   B. anomaly analysis
+
+   C. signature detection
+
+   D. heuristic detection
+
+3. What is the name of the application control technology built-in to Microsoft Windows?
+
+   A. BitControl
+
+   B. AppControl
+
+   C. AppLocker
+
+   D. BitLocker
+
+4. Which one of the following security controls is built in to Microsoft Windows?
+
+   A. Host IDS
+
+   B. MDM
+
+   C. Host IPS
+
+   D. Host firewall
+
+
+
+Answers:
+
+1. <font color=red>yum</font>
+2. signature detection
+3. AppLocker
+4. Host firewall
 
 
 
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-2-technologies-and-tools/
-
 
