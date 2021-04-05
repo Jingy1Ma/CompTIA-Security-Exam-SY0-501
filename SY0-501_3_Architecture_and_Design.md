@@ -811,7 +811,243 @@ Answers:
 
 3. switch
 
-   
+
+
+
+## 4. Secure System Design
+
+### 4.1 Operating system types
+
+#### Workstation OS
+
+- Power laptop and desktop computers
+- Typically Windows or macOS
+- Some Linux distributions
+
+#### Server OS
+
+- Designed for special-purpose computers that provide services to others
+- Windows Server OS
+- Linux
+
+#### Mobile OS
+
+- Designed for smartphones and tablets
+- iOS
+- Android
+- Windows Mobile
+
+#### Kiosk Computers
+
+- Devices placed inside of specialized furniture and with limited functionality
+- Operating system depends upon hardware
+
+#### Kiosk Security
+
+- Kiosk devices require the same type of security controls that you would deploy for their fully functioning counterparts
+- You must also verify that the technology limiting kiosk functionality works properly
+
+#### Appliances
+
+- Bundle together hardware and software to achieve a function
+- Often run full operating systems
+- Require vendor support for updates
+
+Appliances are proliferating in enterprise data centers. These devices package together the hardware and software necessary to perform a function such as providing DNS services, performing searches, or carrying out security tasks such as the Qualys vulnerability scanning appliance shown here. Appliances run operating systems but the specific operating system run by an appliance may not be readily apparent to the end user. Administrators at the end user organization typically do not have access to the underlying operating system. When it comes to securing appliances, you'll typically need to depend upon the vendor to provide any necessary security updates. 
+
+#### Network Devices
+
+- Run special-purpose network operating systems
+- Cisco IOS
+- Juniper Junos OS
+
+
+
+### 4.2 Data encryption
+
+#### Encryption Protects Data
+
+- Using algorithms and secret keys
+
+#### Most Encryption Uses Software
+
+For example, in Linux we could
+
+```bash
+aescrypt -e AES.html
+aescrypt -d AES.html.aes
+```
+
+#### Full Disk Encryption
+
+- Protects an Entire Hard Drive
+
+This is an important protection against the loss of an entire computer system. If an employee loses a laptop, someone who finds it can easily bypass the operating system access controls by placing the hard drive in another computer system. If the drive is encrypted, this is not possible. It's easy to perform full disc encryption on almost any modern operating system. 
+
+#### Database Encryption 
+
+- Protects the Contents of Databases from Attack.
+
+#### Hardware Encryption 
+
+- Is More Efficient than Software Encryption
+
+##### Hardware Security Modules (HSM) 
+
+- Use Dedicated Hardware for Encryption, Decryption, and Key Management**
+
+##### Trusted Platform Modules (TPMs) 
+
+- bring hardware encryption to typical computers
+
+**Some Hard Drives and USB Devices Have Built-In Encryption Technology**
+
+
+
+### 4.3 Hardware and firmware security
+
+Some attacks may target the very basic building blocks of the computing system that work before the operating system even loads. 
+
+**Operating systems must be loaded from disk during the boot process.**
+
+#### Basic Input/Output System (BIOS)
+
+- Lightweight operating system stored in firmware that provides the basic functionality necessary to load the full operating system from disk
+
+**BIOS attacks may give a malicious individual full control of a device.**
+
+That's a really dangerous attack, and its one of the reasons that BIOS is now used very rarely. Instead, computer manufacturers have replaced BIOS with UEFI. 
+
+#### Unified Extensible Firmware Interface (UEFI)
+
+- Replaces BIOS with a flexible alternative
+
+##### Secure Boot
+
+1. Read the boot loader from disk
+2. Compute the hash of the boot loader
+3. Decrypt the boot loader's digital signature
+4. Verify that the signature is accurate
+
+Secure Boot technology ensures that the operating system being loaded by UEFI is a genuine operating system from a trusted manufacturer.
+
+**Booting stops abruptly if the boot loader's digital signature fails verification**
+
+**Remote attestation sends a compliance report to an external server.**
+
+If you dive even deeper into the security rabbit hole, you next might ask yourself how you can be sure that the UEFI firmware wasn't tampered with. That's where Root of Trust comes into play. 
+
+#### Hardware Root of Trust
+
+- Verifies firmware integrity
+
+The Root of Trust stores the keys used to validate the UEFI firmware and hardware and verifies that the UEFI is intact and unaltered before the boot process begins.
+
+**Together, the hardware root of trust, UEFI, TPM, and Secure Boot provide trusted computing.**
+
+#### Electromagnetic Interference (EMI)
+
+- Electromagnetic waves, normally generated unintentionally, that cause disruption to nearby electronic equipment
+
+Copper shielding may be used to minimize Electromagnetic Interference but is typically pretty difficult to work with.
+
+- Electromagnetic pulses (EMPs) are extreme bursts of EMI
+- They may be generated by a nuclear explosion
+
+
+
+### 4.4 Peripheral security
+
+Peripherals are the supplementary computing devices that help us use our laptops, desktops, smartphones, and tablets more effectively. We use keyboards, mice, memory cards, printers, and other peripherals to help us share information, work efficiently, and produce output. 
+
+- Many wireless devices use the same Wi-Fi and Bluetooth protocols used by other computing systems - and must be secured in the same way
+- Removable storage devices create the risk of data theft by trusted insiders
+- Some storage cards create their own wireless networks (e.g. Wi-Fi-enabled microSD cards for digital cameras)
+- Modern printers contain fully functioning computers
+
+#### Printer Security Practices
+
+1. Patch the operating system
+2. Secure the printer's webserver
+3. Encrypt print traffic (e.g. TLS)
+4. Securely wipe printer hard drives
+
+
+
+### 4.5 IT automation
+
+- In  a legacy approach to IT, servers are handcrafted artisanal products
+- Automation uses scripts to create servers, treating infrastructure as code
+
+#### Start with a Master Image
+
+- Customize with templates and script commands
+
+#### Benefits of Automating Server Builds
+
+- Consistency: Remove the human element
+- Elasticity: Facilitate adding additional servers
+- Load balancing: Add and remove servers as needed
+- Scalability: Modify server configurations easily
+- Resiliency: Rebuild servers from the original script
+
+#### ! EXAM TIPS
+
+CompTIA uses the term *distributive allocation* to refer to load balancing.
+
+**Automation can validate system configurations against standards.**
+
+**Continuous monitoring can leverage automation for both analysis and response to events.**
+
+For example, if an intrusion detection system detects an external system conducting a Port Scan, it can create a rule on an upstream firewall to block all network traffic from that device for 24 hours. 
+
+
+
+### 4.6 Non-persistence
+
+As IT organizations increasingly adopt Infrastructure as Code approaches to managing data centers, they are moving towards nonpersistence systems. 
+
+**Nonpersistence** Design for failure
+
+The idea is that whenever you put together an IT architecture, that architecture should expect that individual components may fail and be able to work around that failure either by using redundancy or by automatically rebuilding the failed component.
+
+#### Nonpersistent Technologies
+
+- Automated server builds
+- System snapshots
+- Reversion to a known state
+- Live boot media
+
+Live boot media: the storage is separated from the physical computing hardware. Users carry around a USB drive that contains an entire operating system and use it to boot their hardware device. 
+
+
+
+### Chapter Quiz
+
+1. Network appliances do not often run standard operating systems.
+
+   A. TRUE
+
+   B. FALSE
+
+2. What hardware technology may be embedded in a laptop computer to protect encrypted hard drives from removal?
+
+   A. TPM
+
+   B. TLS
+
+   C. SSL
+
+   D. USB
+
+
+
+Answers:
+
+1. <font color=red>FALSE</font>
+2. TPM
+
+
 
 ## Reference
 
