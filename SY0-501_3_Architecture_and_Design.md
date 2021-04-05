@@ -286,6 +286,533 @@ Answers:
 
 
 
+## 2. User Training
+
+### 2.1 Security Education
+
+##### Security Training
+
+- Provides users with the knowledge that need to protect the organization's security
+
+##### Security Awareness
+
+- Keeps the lessons learned during security training top of mind for employees
+
+#### Security Training Methods
+
+- Instruction in on-site classes
+- Integration with orientations
+- Education through online providers
+- Participation in vendor provided classroom training
+
+**Customize training based upon user roles**
+
+#### Training Frequency
+
+- Initial training for new employees
+- Update training for employees with new roles
+- Refresher training on an annual basis
+- Awareness efforts throughout the year
+
+**Review training materials regularly to ensure relevance.**
+
+
+
+### 2.2 Information classification
+
+**Data Classification Policies** Assign information into categories, known as classifications, that determine storage, handling, and access requirements
+
+#### Assign Classifications Based Upon
+
+- Sensitivity of information
+- Criticality of information
+
+Classification schemes vary but all basically try to group information into high, medium and low sensitivity levels and differentiate between public and private information. 
+
+#### Classification Levels
+
+| Military Classification | Business Classification |
+| ----------------------- | ----------------------- |
+| Top Secret              | Highly Sensitive        |
+| Secret                  | Sensitive               |
+| Confidential            | Internal                |
+| Unclassified            | Public                  |
+
+**Classification guides other security decisions.**
+
+For example a company might require the use of strong encryption to protect sensitive and highly sensitive information. Both at rest and in motion.
+
+#### Labeling Requirements
+
+- Identify sensitive information
+
+**Securely dispose of information when no longer needed.**
+
+These include software applications such as Darik's Boot and Nuke otherwise known as DBAN and hardware tools such as magnetic degaussers and device shredders. 
+
+Information classification gives employees a consistent way to identify, label, handle and dispose of sensitive information.
+
+
+
+### 2.3 Compliance training
+
+**Compliance Programs** Ensure that an organization's information security controls are consistent with the laws, regulations, and standards that govern the organization's activities
+
+**Include compliance obligations in security training**
+
+#### Compliance Obligations
+
+- Laws (GLBA, Gramm-Leach-Bliley Act)
+- Regulations (HIPAA)
+-  Standards (PCIDSS, Payment Card Industry Data Security Standard)
+
+Standards are detailed technical specifications for security and other controls. 
+
+**Begin compliance efforts with a gap analysis.**
+
+
+
+### 2.4 User habits
+
+- Include secure password practices in security education programs
+- Clean desk policies and other data handling practices boost security
+- Physical security training should include discussions of the dangers of tailgating
+- Include BYOD policies in security training efforts
+- Cover appropriate use of social media and peer-to-peer networks in security education
+
+
+
+### 2.5 User-based threats
+
+- Phishing uses spoofed messages to obtain information and convince users to perform risky actions
+- Social engineering isn't limited to email. It can occur over the phone or in person as well
+- New threats arise *every day*
+
+
+
+### 2.6 Measuring security education
+
+#### Simulated Phishing
+
+- Directly measures user awareness
+
+#### Security Awareness Surveys
+
+- How well does the organization prepare you to deal with security threats
+- Do you know your information security responsibilities?
+- Do you know where to report a security incident?
+
+**Measure how awareness changes over time**
+
+**Change tactics based upon survey results**
+
+
+
+### Chapter Quiz
+
+1. Which one of the following is not an example of security education?
+
+   A. online education
+
+   B. classroom instruction
+
+   C. briefings at team meetings
+
+   D. reminder posters in the hallway
+
+2. Which one of the following is the lowest level of classification in the government's classification scheme?
+
+   A. secret
+
+   B. confidential
+
+   C. public
+
+   D. top secret
+
+3. Which one of the following regulatory schemes applies to healthcare providers in the United States?
+
+   A. GLBA
+
+   B. HIPAA
+
+   C. PCI DSS
+
+   D. FERPA
+
+4. What is the name of the practice where a user holds a door open for the individual following them into a building?
+
+   A. should surfing
+
+   B. smurfing
+
+   C. tailgating
+
+   D. politeness
+
+5. What type of social engineering attack targets end users via email messages?
+
+   A. shoulder surfing
+
+   B. vishing
+
+   C. phishing
+
+   D. pharming
+
+
+
+
+
+Answers:
+
+1. <font color=red>reminder posters in the hallway</font>
+2. <font color=red>confidential</font>
+3. HIPAA
+4. tailgating
+5. phishing
+
+
+
+## 3. Secure Network Design
+
+### 3.1 Security Zones
+
+#### Network Border Firewall
+
+- Internet Zone
+- Intranet Zone
+- DMZ Zone
+
+![03_01_Firewall](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_01_Firewall.PNG?raw=true)
+
+#### Extranets
+
+- Intranet segments extended to business partners
+
+#### Honey nets
+
+- Decoy networks designed to attract attackers
+
+#### Ad Hoc Networks
+
+- Temporary networks that may bypass security controls
+
+Ad hoc networks may present a security risk especially if they are inter connected with other networks that lack strong security controls. For example, an employee who sets up a wireless point without using encryption and then connects it to the intranet, may inadvertently expose sensitive information to eavesdropping and create a potential path for an attacker to enter the organizations network. 
+
+
+
+### 3.2 Public and private addressing
+
+#### Public IP Addresses
+
+- Assigned by a central authority and are routable over the Internet
+- **I**nternet **C**orporation for **A**ssigned **N**ames and **N**umbers (ICANN)
+- ICANN distributes large blocks of addresses to regional authorities for distribution
+  - ARIN: US and Canada
+  - LACNIC: Latin American and Caribbean regions
+  - AfriNIC: Africa
+  - RIPE NCC: Europe, West Asia, and the former USSR
+  - APNIC: Asia-Pacific
+
+##### IP Addresses Scarce
+
+- No large blocks available
+
+There are no large blocks of IPv4 addresses available for assignment today, and the only way to get these public IP addresses is by purchasing or renting them from other organizations, such as ISP.
+
+##### Historic Free Use of Public IPs
+
+![03_03_Historic_Use](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_02_Historic_Use.PNG?raw=true)
+
+- IPv4 allows for 4.3 billion possible addresses
+- But there are currently at least 7.5 billion mobile devices in the world (not including include servers, desktop computers, network appliances, or any non-mobile devices)
+
+#### Private IP Addresses
+
+- Available for anyone's use but not routable over the Internet
+
+##### Private IP Address Ranges
+
+- 10.0.0.1-10.255.255.255
+- 172.16.0.1-172.31.255.255
+- 192.168.0.1-192.168.255.255
+
+**Private IP Addresses Are not Internet Routable!**
+
+#### Organizations Mix
+
+- Public and private addresses
+
+They use private addresses broadly within their private networks, assigning them to all of their internal systems. They then use a small number of public IP addresses for systems that require public access.
+
+![03_02_Private_IP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_02_Private_IP.PNG?raw=true)
+
+Systems that have private IP addresses cannot communicate on the internet using those addresses because they are not internet routable. Thousands of organizations around the world use those same private addresses on their own internal networks, so remote systems would have no way of telling where reply traffic should actually go. 
+
+#### Network Address Translation
+
+- Translates private IP addresses
+
+![03_02_NAT](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_02_NAT.PNG?raw=true)
+
+#### NAT AND Security
+
+- Hides internal addresses from Internet systems
+- Limit direct access to systems
+- Makes it difficult to identify the true origin of traffic
+
+For this reason, most organizations maintain logs of their NAT translations that allow them to determine who was using a particular public IP address at any given time.
+
+**NAT requires a large pool of public IP addresses.**
+
+Since most organizations have a limited pool of public addresses, they can quickly run into a situation where that pool is exhausted and no new systems can communicate on the internet. 
+
+#### Port Address Translation (PAT)
+
+- Allows multiple systems to share the same public address
+- Assigns unique ports to each communication
+
+Instead of recording translations between IP addresses, PAT assigns each connection a different port on a public IP address. This way, many different systems can share the same public IP address at any point in time.
+
+
+
+### 3.3 Subnetting
+
+**Subnetting** Subdivides large networks
+
+#### Subnets
+
+![03_03_Subnet](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_03_Subnet.PNG?raw=true)
+
+Network Address | Host Address
+
+192.168|1.100 -> single network with over 165,000 possible host addresses
+
+192.168.1 | 100 -> 256 possible subnetworks with 254 possible hosts each
+
+![03_03_Subnet2](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_03_Subnet2.PNG?raw=true)
+
+![03_03_Subnet3](C:\Users\JY\Desktop\Security+\Images\03_Architecture_and Design\03_03_Subnet3.PNG)
+
+On our network diagram, we can now give the accounting group, the 192 168.1 address space, the sales group, the 192 168.2 subnetwork, and then assign the 192 168.3 subnetwork to the IT group, leaving the remaining 253 subnets for future uses. Each of those subnetworks can have up to 254 systems connected to it. 
+
+#### Subnet Masks
+
+- Identify the dividing line between network and host addresses
+
+![03_03_Subnet_Mask](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_03_Subnet_Mask.PNG?raw=true)
+
+##### Subnet Mask Notion
+
+- IP addresses: 192.168.1.100
+- Subnet mask: 255.255.255.0
+
+##### Slash Notation
+
+- 192.168.1.0/24
+
+
+
+### 3.4 VLANs and network segmentation
+
+#### Virtual LANs
+
+- Separate systems on a network into logical groups based upon function, regardless of physical location
+
+![03_04_VLAN](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_04_VLAN.PNG?raw=true)
+
+When users from different departments are mingled together and those departments are spread across multiple buildings. That's where virtual LANs come into play. We can use them to connect people who are on different parts of the network to each other and also to separate them from other users who might actually be geographically close to them. 
+
+**VLANs extend the broadcast domain.**
+
+This means that users on the same VLAN will be able to directly contact each other as if they were connected to the same switch. All of this happens at layer two of the network stack without involving routers or firewalls. 
+
+#### Configuring VLANs
+
+- Enable VLAN trunking (This allows switches in different locations on the network to carry the same VLANs)
+- Assign switchports to VLANS
+
+
+
+### 3.5 Security device placement
+
+#### Network Border Firewall
+
+![03_05_Border_Firewall](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_05_Border_Firewall.PNG?raw=true)
+
+In this example the firewall sits at the network border, separating an internal network and the DMZ from the internet. There could easily be additional firewalls on the internal network. 
+
+![03_05_Additional_Firewall](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_05_Additional_Firewall.PNG?raw=true)
+
+
+
+For example we might place a firewall here to enforce separation between the endpoint network, wireless network, guest network, and data center network. 
+
+#### Network Traffic Collectors
+
+- Intrusion detection and prevention sensors
+- Network taps
+- Port mirrors
+
+##### Sensor Placement
+
+For example if you place an intrusion detection system sensor in the DMZ, it will be unable to collect traffic that exists only on the internal network. 
+
+If you place a sensor on the internal network, it won't be able to see traffic that passes between systems on the internet and those in the DMZ.
+
+If you place a sensor outside the firewall on the internet, it won't see traffic between internal systems. 
+
+So if you want full coverage of the networks connected to this firewall, you'd need to put sensors on all three networks. As you design network sensors, you'll need to understand your organizations network design. For example here's a common.
+
+**Aggregation (or distribution) switches connect downstream access switches to each other.**
+
+![03_05_Aggregation_Switch](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/03_05_Aggregation_Switch.PNG?raw=true)
+
+Here's a common design that uses an aggregation switch to pull together network traffic from the access switches that are deeper in the network, and those are the ones that are actually connected to user devices. 
+
+Span ports on switches provide a copy of all traffic that crosses the switch, and these are very useful for many security applications. However depending upon your design, you may not see the traffic that you would expect. For example, if you place a span port on this switch, you will only see traffic to, from or between any of the systems on that switch. That probably makes sense. However, if you place a span port on the aggregation switch, you won't necessarily see all of the traffic from the four switches beneath it. If two systems connected to the same switch communicate with each other, the edge switch at the access layer handles that traffic without passing it up to the aggregation switch. 
+
+#### Security Information and Event Management
+
+- Gather information using collectors
+- Analyze information with a centralized correlation engine
+- Place collectors near the systems generating records
+- Place the correlation engine in a secure location
+
+**Proxy servers and content filters typically belong in the DMZ.**
+
+The location of these systems may vary depending upon your specific architectural design, but it's often good practice to place them in the DMZ network. This is especially true for proxy servers, because they have to initiate connections to the outside world. Using a DMZ based proxy limits the amount of outbound network traffic from the internal network, placing an added layer of isolation around that sensitive network. 
+
+#### VPN Concentrators
+
+- Aggregate remote user connections
+- Often reside in their own VLAN, where access controls may restrict remote user activity
+- Sophisticated designs may use multiple VLANs for different user roles
+
+#### SSL Accelerators
+
+- Handle the difficult cryptographic  work of setting up TLS connections
+
+#### Load Balancers
+
+- Distribute connection requests among multiple servers
+
+**SSL accelerators and load balancers belong in the DMZ.**
+
+#### DDoS Mitigation Tools
+
+- Belong as close to the internet as possible
+
+**Purchasing DDoS mitigation services from your ISP is an ideal approach.**
+
+So that the attacks can be blocked before they even reach your network. 
+
+
+
+### 3.6 Software-defined networking (SDN)
+
+**Reconfiguring traditional networks requires reconfiguring devices.**
+
+#### Network Functions
+
+##### 1 Control Plane
+
+- Responsible for making routing and switching decisions
+
+##### 2 Data plane
+
+- Responsible for carrying out the instructions of the control plane
+
+**SDN separates the control plane from the data plane.**
+
+Instead of each router and switch making independent decisions about how to route packets, these decisions come from an SDN controller. The SDN controller is where network administrators and algorithms make decisions about network routing, and then the controller reaches out to each device on the network and programs it to carry out those instructions properly. 
+
+The SDN controller implements the control plane of the network, while the routers and switches accept instructions from that control plane to carry out the data plane function. 
+
+**SDN makes the network programmable.**
+
+#### SDN Security Benefits
+
+- Allows granular network configuration
+
+In many organizations, network administrators typically balk at routing VLANs across networks of different buildings because of the difficulty of configuring those VLANs. However, with SDN, this becomes quite easy, and allows the use of strong network-segmentation practices. 
+
+- Facilitates faster response to security incidents
+
+For example, if the network comes under a DoS attack from a misconfigured host, security tools can automatically reach out, and disable the network switch port belonging to that host, and place the host in a quarantine zone, where it has very limited network access. 
+
+**SDN increases network complexity.**
+
+It requires the use of strong access controls. You wouldn't want a malicious individual gaining access to your network control plane and using SDN to conduct eavesdropping or impersonation attacks.
+
+
+
+#### 3.7 Port isolation
+
+Particularly useful when users of the network do not trust each other and are not trusted themselves. 
+
+#### ! EXAM TIPS
+
+Port isolation and private VLANs are the same thing.
+
+**Port isolation restricts traffic from a source port to a single destination port.**
+
+#### Why User Port Isolation
+
+- Prevents devices on the same switch from communicating with each other
+- Blocks data-link-layer attacks, such as ARP spoofing
+
+**Port isolation typically isn't effective on a corporate network.**
+
+**Port isolation works very well on hotel guest room networks.**
+
+
+
+### Chapter Quiz
+
+1. Which one of the following is a public IP address?
+
+   A. 172.18.144.144
+
+   B. 10.194.99.16
+
+   C. 142.19.15.4
+
+   D. 192.168.14.129
+
+2. How would a network technician write the subnet mask 255.255.0.0 in slash notation?
+
+   A. /32
+
+   B. /24
+
+   C. /16
+
+   D. /8
+
+3. Which one of the following devices carries VLANs on a network?
+
+   A. hub
+
+   B. switch
+
+   C. router
+
+   D. firewall
+
+
+
+Answers:
+
+1. <font color=red>142.19.15.4</font>
+
+2. /16
+
+3. switch
+
+   
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-3-architecture-and-design/
