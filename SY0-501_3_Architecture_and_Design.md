@@ -1703,7 +1703,11 @@ Application code is one of the most common sources of security vulnerabilities. 
 
 ```mermaid
 graph LR
-A[Planing] --> B[Overview] --> C[Preparation] --> D[Meeting] --> E[Rework] --> F[Follow up]
+A[Planing] --> B[Overview] 
+B[Overview] --> C[Preparation] 
+C[Preparation] --> D[Meeting]
+D[Meeting] --> E[Rework] 
+E[Rework] --> F[Follow up]
 E[Rework] --> |significant defect|A[Planing]
 ```
 
