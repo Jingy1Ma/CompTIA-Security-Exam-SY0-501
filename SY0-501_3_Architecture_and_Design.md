@@ -1049,6 +1049,335 @@ Answers:
 
 
 
+## 5. Secure Staging and Deployment
+
+### 5.1 Software staging and release
+
+#### Deploying Code with Process
+
+- Surprises end users
+- Introduces security flaws, intentionally or accidentally
+- Causes operational disruptions
+- Increases the difficulty of rolling back flawed code
+
+#### Development Environment
+
+- Allows developers to create and modify code
+
+#### Testing Environment
+
+- Facilitates human and automated testing
+
+#### Staging Environment
+
+- Prepares code for release to production
+
+#### Production Environment
+
+- Provides live services to end users
+
+#### Sensitive Data
+
+- Should be prohibited or tightly controlled in non-production environments
+
+#### Code Deployment
+
+- Should be performed by someone other than a developer, particularly in production
+
+
+
+### 5.2 Software risk assessment and mitigation
+
+**Risk analysis identifies issues.**
+
+**Risk mitigation reduces their likelihood and impact;**
+
+**Many practices combine to produce secure software.**
+
+#### Integrate Security with the SDLC
+
+- Avoid bolt-on security!
+
+**Understand software security threat!**
+
+This includes having a detailed understanding of SQL injection, cross site scripting, cross site request forgery, buffer overflows, and various other potential flaws we've discussed in these courses.
+
+#### Mitigate Software Risks
+
+- Perform input validation
+- Encrypt sensitive data
+- Enforce the least privilege principle
+- Test all code prior to deployment
+
+#### Sandboxing
+
+- Isolates development code
+
+
+
+### 5.3 Secure baselines and integrity
+
+#### Baselines
+
+- Provide a snapshot in time
+
+For example, in the case of computer systems, that snapshot might be of operating system settings, installed applications and the current code base. The purpose of a baseline is to provide a reference point from which to measure changes in the measured object's attributes, know as deviations from the baseline.
+
+#### Deviations
+
+- Are changes from baseline
+
+#### Development Baselines
+
+- Track code changes made by developers during the software development process
+
+#### Integrity Measurement
+
+- Track changes made to code after deployment, noting unexpected changes
+
+
+
+### Chapter Quiz
+
+1. _____ are development and testing environments where programmers can work with code to modify and test it without having access to any production resources.
+
+   A. Honeypots
+
+   B. Quarantines
+
+   C. Sandboxes
+
+   D. VLANS
+
+
+
+Answers:
+
+1. Sandboxes
+
+
+
+## 6. Embedded System Security
+
+### 6.1 Industrial control systems
+
+**Industrial Control Systems (ICS) monitor and control industrial processes.**
+
+#### ICS Are Hacker Targets
+
+- Attacks have dramatic implications.
+- Systems are often not well secured.
+- Systems are less likely to be current on patches
+
+In fact, some ICS systems manufacturers advise their customers to not update the control systems and sensor devices. This makes protecting SCADA and DCS systems an even greater challenge, requiring additional planning to overcome. 
+
+#### ICS Types
+
+- Supervisory control and data acquisition (SCADA)
+- Distributed control systems (DCS)
+- Programmable logic controllers (PLC)
+
+##### SCADA
+
+- Remote monitoring
+- Remote telemetry
+- Report back to control systems
+- Multiple points of attack
+
+![06_01_SCADA](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/06_01_SCADA.png?raw=true)
+
+e.g. natural gas pipelines, power production and distribution infrastructure, and water supply control systems.
+
+Attacks against SCADA systems can target the feedback provided to the central control system or can cause the local sensor and control unit to perform an incorrect action.
+
+##### DCS
+
+- Focus on controlling processes
+- Use sensors and feedback systems
+- Have multiple points of attack
+
+![06_01_DCS](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/06_01_DCS.png?raw=true)
+
+Frequently used to control water, and wastewater treatment and distribution systems, power generation plants, refineries and production lines, and facilities like those that make cars, electronics, and even food products throughout the world. 
+
+Much like SCADA systems, an attack against a DCS system could be as simple as providing incorrect feedback, resulting in a shut-down, overproduction, or delay in the system at a critical time. 
+
+##### PLC
+
+- Handle specialized input and output
+- Ensure uninterrupted processing
+- Connect to a Human Machine Interface (HMI)
+
+![06_01_PLC](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/06_01_PLC.png?raw=true)
+
+They are typically designed to handle difficult environments with special temperature, vibration, or other requirements while still functioning. Typical PLCs don't have a monitor or other interface beyond buttons or lights built into them. PLCs are commonly used in both SCADA and DCS systems. 
+
+
+
+### 6.3 Securing smart devices
+
+**"Smart" technology is everywhere!**
+
+**Smart Devices Are Computer Controlled and Network Connected**
+
+#### ! EXAM TIPS
+
+The Security+ exam uses the term *embedded systems* to refer to smart devices
+
+- Smart devices began with a desire for wireless network connectivity.
+
+- Smart cars have in-vehicle connectivity.
+- Wearable devices monitor our fitness and health
+- The IoT changes the way we live and work.
+
+#### Security Challenges
+
+- Use difficult-to-update software and underlying OS
+- Connect to home and office wireless networks
+
+If a smart device is compromised, it can be a gateway to the rest of our network.
+
+- Connect back to cloud services for command and control
+
+Creates potential pathway onto our network for external attackers that bypasses the firewall. 
+
+
+
+### 6.4 Secure networking for smart devices
+
+**Smart Devices Require Regular Updates!**
+
+Failing to patch them regularly can result in a serious risk of compromise, not only of your smart device but of your entire network. 
+
+#### Automatic Updates
+
+- Install without the user's knowledge or intervention when published by the device manufacturer
+
+#### Manual Updates
+
+- Require that the user check for updates and manually download and install them when available
+
+#### Firmware Version Control
+
+- Updates applied in orderly fashion
+
+In very sensitive environments, such as industrial control systems, you should go a step farther and institute a formal Firmware Version Control system that ensures that the appropriate firmware versions are installed on all of your system components. Updates to that firmware should only happen under the auspices of a formal change management process that evaluates risk and manages the rollout process.
+
+#### Security Wrappers
+
+- Vets requests for embedded systems
+
+In some cases it's not possible to patch known vulnerabilities. Organizations that must run vulnerable systems may turn to Security Wrappers as an alternative approach. In this approach, the device is not directly accessible over the network, but instead is reached through a wrapper system that monitors input and output for security issues and only passes through vetted requests from network systems (like a mini firewall).
+
+**Use Diverse and Redundant Security Controls to Protect Embedded Devices.**
+
+
+
+### 6.5 Embedded systems
+
+#### Network Segmentation
+
+- Separates untrusted devices
+
+Network segmentation simply places untrusted devices on a network of their own, where they have no access to trusted systems.
+
+![06_06_Network_Segmentation](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/06_06_Network_Segmentation.PNG?raw=true)
+
+**Segmenting embedded devices increases network security.**
+
+If it looks like a firewall DMZ and it's the same concept. Placing embedded systems in an isolated DMZ allows them to access each other and the internet, but also allows you to strictly control that access, as well as limit the access those devices have to other systems on your network. 
+
+#### ! EXAM TIPS
+
+Network segmentation is the most important control for embedded devices.
+
+**Application Firewalls Add Protection for Embedded Devices.**
+
+Particularly if those systems are accessible by untrusted individuals. Embedded systems that have web interfaces are susceptible to many of the same web application attacks that we find on more complex systems. They can be vulnerable to SQL injection, buffer overflows, and cross-site scripting attacks. Application firewalls when placed in front of embedded systems, monitor inbound traffic for signs of malicious activity, and when they detect this type of hostile traffic, they can block it before it reaches a potentially vulnerable embedded device. 
+
+#### ! EXAM TIPS
+
+Embedded device security controls are effective for mainframes as well.
+
+### 6.6 Embedded systems
+
+- Printers and multifunction devices contain embedded systems.
+- Cameras also use embedded systems for image processing and network connectivity.
+- Self-driving cars
+- Other vehicles
+- Aircraft
+
+#### ! EXAM TIPS
+
+Know that system on a chip (SoC) and real-time operating system (RTOS) technologies power IoT
+
+#### SoC
+
+- A system on a chip (SoC) combines processing, memory, networking, and other embedded system components on a single chip
+
+#### RTOS
+
+- Real-time operating systems (RTOS) provide reliable and secure computing for IoT devices
+
+The real-time operating system is designed to provide resources to the highest priority tasks as they occur. This is critical for IoT systems that drive high-value processes or affect human safety.
+
+
+
+### Chapter Quiz
+
+1. What type of system is used to gather information from remote sensors via telemetry?
+
+   A. DSP
+
+   B. SCADA
+
+   C. PLC
+
+   D. DCS
+
+2. What term does the Security+ exam use for smart devices?
+
+   A. legacy systems
+
+   B. network systems
+
+   C. cloud systems
+
+   D. embedded system
+
+3. What technology can you use as a compensating control when it's not possible to patch an embedded system?
+
+   A. IDS
+
+   B. SIEM
+
+   D. log analysis
+
+   C. wrappers
+
+4. What is the most important control to apply to smart devices?
+
+   A. network segmentation
+
+   B. application firewalls
+
+   C. wrappers
+
+   D. intrusion detection
+
+
+
+
+
+Answers:
+
+1. SCADA
+2. embedded systems
+3. wrappers
+4. **network segmentation**
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-3-architecture-and-design/
