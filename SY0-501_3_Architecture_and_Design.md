@@ -1378,6 +1378,538 @@ Answers:
 
 
 
+## 7. Software Development Security
+
+### 7.1 Development methodologies
+
+**Begin with business requirements and translate them into design**
+
+**Quality software requires a quality design**
+
+#### Waterfall Model
+
+```mermaid
+graph LR
+A[System Requirements] --> B[Software Requirements] --> C[Preliminary Design] --> D[Detailed Design] --> E[Code and Debug] --> F[Testing] --> G[Operations & Maintenance]
+G[Operations & Maintenance] --> F[Testing] --> E[Code and Debug] --> D[Detailed Design] --> C[Preliminary Design] --> B[Software Requirements] --> A[System Requirements]
+```
+
+- The waterfall process is very rigid
+
+For example, if a business unit identifies a desirable new feature halfway through the coding process, there's no opportunity to modify the design. 
+
+#### Spiral Model
+
+![07_01_Spiral_Model](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/07_01_Spiral_Model.PNG?raw=true)
+
+They begin in the first phase and then move through each of the phases multiple times until they have a satisfactory finished product. 
+
+#### Agile Model
+
+4 Core Values:
+
+- **Individuals and interactions** over processes and tools
+- **Working software** over comprehensive documentation
+- **Customer collaboration** over contract negotiation
+- **Responding to change** over follow a plan
+
+12 Principles:
+
+- Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
+
+- Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage.
+- Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.
+- Business people and developers must work together daily throughout the project.
+- Build projects around motivated individuals. Give them the environment and support they need, and trust them to get the job done. 
+- The most efficient and effective method of conveying information to and within a development team is face-to-face conversation.
+- Working software is the primary measure of progress.
+- Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
+- Continuous attention to technical excellence and good design enhances agility. 
+- Simplicity--the art of maximizing the amount of work not done--is essential.
+- The best architectures, requirements, and designs emerge from self-organizing teams.
+- At regular intervals, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly.
+
+https://agilemanifesto.org/
+
+
+
+### 7.2 Maturity models
+
+#### SW CMM
+
+- The Software Capability Maturity Model (SW CMM) assess an organization's software development practices
+
+```mermaid
+graph LR
+A[Level 1: Initial] --> B[Level 2: Repeatable] --> C[Level 3: Defined] --> D[Level 4: Managed] --> E[Level 5: Optimizing]
+```
+
+##### Level 1: Initial
+
+- Disorganized approach to software development
+
+##### Level 2: Repeatable
+
+- Requirements management
+- Software project planning
+- Software project tracking and oversight
+- Subcontract management
+- Quality assurance
+- Configuration management
+
+##### Level 3: Definition
+
+- Organization process focus
+- Process definition
+- Training programs
+- Integrated management
+- Software engineering
+- Intergroup coordination
+- Peer review
+
+##### Level 4: Managed
+
+- Quantitative process management
+- Software quality management
+
+##### Level 5: Optimizing
+
+- Defect prevention
+- Technology change management
+- Process change management
+
+#### IDEAL Model
+
+1. **I**nitiating
+2. **D**iagnosing
+3. **E**stablishing
+4. **A**ction
+5. **L**earning
+
+
+
+###  7.3 Operation, maintenance, and change management
+
+**Software development is never finished!**
+
+#### Change Management
+
+- Request control
+- Change control
+- Release control
+
+**Request control manages, evaluates, and prioritizes inbound requests from customers.**
+
+**Change control grants permission for developers to make changes to application code.**
+
+**Release control moves the code from the development environment into production**
+
+
+
+### 7.4 DevOps
+
+#### Merging Two Words
+
+- Development
+- Operation
+
+Developers are motivated to rapidly release code and meet those demands. IT operations staff are charged with maintaining the infrastructure and keeping the enterprise stable. They are often wary of change because change brings the possibility of instability. This makes them nervous when developers seek to rapidly deploy new code. 
+
+#### DevOps Goals
+
+- Build collaborative relationships
+- Embrace automation
+- Facilitate rapid release of code
+- Provide a stable operating environment
+
+**DevOps and Agile are related. Both seek continuous integration.**
+
+#### Infrastructure as Code
+
+- Scripts the creation of resources
+
+Operations teams no longer manually configure servers and other infrastructure components by logging in and modifying their configurations directly. Instead, they write scripts that specify how to start with a baseline configuration image and then customize that image to meet the specific requirements of the situation. For example, an organization might have a standard baseline for a Linux system. When someone needs a new server they write a script that starts a server instance using the baseline configuration and then automatically configures it to meet the specific functional needs.
+
+#### Infrastructure as Code: Advantages
+
+Infrastructure as code separates server configuration from specific physical or virtual servers.
+
+- Increases scalability of environment (If the organization needs more computing power, the code can create as many servers as necessary extremely rapidly.)
+- Reduces use error
+- Facilitates testing of new code
+
+**DevOps facilitates security automation**
+
+
+
+### 7.5 Code repositories
+
+#### Code Repositories
+
+- Store software source code files
+- Coordinate changes among multiple developers
+- Perform version control
+- Promote code reuse
+
+**Code repositories help to avoid dead code.**
+
+Where code is in use in an organization, but nobody is responsible for the maintenance of that code, and in fact, nobody may even know where the original source files reside.
+
+#### Git
+
+**Public code repositories create potential disclosure issues.**
+
+Source code repositories may be public or private. For example, GitHub is a cloud-based code repository that supports both public and private repositories. Security teams must be careful to ensure that developers use the correct type to avoid exposing sensitive code on the web. Even when developers do intend to release code publicly, they must be careful to remove sensitive information from that code before publishing it.
+
+
+
+### 7.6 Third-party code
+
+#### Libraries
+
+- Contain shared software code
+
+For example, a software library might contain a series of functions related to biology research, financial analysis or social media. Instead of having to write the code to perform every detailed function that they need, developers can simply locate libraries that contain relevant functions and then call those functions. 
+
+#### Software Development Kits (SDKs)
+
+- Provide programming resources
+
+Collections of software libraries combined with documentation, examples, and other resources designed to help programmers get up and running quickly in an development environment. SDKs also often include specialized utilities designed to help developers design and test code. 
+
+#### Application Programming Interfaces (APIs)
+
+- Allow interaction with remote services
+
+**Shared code creates shared security vulnerabilities.**
+
+Security professionals should be familiar with the various ways that third party code is used in their organization as well as ways that their organization makes services available to others. It's fairly common for security flaws to arise in shared code making it extremely important to know these dependencies and remain vigilant about security updates. 
+
+
+
+### 7.7 Code signing
+
+**Digital signatures provide nonrepudiation.**
+
+#### Code Signing
+
+- Applies digital signatures to software
+
+##### Signing Code
+
+1. Developer obtains a digital certificate
+2. Developer creates a digital signature for the code using the private key associated with the certificate
+
+##### Verifying Code Signatures
+
+1. User downloads software
+2. Operating system uses the certificate's public key to validate the signature
+3. OS verifies the signature's hash matches the code
+4. OS verifies that the developer is trusted
+
+
+
+### 7.8 Database security controls
+
+#### Database Normal Forms
+
+- Design rules for columns and  tables
+
+#### Why Normalize?
+
+- Prevent data inconsistency
+- Prevent update anomalies
+- Reduce the need for restructuring existing databases
+- Make the database schema more informative
+
+#### ! EXAM TIPS
+
+You don't need to know the details of the normal forms on the exam (but you should know the general idea that normalization improves database design, and has security advantages.)
+
+#### First Normal Form (1NF)
+
+1. Create separate tables for different sets of related data
+2. Provide a primary key for every table
+3. Records may not have multivalued fields
+4. Records in a table must have the same number of fields.
+
+#### Second Normal Form (2NF)
+
+1. The table must be in 1NF
+2. Every non-key field must be a fact about the *entire* key
+
+#### Third Normal Form (3NF)
+
+1. The table must be in 2NF
+2. No non-key field may be a fact about another non-key field
+
+**Use encryption to protect sensitive data stored in a database.**
+
+**Obfuscation and camouflage hide the locations of sensitive information.**
+
+Security through obscurity isn't something you can rely upon, but it is good common sense not to name your database server credit card database or something like that. Use a little strategy in your naming conventions, and don't point attackers directly at your sensitive information. 
+
+#### Store Procedures
+
+- Protect against SQL injection
+
+Store the text of a query on the database server and then allow applications to simply provide the arguments instead of the entire SQL command.
+
+
+
+### 7.9 Software testing
+
+#### Verification and Validation
+
+##### 1. Software model validation
+
+- Are we building the *right* software?
+
+##### 2. Software model verification
+
+- Are we building the *software* right?
+
+#### Stress (Load) Testing
+
+- Uses automated scripts to verify system capacity
+- May be run internally or through a vendor
+- Verifies the system can handle the maximum expected load
+- Determines the maximum capacity of the system
+
+#### User Acceptance Testing (UAT)
+
+- Ensures software will work for users
+- UAT is commonly referred to as "beta testing."
+
+After releasing code, developers often make minor and major changes to that code to fix bugs discovered post-launch and to add new functionality to the system. Before releasing these modifications, they conduct regression testing.
+
+#### Regression Testing
+
+- Checks for unexpected side effects
+
+The process of regression testing uses sets of inputs and provides them to both the original system and the modified code. Test packages then verify that the software behaves the same way both before and after the modification, except of course for any changes that were planned as part of the software modification. 
+
+
+
+### 7.10 Code reviews
+
+Application code is one of the most common sources of security vulnerabilities. Developers write millions of lines of code each year and there are thousands of security issues buried in the complexity of that code just waiting to be discovered. Code reviews are one of the most important software testing techniques.
+
+#### Code Review
+
+- Use peer analysis to assess code
+
+#### Fagan Inspections
+
+```mermaid
+graph LR
+A[Planing] --> B[Overview] --> C[Preparation] --> D[Meeting] --> E[Rework] --> F[Follow up]
+E[Rework] --> |significant defect|A[Planing]
+```
+
+- Fagan inspections follow a formalized, six-step code review process
+- The planning phase includes preparing materials, identifying participants, and scheduling the review
+- The overview phase includes assigning roles to participants and providing an overview of the software
+- During the preparation phase, participants independently examine the code for potential defects
+- During the inspection meeting, reviewers discuss and formally identify any code defects
+- During the rework phase, the code developers correct any defects identified during the inspection
+- During the follow-up phase, the leader verifies that defects were resolved and completes project documentation
+
+**Most organizations use a less formal review process.**
+
+
+
+### 7.11 Code tests
+
+#### Code Tests
+
+- Use technology to inspect software
+
+Use both code tests and code reviews on the same software to gain different perspectives on software quality and security.
+
+#### Static Tests
+
+- Use automated techniques to analyze code for errors and security flaws without actually executing it
+
+#### Dynamic Tests
+
+- Execute code verify that it is functioning correctly and doesn't have security flaws
+
+This is the closest test to real-world operations and is a valuable step in preparing to move code to production
+
+**Synthetic transactions supply inputs to code with known, expected outputs.**
+
+Synthetic transactions are scripted sets of inputs and instructions that are given to code when the testers know what output the code should produce for each input. 
+
+#### ! EXAM TIPS
+
+Code reviews, static testing, and dynamic testing are complementary, rather than competitors!
+
+Static tests often identify defects that weren't included in the synthetic transactions used by dynamic tests. Dynamic tests often identify defects in functionality that a static test can't foresee. And the trained eye of a skilled developer can pick out deficiencies that escaped all of these automated tests during a manual code review. 
+
+
+
+### 7.13 Fuzz testing
+
+#### Fuzzing
+
+- Fuzzing is a software testing technique that feeds software many different input values in an attempt to cause unpredictable state or unauthorized access
+
+#### Fuzz Testing Input Sources
+
+- Developer-supplied input
+- Developer-supplied script
+- Generation fuzzing
+- Mutation fuzzing
+
+e.g. [OWASP Zed Proxy](https://www.zaproxy.org/)
+
+![07_13_ZAP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/07_13_ZAP.PNG?raw=true)
+
+#### Avoid Looking Like a Hack
+
+- Only fuzz test with permission!
+
+
+
+### 7.14 Code Execution
+
+**Developers write source code in the programming language of their choice.**
+
+#### Interpreted Code
+
+- The computer executes the source code instructions as written by the developer
+- R, Perl, PHP, and VBScript are all examples of interpreted languages
+
+#### Compiled Code
+
+- The developer runs a compiler to convert source code into an executable file written in machine language
+- C, C++, Java, Julia, and Fortran are all examples of compiled languages
+
+
+
+### Chapter Quiz
+
+1. Static code testing software executes code to verify that it is functioning properly.
+
+   A. TRUE
+
+   B. FALSE
+
+2. The main purpose of a code repository is to store the source files used in software development in a centralized location that allows for secure storage.
+
+   A. TRUE
+
+   B. FALSE
+
+3. The DevOps model prioritizes development efforts over operational tasks.
+
+   A. TRUE
+
+   B. FALSE
+
+4. What software development methodology uses four stages in an iterative process?
+
+   A. DevOps
+
+   B. Waterfall
+
+   C. Agile
+
+   D. Spiral
+
+5. What phase of the capability maturity model introduces the reuse of code across projects?
+
+   A. repeatable
+
+   B. optimizing
+
+   C. defined
+
+   D. initial
+
+6. What component of a change management program includes final testing that the software functions properly?
+
+   A. request management
+
+   B. iteration management
+
+   C. release management
+
+   D. change management
+
+7. _____ consist of shared code objects that perform related functions.
+
+   A. Libraries
+
+   B. DLPs
+
+   C. ETLs
+
+   D. APIs
+
+8. Developers wishing to sign their code must have a _____.
+
+   A. shared secret key
+
+   B. patent
+
+   C. software license
+
+   D. digital certificate
+
+9. _____ is usually the final stage in code testing.
+
+   A. Unit testing
+
+   B. UAT
+
+   C. Load testing
+
+   D. Integration testing
+
+10. What is the first step of a Fagan inspection?
+
+    A. preparation
+
+    B. planning
+
+    C. overview
+
+    D. meeting
+
+11. What type of fuzz testing captures real software input and modifies it?
+
+    A. twist fuzzing
+
+    B. generation fuzzing
+
+    C. mutation fuzzing
+
+    D. switch fuzzing
+
+
+
+
+
+Answers:
+
+1. FALSE
+2. TRUE
+3. FALSE
+4. <font color=red>Spiral</font>
+5. repeatable
+6. release management
+7. Libraries
+8. digital certificate
+9. <font color=red>UAT</font>
+10. planning
+11. mutation fuzzing
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-3-architecture-and-design/
+
+[2] https://agilemanifesto.org/
