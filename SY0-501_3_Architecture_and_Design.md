@@ -1390,8 +1390,18 @@ Answers:
 
 ```mermaid
 graph LR
-A[System Requirements] --> B[Software Requirements] --> C[Preliminary Design] --> D[Detailed Design] --> E[Code and Debug] --> F[Testing] --> G[Operations & Maintenance]
-G[Operations & Maintenance] --> F[Testing] --> E[Code and Debug] --> D[Detailed Design] --> C[Preliminary Design] --> B[Software Requirements] --> A[System Requirements]
+A[System Requirements] --> B[Software Requirements]
+B[Software Requirements] --> C[Preliminary Design]
+C[Preliminary Design] --> D[Detailed Design]
+D[Detailed Design] --> E[Code and Debug]
+E[Code and Debug] --> F[Testing]
+F[Testing] --> G[Operations & Maintenance]
+G[Operations & Maintenance] --> F[Testing]
+F[Testing] --> E[Code and Debug]
+E[Code and Debug] --> D[Detailed Design]
+D[Detailed Design] --> C[Preliminary Design]
+C[Preliminary Design] --> B[Software Requirements]
+B[Software Requirements] --> A[System Requirements]
 ```
 
 - The waterfall process is very rigid
