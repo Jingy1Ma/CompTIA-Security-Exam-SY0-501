@@ -1922,6 +1922,261 @@ Answers:
 
 
 
+## 8. Cloud Computing and Virtualization
+
+### 8.1 Virtualization
+
+- Mainframes dominated data centers of past decades.
+- The client/server model emerged in the 1980s and 1990s.
+- Now, most data centers leverage virtualization technology
+
+![08_01_Virtualization](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/08_01_Virtualization.PNG?raw=true)
+
+The client server model has served us well, but it's also resulted in wasted resources. Data center managers realized that most of the time, many of their servers were sitting idle, waiting for a future burst in activity. That's not very efficient. 
+
+Around that same time virtualization technology became available that allows many different virtual servers to make use of the same underlying hardware. This shared hardware platform makes it easy to shift memory, storage and processing power to wherever it's needed at the time. Virtualization platforms like VMware and Microsoft HyperV make this possible. 
+
+#### Virtualization
+
+- Host machines run on physical hardware.
+- Host machines provide services to several virtualized guest machines.
+- The hypervisor tricks each guest into thinking it is running on dedicated hardware
+
+#### Hypervisor
+
+- Type 1 Hypervisor (a.k.a bare metal hypervisor) : the hypervisor runs directly on top of the hardware, and then hosts guest OS on top of that. This is the most common form of virtualization found in data centers. 
+- Type 2 Hypervisor: the physical machine actually runs an OS of its own, and the hypervisor runs as a program on top of that OS. This type of virtualization is commonly used on personal computers. Common hypervisors used in this scenario are Virtual Box and Parallels. 
+
+![08_01_Hypervisor](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/08_01_Hypervisor.PNG?raw=true)
+
+#### Virtualization Security
+
+- Virtual machine isolation is critical
+- Each server must have access to only its own memory and storage
+- VM escape attacks attempt to break out of the guest environment
+
+**Virtualization platforms must be patched against security vulnerabilities.**
+
+#### VM Sprawl
+
+- Leads to unused and unmaintained servers
+
+
+
+### 8.2 Cloud computing model
+
+#### Evolution of Computing
+
+```mermaid
+graph LR
+A[Mainframe] --> B[Client/Server]
+B[Client/Server] --> C[Virtualization]
+```
+
+**Cloud computing is the next logical advance in enterprise IT.**
+
+Virtualization made computing hardware a commodity. Cloud computing simply allows us to make hardware a complete abstraction, so that the engineers and developers, who manage servers and write code, don't need to know the details of managing the underlying hardware platform.
+
+**Cloud Computing** The delivery of computing resources as a service over a network
+
+#### Benefits of Cloud Computing
+
+- Flexibility
+- Scalability
+- Agility
+- Cost effectiveness
+
+#### Private Cloud
+
+- Organization uses a dedicated cloud infrastructure.
+
+Gain the flexibility, scalability, agility, and cost effectiveness of the cloud, but do not want to share computing resources with other organizations. 
+
+#### Public Cloud
+
+- Organization uses a shred tenancy infrastructure.
+
+#### Hybrid Cloud
+
+- Organization uses both private and public cloud.
+
+In this model, they may use the public cloud for some computing workloads, but they also operate their own private cloud for other workloads, often because of data sensitivity concerns. 
+
+**Public cloud computing uses a shared responsibility model.**
+
+Depending upon the nature of the cloud service, the cloud provider is responsible for some areas of security, while the customer is responsible for other areas. For example, if you purchase a cloud storage service, it's your responsibility to know what data you're sending to that service and probably to configure access control policies that say who may access your data. It's the provider's responsibility to encrypt data under their care and correctly implement your access control policies. 
+
+#### ! EXAM TIPS
+
+No cloud model is inherently superior to the other approaches. It all depends upon the context!
+
+
+
+### 8.3 Public cloud tiers
+
+- Software as a service
+- Infrastructure as a service
+- Platform as a service
+
+#### Software as a Service (SaaS)
+
+- Customer purchases an entire app
+
+The customers don't need to worry about processing, storage, networking, or any of the infrastructure details of that cloud service. The vendor writes the application, configures the servers, and basically gets everything running for customers who then simply use the service. Very often, these services are accessed through a standard web browser so very little, if any, configuration is required on the customer's end. 
+
+Common examples of Software as a Service applications include email delivered by Google Apps, or Microsoft Office 365, and storage services that facilitate collaboration and synchronization across devices such as Box and Dropbox. 
+
+#### Infrastructure as a Service (IaaS)
+
+- Customer purchases servers/storage
+
+For example, Infrastructure as a Service vendors might provide compute capacity, data storage, and other basic infrastructure building blocks. The three major vendors in the Infrastructure as a Service space are Amazon Web Services, Microsoft Azure, and Google Compute. 
+
+#### Platform as a Service (PaaS)
+
+- Customer purchases app platform
+
+Vendors provide customers with a platform where they can run their own application code without worrying about server configuration. This is a middle ground between IaaS and SaaS.
+
+#### Security Responsibilities
+
+![08_02_Security_Responsibilities](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/03_Architecture_and%20Design/08_02_Security_Responsibilities.PNG?raw=true)
+
+
+
+### 8.4 Cloud storage security
+
+**Apply the Same Security Controls in the Cloud.**
+
+#### Cloud Data Security Issues
+
+- Encryption
+- Access Control
+
+The way you'll implement encryption depends upon the type of service that you're using, and the way that you use it. For example, when using an IaaS for servers, you may be able to encrypt entire virtual disk volumes to prevent everyone, including the provider, from accessing the contents of the disk.
+
+**Access to Your Encryption Keys**
+
+**Access Controls Restrict Access to Cloud Data**
+
+
+
+### 8.5 Security service providers
+
+#### Managed Security Service Providers (MSSPs)
+
+- Provide security services for other organizations as a managed service
+
+**MSSPs must be carefully monitored.**
+
+#### MSSP Service Examples
+
+- Manage an entire security infrastructure
+- Monitor system logs
+- Manage firewalls or networks
+- Perform identity and access management
+
+#### ! EXAMP TIPS
+
+MSSPs may also be referred to as Security as Service (SECaaS)
+
+#### Cloud Access Security Brokers (CASBs)
+
+- Add a third-party security later to the interactions that users have with other cloud services
+
+##### Network-Base CASB
+
+- Broker intercepts traffic between the user and the cloud service, monitoring for security issues
+- Broker can block requests
+
+##### API-Based CASB
+
+- The broker queries the cloud service via API
+- Broker may not be able to block requests, depending upon API capabilities
+
+**MSSP relationships should be carefully documented.**
+
+
+
+### 8.6 Desktop and application validation
+
+#### Virtual Desktop infrastructure
+
+- Provides network-based access to a desktop computing environment
+
+These solutions might be a VDI product running in a company's own data center or a cloud based VDI product, such as Amazon's WorkSpaces. 
+
+**Application virtualization allows users to "stream" applications to their desktops.**
+
+Allows users to access applications on their own systems that are actually running in a different computing environment. This is also known as application streaming. Citrix XenApp, VMWare ThinApp and Microsoft App-V are all examples of application virtualization technologies. 
+
+#### Containerization
+
+- Runs multiple apps on the same operating system with restricted resource access
+
+In this approach, multiple application containers run on the same instance of an operating system. The containerization platform such as the widely used docker, restricts the access that each application has to underline operating system resources. 
+
+The main benefits to this approach are that you don't need to have a guest operating system running in the container, and containers are portable across OS allowing them to be run on premises or in the cloud. 
+
+#### ! EXAM TIPS
+
+CompTIA uses the term *application cells* to refer to containers.
+
+
+
+### Chapter Quiz
+
+1. What type of hypervisor runs directly on top of bare hardware?
+
+   A. Type 4
+
+   B. Type 3
+
+   C. Type 2
+
+   D. Type 1
+
+2. What model of cloud computing does not use any shared tenancy resources?
+
+   A. SaaS
+
+   B. private cloud
+
+   C. hybrid cloud
+
+   D. public cloud
+
+3. Which one of the following public cloud computing tiers places the most security responsibility on the vendor?
+
+   A. SaaS
+
+   B. PaaS
+
+   C. IaaS
+
+4. What are the two key issues for cloud data security?
+
+   A. firewalls and intrusion prevention
+
+   B. access control and firewalls
+
+   C. firewalls and encryption
+
+   D. encryption and access control
+
+
+
+
+
+Answers:
+
+1. Type 1
+2. private cloud
+3. SaaS
+4. encryption and access control
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-3-architecture-and-design/
