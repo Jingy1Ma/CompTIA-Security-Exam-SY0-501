@@ -29,7 +29,7 @@ Just proving your identity isn't enough to gain access to a system however. The 
 
 Remember that identification and authentication are separate and distinct steps
 
-![01_01_IAA](C:\Users\JY\Desktop\Security+\Images\04_Identity_and_Access_Management\01_01_IAA.PNG)
+![01_01_IAA](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_Identity_and_Access_Management/01_01_IAA.PNG?raw=true)
 
 #### Triple A
 
