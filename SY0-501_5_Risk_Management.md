@@ -420,11 +420,128 @@ Answers:
 
 
 
+## 2. Supply Chain Risk
+
+### 2.1 Managing Vendor Relationships
+
+**Ensure that vendor security policies are *at least as* stringent as your own**
+
+#### Vendor Management Life Cycle
+
+```mermaid
+graph LR
+A[Vendor Selection] --> B[Onboarding]
+B[Onboarding] --> C[Monitoring]
+C[Monitoring] --> D[Offboarding]
+D[Offboarding] --> A[Vendor Selection]
+```
+
+##### Vendor Selection
+
+- May use a formal RFP
+- May be an informal process
+- Should include security requirements
+- Should evaluate security
+
+##### Onboarding
+
+- Verify contract details
+- Arrange secure data transfer
+- Establish incident procedures
+
+##### Monitoring
+
+- Conduct site visits
+- Review independent audits
+- Handle security incidents
+
+##### Offboarding
+
+- Destroys confidential information
+- Unwinds a business relationship
+- May restart the life cycle
+
+
+
+### 2.2 Vendor Agreements
+
+#### Service-Level Requirement (SLR)
+
+- Document specific requirements that a customer has about any aspect of a vendor's service performance
+
+##### Examples of SLRs
+
+- System response time 
+- Service availability
+- Data preservation
+
+**Document SLRs in a service-level agreement (SLA)**
+
+#### Other Agreement Types
+
+- Memorandum of understanding (MOU, a.k.a MOA)
+- Business partnership agreement (BPA)
+- Interconnection security agreement (ISA)
+
+MOUs are commonly used when a legal dispute is unlikely but the customer and vendor still wish to document their relationship to avoid future misunderstandings. MOUs are commonly used in cases where an internal service provider is offering a service to a customer that is in a different business unit of the same company.
+
+**Include security requirements in SLRs, SLAs, and other agreements.**
+
+#### Security and Compliance Terms
+
+- Document security and compliance requirements
+- Facilitate customer monitoring of compliance
+- Ensure the right of audit and assessment
+
+
+
+### 2.3 Vendor Information Management
+
+**Agreements should contain clear data ownership language.**
+
+#### Data ownership Provisions
+
+- Customer retains uninhibited data ownership
+- Vendor's right to use information is limited to activities performed on behalf of the customer
+- Vendor's right to use information is limited to activities performed with the customer's knowledge
+- Vendor must delete information at the end of the contract
+
+**Agreements should limit data sharing with third parties.**
+
+**Agreement should include data protection provisions.**
+
+
+
+### Chapter Quiz
+
+1. Vendors extend your organization's technology environment. If they handle data on your behalf, you should expect they execute the same degree of care that you would in your own operations.
+
+   A. TRUE
+
+   B. FALSE
+
+2. What type of agreement is used to define availability requirements for an IT service that an organization is purchasing from a vendor?
+
+   A. SLA
+
+   B. MOU
+
+   C. ISA
+
+   D. BPA
+
+
+
+Answer:
+
+1. TRUE
+2. SLA
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
 
 [2] [Security Threat and Controls](http://ccilearning.com/store-ca/wp-content/uploads/2015/03/CompTIA%20Security+%20Student-Sample.pdf)
-
-
 
