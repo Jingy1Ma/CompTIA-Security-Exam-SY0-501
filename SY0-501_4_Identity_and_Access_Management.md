@@ -662,9 +662,467 @@ Answers:
 
 
 
+## 3. Authorization
+
+### 3.1 Understanding Authorization
+
+Authorization is the final step in the access control process. Once an individual successfully authenticates to a system, authorization determines the privileges that individual has to access resources and information. 
+
+#### Least Privilege
+
+- An individual should only have the minimum set of privileges necessary to carry our his or her job functions
+
+- Limits the potential damage from an insider attack
+- Restricts the ability of an external attacker to leverage a compromised account
+
+#### Separation of Duties
+
+- Performing any critical business function should require the involvement of two or more individuals
+
+#### Privilege Creep
+
+- This is a situation that occurs when a user accumulates excess permission after shifting job responsibilities one or more times
+- Account reviews limit privilege creep
+  - Automated and manual checks verify that users only have appropriate authorization levels
+
+![03_01_Privilege_Creep](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_Identity_and_Access_Management/03_01_Privilege_Creep.PNG?raw=true)
+
+#### ! EXAM TIP
+
+Be able to identify least privilege and separation of duties issues in a scenario.
+
+
+
+### 3.2 Mandatory Access Controls
+
+#### Mandatory Access Controls (MAC)
+
+- This is an access control system where the operating system enforces security policies that users may not modify.
+
+For this reason, MAC is rarely fully implemented on production systems outside of highly-secure environments. MAC is normally implemented as a rule-based access control system where users and resources have labels and the operating system makes access control decisions by comparing those labels.
+
+**Security-Enhanced Linux (SELinux) uses mandatory access controls.** Including Read Hat Enterprise Linux, CentOS, and Fedora
+
+#### ! EXAM TIPS
+
+You won't need to know details about configuring SELinux for the exam
+
+
+
+### 3.3 Discretionary Access Controls
+
+#### Discretionary Access Controls
+
+- This is type of access control system where permission may be set by the owners of files, computers, and other resources
+
+Discretionary access control systems are the most common form of access control, because they provide organizations with needed flexibility. 
+
+![03_02_DAC](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_Identity_and_Access_Management/03_02_DAC.PNG?raw=true)
+
+**Windows NTFS permissions are an example of a discretionary access control system.**
+
+
+
+### 3.4 Access Control Lists
+
+**Resource owners set DAC permission through the use of access control lists.**
+
+#### NTFS Permissions
+
+- **Full control** grants complete authority over a resource.
+- **Read** allows the user to read the file.
+- **Read & Execute** also allows the user to execute an application.
+- **Write** allows the user to create files and modify their contents.
+- **Modify** adds the ability to delete files and also includes Read & Execute permissions.
+
+
+
+### 3.5 Advanced Authorization Concepts
+
+#### Implicit Deny Principle (Default Deny)
+
+- Any action which is not explicitly allowed must be denied
+  - e.g. Firewall
+
+#### ! EXAM TIPS
+
+The implicit deny rule is a critical concept on the Security+ exam.
+
+#### Role-Based Access Control
+
+- Permissions are grouped together into functional roles and users are assigned to those roles. 
+
+#### Attribute-Based Access Control (ABAC)
+
+- Allows administrators to make access control decisions based upon characteristics of the user, object, and environment.
+
+##### ABAC Example
+
+- User must be a manager AND
+- User must be the employee's manager OR that manager's manger AND
+- Date must be later than March 15, 2017
+
+For example, you might write a policy that allows managers to access salary information only after executives have finalized merit increases in March. 
+
+#### Location-Based Controls
+
+- Limit access based upon geographic location
+
+**Time of Day restrictions limit the use of resources during certain hours.**
+
+### 
+
+### 3.6 Database Access Control
+
+Microsoft SQL Server supports three different types of user authentication. 
+
+#### SQL Server Authentication
+
+- Uses local database user accounts
+
+#### Windows Authentication
+
+- Uses underlying server user accounts
+
+#### Mixed Authentication
+
+- Uses both SQL Server and Windows authentication
+
+There are also two major techniques that you can use to control database authorization. 
+
+#### Role-Based Authorization
+
+- Manages permission through roles that are assigned to users by administrators
+
+#### Account-Based Authorization
+
+- Manages permissions by making explicit permissions grants to each account
+
+
+
+### Chapter Quiz
+
+1. Windows provides a facility for administrators to implement Time of Day restrictions without requiring the use of a third party tool.
+
+   A. TRUE
+
+   B. FALSE
+
+2. In a discretionary access control system, individual users have the ability to alter access permissions.
+
+   A. TRUE
+
+   B. FALSE
+
+3. Tobias recently permanently moved from a job in accounting to a job in human resources but never had his accounting privileges revoked. What situation occurred in this case?
+
+   A. job rotation
+
+   B. separation of duties
+
+   C. privilege creep
+
+   D. least privilege
+
+4. What command can administrators use to determine whether the SELinux kernel module is enabled?
+
+   A. fsck
+
+   B. selmodule
+
+   C. secheck
+
+   D. getenforce
+
+5. What file permission does NOT allow a user to launch an application?
+
+   A. read and execute
+
+   B. full control
+
+   C. read
+
+   D. modify
+
+
+
+Answers:
+
+1. TRUE
+2. TRUE
+3. privilege creep
+4. <font color=red>getenforce</font>
+5. **read**
+
+
+
+## 4. Account Management
+
+### 4.1 Account and Privilege Management
+
+#### Account Management Tasks
+
+- Implement least privilege
+- Implement separation of duties
+- Implement job rotation
+- Manage the account life cycle
+
+#### Least Privilege
+
+- Users should have only the minimum set of permissions necessary for their job function.
+
+#### Separation of Duties
+
+- Sensitive functions should require action by two separate users.
+
+#### Job Rotation
+
+- Regularly move people between jobs to prevent fraud
+
+#### Mandatory Vacation
+
+- Enforce periods of time when employees have no access to systems
+
+**Standard naming conventions facilitate user identification.**
+
+e.g. Mike Chapple -> mchapple / mchappl2
+
+#### Account Management Life Cycle
+
+![04_01_Access_Management_LifeCycle](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/04_Identity_and_Access_Management/04_01_Access_Management_LifeCycle.PNG?raw=true)
+
+
+
+
+
+### 4.2 Account Types
+
+#### User Accounts
+
+- have standard permissions and standard monitoring
+
+#### Privileged Accounts
+
+- have administrative rights and require strong controls
+
+**Privileged accounts should not be used for routine activities.**
+
+Because the more you use an account, the higher the likelihood of compromise. 
+
+#### Guest Accounts
+
+- Have limited permissions and temporary lifetimes
+
+#### Shared (Generic) Accounts
+
+- Reduce accountability and should not be used
+
+#### Service Accounts
+
+- Provide access for internal server processes
+
+
+
+### 4.3 Account Policies
+
+#### Group Policy Objects (GPO)
+
+- Apply configuration settings to users and computers
+
+
+
+### 4.4 Password Policies
+
+#### Prevent Password Guessing
+
+##### Password length
+
+- At least 8 characters
+
+##### Password complexity
+
+- Uppercase letters
+- Lowercase letters
+- Digits
+- Symbols
+
+#### Prevent Long-Term Illegitimate Use
+
+##### Password expiration
+
+- Every 90 days
+
+Users sometimes attempt to bypass these password change requirements by changing their password when it expires and then immediately changing it back to the previous value. 
+
+##### Password history and reuse
+
+- Keep track of previous passwords
+- Prevent reuse of old passwords
+
+#### Protect against Brute Force Attacks
+
+##### Account lockout
+
+- After several incorrect password guesses
+
+##### Account disablement
+
+- Block use of old accounts
+
+#### Password Recovery Mechanisms
+
+- Allow users to reset passwords on a self-service basis
+- Relieve burden on help desk
+- Improve user satisfaction with IT
+
+
+
+### 4.5 Managing Roles
+
+#### Roles Group Permissions
+
+- Allowing shared security settings
+
+**Windows Security Groups** Implement role-based security
+
+#### Benefits of Roles
+
+- Roles simplify account management.
+- Administrators may assign permissions to new users by adding a role to the user
+- Administrators may then remove permissions from departing users by removing the role.
+
+**Roles Eliminate Dangers** Shared and generic accounts
+
+
+
+### 4.6 Account Monitoring
+
+#### Account Security Issues
+
+##### 1. Inaccurate permissions
+
+- Prevent legitimate work
+- Grant extra access (privilege creep)
+
+##### 2. Illegitimate account use
+
+- Unauthorized use of permitted access
+
+#### User Access Reviews
+
+- Pull listing of user permissions
+- Review permissions with managers
+- Make any necessary adjustments
+- Focus on users who recently changed roles
+
+#### Continuous Account Monitoring
+
+##### Alert administrators to strange activity
+
+##### Flag unusual activity, such as
+
+- Unusual login locations
+- Strange login times
+- Deviations from normal behavior
+- High-volume activity
+
+
+
+### 4.7 Provisioning and Deprovisioning
+
+#### Provisioning
+
+- After onboarding, administrators create authentication credentials and grant appropriate authorization.
+
+#### Deprovisioning
+
+- During the offboarding process, administrators disable accounts and revoke authorizations at appropriate time.
+
+#### Failure to Terminate Accurately
+
+- May inform a user in advance of pending termination
+- May allow a user access to resources after termination
+
+
+
+### Chapter Quiz
+
+1. When a user is terminated, administrators should first disable the account and then delete it later.
+
+   A. TRUE
+
+   B. FALSE
+
+2. Which of the following is not an important account management practice for security professionals?
+
+   A. mandatory vacations
+
+   B. privilege creep
+
+   C. least privilege
+
+   D. separation of duties
+
+3. What Windows mechanism allows the easy application of security settings to groups of users?
+
+   A. ADUC
+
+   B. MMC
+
+   C. SCEP
+
+   D. GPOs
+
+4. What is the minimum suggested length for a strong password?
+
+   A. 12 characters
+
+   B. 6 characters
+
+   C. 10 characters
+
+   D. 8 characters
+
+5. Matt would like to assign users to roles within his Windows enterprise. What feature can he use to create a role?
+
+   A. forest
+
+   B. security group
+
+   C. distribution group
+
+   D. domain
+
+6. Which one of the following is not a normal account activity attribute to monitor?
+
+   A. login time
+
+   B. login location
+
+   C. password
+
+   D. incorrect login attempts
+
+
+
+
+
+Answers:
+
+1. TRUE
+2. privilege creep
+3. GPOs
+4. 8 characters
+5. security group
+6. password
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-4-identity-and-access-management/
 
 [2] [Kerberos by Sunny Classroom](https://www.youtube.com/watch?v=_44CHD3Vx-0)
+
+
 
