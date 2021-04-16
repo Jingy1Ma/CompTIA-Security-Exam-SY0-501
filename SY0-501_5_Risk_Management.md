@@ -1580,6 +1580,392 @@ Answers:
 
 
 
+## 7. Forensics
+
+### 7.1 Conducting Investigations
+
+#### Investigation Types
+
+- Operational investigations
+- Criminal investigations
+- Civil investigations
+- Regulatory investigations
+
+#### Operational Investigations
+
+- Look into technology issues
+- Seek to resolve technology issues
+- Restore normal operations as quickly as possible
+- Use very low standards of evidence
+- Involve root cause analysis
+
+#### Criminal Investigations
+
+- Look into possible crimes
+- Involve the possibility of fines and jail time
+- Use the *beyond a reasonable doubt* standard of evidence
+
+#### Civil investigations
+
+- Resolve disputes between parties
+- Do not involve the possibility of fines and jail time
+- Use the *preponderance* of the evidence standard
+
+e.g. contract disputes, employment law violations, and intellectual property infringement cases.
+
+#### Regulatory Investigations
+
+- Are conducted by the government
+
+Are conducted by government agencies looking into potential violations of administrative law. Regulatory investigations may be either civil, or criminal in nature, and they use the standard of evidence that's appropriate for the type of case that the agency plans to bring. 
+
+**Interviews are a valuable tool available to investigators.**
+
+It is important to remember that an interview is always voluntary. When investigators question a hostile subject without that subject's consent, it's known as an **interrogation**. 
+
+#### ! EXAM TIPS
+
+Cybersecurity investigators should leave interrogations to law enforcement!
+
+
+
+### 7.2 Evidence Types
+
+#### Evidence Types
+
+- Real evidence
+- Documentary evidence
+- Testimonial evidence
+
+#### Real Evidence
+
+- Consists of tangible objects
+
+#### Documentary evidence
+
+- Consists of written information
+
+##### Documentary Evidence Rules
+
+1. Authentication rule
+   - Documents must be authenticated by testimony.
+2. Best evidence rule
+   - Original documents are superior to copies.
+3. Parol evidence rule
+   - Written contracts are assumed to be the entire agreement.
+
+#### Testimonial Evidence
+
+- Consists of witness statements
+
+##### Direct Evidence
+
+- Witness provides evidence based upon his or her own observations.
+
+##### Expert Opinion
+
+- Expert witness draws conclusions based upon other evidence
+
+**Testimonial evidence may not consist of hearsay.**
+
+
+
+### 7.3 Digital Forensics
+
+#### Digital Forensics
+
+- Investigative techniques that collect, preserve, analyze, and interpret digital evidence
+
+**Investigations must *never* alter evidence!**
+
+#### Volatility
+
+- The relative permanence of a piece of evidence; evidence that may not last long is more volatile than more permanent sources of evidence.
+
+#### Order of Volatility
+
+1. Network traffic
+2. Memory content
+3. System and process data
+4. Files (collect temporary files such as system swap space first.)
+5. Logs
+6. Archived records
+
+**Time offsets help correlate records from different sources.**
+
+Just because a system recorded a time stamp on a file or a log entry doesn't mean that that time is accurate. After all, how many of us have devices in our homes that constantly display an incorrect time? When conducting any forensic data capture, investigators should take note of the current time from a reliable source and compare it to the time on the device.
+
+#### Consider Alternate Evidence Sources
+
+- Video recordings
+- Witness statements
+
+**Track your use of time and resource**
+
+**Recovery and preservation of evidence are the core tasks of digital forensics.**
+
+
+
+### 7.4 System and File Forensics
+
+- Investigations must *never* alter evidence!
+
+- Images take the place of original physical media.
+- Write blockers, also known as forensic disk controller, prevent accidental modification of disks during imaging
+
+#### Hashes Protect Evidence
+
+- They provide a unique file signature
+
+**Use hashes to demonstrate that a file hasn't been altered.**
+
+If the investigators compute hash values at the time they collect evidence, they can then recompute hash values when analyzing and presenting evidence or an image of that evidence to prove that the file they are working on is identical to the file that was originally collected. 
+
+#### ! EXAM TIPS
+
+Learn more about hashing in the CompTIA Security+ (SY0-501) Cert Prep: 6 Cryptography.
+
+#### Other Forensic Sources
+
+- Screenshots
+- Memory contents
+- Process table
+- Operating system configuration
+
+#### ! EXAM TIPS
+
+Never try to perform forensics yourself unless you've received appropriate training!
+
+
+
+### 7.5 Network Forensics
+
+- Ethernet networks send electrical pulses over copper wire.
+- Fiber-optic networks send light pulses over strands of glass.
+- Wireless networks send pulses via radio waves.
+
+**Network communications may be intercepted.**
+
+Copper and fiber optic cables may be tapped. Wireless radio signals may be intercepted. Switches and routers can be compromised. 
+
+#### Wireshark Monitors Networks
+
+- Capturing full packet data
+
+**Full packet capture requires lots of storage.**
+
+If you know what you're looking for, you can use filters to save only relevant information, but those filters are only useful when you know in advanced that you'll be conducting a forensic investigation. In most cases, you don't know you'll need network forensic information until after an incident occurs. Network forensics then becomes a big data problem. 
+
+#### NetFlow Summarizes Traffic
+
+- Providing high-level information
+
+##### Telephone Bill
+
+- Numbers called
+- Timestamp
+- Call duration
+
+##### NetFlow Data
+
+- IP addresses and ports
+- Timestamp
+- Amount of data transferred
+
+This provides valuable who talked to whom information about network communications, but just like a telephone bill doesn't include the content of the telephone communication, NetFlow data doesn't include the payload of the packets that were transferred. NetFlow data is often captured by routers, firewalls, and other network devices stationed at network choke points.
+
+**Routers and firewalls capture NetFlow data.**
+
+
+
+### 7.6 Software Forensics
+
+#### Intellectual Property
+
+- Software forensics may be used to  resolve intellectual property disputes between two parties.
+
+#### Malware Origins
+
+- Software forensics may be used to identify the author of malicious software found on a system.
+
+Example
+
+[GRIZZLY STEPPE – Russian Malicious Cyber Activity by NCCIC](https://us-cert.cisa.gov/sites/default/files/publications/JAR_16-20296A_GRIZZLY%20STEPPE-2016-1229.pdf)
+
+The idea is that if cybersecurity analysts find these signatures in code on their systems, they may be able to attribute the code to that Russian source. 
+
+However, now that the signature information is public, it would be easy for an attacker to simply include the signature in their own attack, in an attempt to frame the Russian government for an attack they had nothing to do with. For this reason, you must take publicly available signature information with a grain of salt when seeking to use it for attack attribution.
+
+Conducting software forensic analysis is tricky work and requires both advanced software engineering knowledge and investigative skills. Information security professionals should not attempt to do this work on their own, but rather should consult trained experts if required.
+
+
+
+### 7.7 Embedded Device Forensics
+
+#### Embedded Devices
+
+- Special-purpose computers inside smart devices found in homes, businesses, and industrial settings
+- Vehicles often contain many embedded devices with valuable forensic information
+- Embedded devices are often found in homes
+
+Smart home assistants, such as Amazon's Alexa, and Google's Home, also collect information about us and send it off to the Cloud. These devices contain microphones capable of recording activity in an area and then sending it to a Cloud service speech recognition. 
+
+
+
+### 7.8 Chain of Custody
+
+#### Chain of Custody
+
+- Provides a paper trail for evidence
+
+In the case of digital forensics, this might include the original hard drive or other primary evidence collected by investigators and used for later analysis. 
+
+**Evidence should be labeled and stored in a sealed evidence container.**
+
+#### Evidence Log Events
+
+- Initial collection
+- Transfer
+- Storage
+- Opening and resealing the container
+
+#### Evidence Log Entry Details
+
+- Investigator name
+- Date and time
+- Purpose
+- Nature of action
+
+**Evidence logs must be available to present in court.**
+
+If an opposing attorney can show a failure to appropriately maintain the evidence log, this is a situation known as a breach of the chain of custody. 
+
+
+
+### 7.9 Electronic Discovery (ediscovery)
+
+**There are three major steps in the electronic discovery process.**
+
+```mermaid
+graph LR
+A[Preservation] --> B[Collection]
+B[Collection] --> C[Production]
+```
+
+**Litigation holds require the preservation of relevant electronic and paper record.**
+
+It's important to remember that preservation includes more than just not intentionally destroying information. 
+
+**System administrators must suspend the automatic deletion of relevant logs.**
+
+This most often affects IT groups by requiring the preservation of log entries. If there are logs relevant to the dispute, IT staff must ensure that those logs are preserved and not automatically purged by a system after a certain period of time, or after the log files reach a certain size. 
+
+**Security teams often assist in collection efforts.**
+
+#### Sources of Electronic Records
+
+- File servers
+- Endpoint systems
+- Email messages
+- Enterprise systems and cloud services
+
+**Electronic discovery management systems coordinate collection efforts.**
+
+**If production occurs, attorneys must review documents for relevance and turn them over to the other side.**
+
+**Most litigation holds never move forward to the production phase.**
+
+
+
+### Chapter Quiz
+
+1. The chain of custody must be updated EVERY time someone handles a piece of evidence.
+
+   A. TRUE
+
+   B. FALSE
+
+2. Software forensics may be used to identify the origin of malware.
+
+   A. TRUE
+
+   B. FALSE
+
+3. What type of investigation would typically be launched in response to a report of high network latency?
+
+   A. criminal
+
+   B. civil
+
+   C. operational
+
+   D. regulatory
+
+4. Server logs are an example of _____ evidence.
+
+   A. testimonial
+
+   B. expert opinion
+
+   C. real
+
+   D. documentary
+
+5. Which evidence source should be collected first when considering the order of volatility?
+
+   A. temporary files
+
+   B. process information
+
+   C. logs
+
+   D. memory contents
+
+6. What type of technology prevents a forensic examiner from accidentally corrupting evidence while creating an image of a disk?
+
+   A. sealed container
+
+   B. hashing
+
+   C. evidence log
+
+   D. write blocker
+
+7. Three of these choices are data elements found in NetFlow data. Which is not?
+
+   A. packet content
+
+   B. amount of data transferred
+
+   C. source address
+
+   D. destination address
+
+8. During what phase of ediscovery does an organization share information with the other side?
+
+   A. collection
+
+   B. analysis
+
+   C. preservation
+
+   D. production
+
+
+
+Answers:
+
+1. TRUE
+2. TRUE
+3. operational
+4. documentary
+5. **memory contents**
+6. write blocker
+7. packet contents
+8. **production**
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
@@ -1587,7 +1973,5 @@ Answers:
 [2] [Security Threat and Controls](http://ccilearning.com/store-ca/wp-content/uploads/2015/03/CompTIA%20Security+%20Student-Sample.pdf)
 
 [3] [Computer Security Incident Handling Guide (NIST)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
-
-
 
 
