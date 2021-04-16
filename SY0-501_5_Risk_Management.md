@@ -1303,11 +1303,291 @@ Answers:
 
 
 
+## 6. Incident Response
+
+### 6.1 Security Incidents
+
+Cyber security professionals are often called upon to handle the identification, prioritization, response, and recovery efforts related to security incidents.
+
+#### Security Event
+
+- Any observable action on a computer system that impacts security
+
+This may be a user accessing a web page, a file being written to disk by a process, a connection being established through a firewall, or any other security related event. Thousands of security events take place every hour on active networks. 
+
+#### Adverse Security Event
+
+- Any security event with negative consequences
+
+A user attempting to access a file without permission is an example of an adverse event, as is the receipt of a phishing email message.
+
+#### Security Incident
+
+- Any adverse event that violates security policies
+
+For example, if the user that tried to access a file was able to view confidential information and send it to a third party without permission, that would be a security incident. Similarly, if the recipient of a phishing message clicked a link in the message and provided their password to an attacker, that would also be a security incident. 
+
+**Security professionals must identify and respond to adverse events and incidents.**
+
+**Categorizing incidents allows the implementation of different response procedures.**
+
+#### Attack Vector Categorization
+
+- External media
+- Attrition: conduct brute force attacks, such as exhausting network bandwidth
+- Web
+- Email
+- Improper usage
+- Equipment loss or theft
+- Other
+
+
+
+### 6.2 Preparing for Incident Response
+
+NIST Special Publication 800-61
+
+[Computer Security Incident Handling Guide (NIST)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
+
+#### IR Program Components
+
+1. Policy and plan documentation
+2. Procedures for incident handling
+3. Guidelines for communicating externally
+4. Structure and staffing model for the team
+5. Description of relationships with other group
+
+#### Incident Response Policy
+
+- Provides foundational authority for the program
+- Defines incidents that fall under the policy
+- Includes an incident prioritization scheme
+
+#### Incident Response Procedures
+
+- Contain the details of your plan
+- Notification
+- Escalation
+- Reporting
+- System isolation
+- Forensic analysis
+- Evidence handling
+
+#### Communications Guidelines
+
+- Senior executives
+- Legal counsel
+- Public relations
+- Regulatory agencies
+- Law enforcement
+
+**Law enforcement brings resources to an investigation but also introduces new risks and regulations.**
+
+Once you file a report with law enforcement, it's likely that the details of the incident will become public, which may be undesirable. Also, law enforcement officers are held to much higher standards in gathering and processing evidence. 
+
+#### Building an IR Team
+
+- Management
+- Information security
+- Subject matter experts
+- Legal counsel
+- Public affairs
+- Human resources
+- Physical security
+
+**Diverse team membership builds relationships that are crucial during an incident.**
+
+**Testing incident response plans ensures readiness for real incidents.**
+
+
+
+### 6.3 Incident Identification and Containment
+
+**Monitoring is crucial to effective incident identification.**
+
+#### Incident Data Sources
+
+- IDS and IPS
+- Firewalls
+- Authentication systems
+- Integrity monitors
+- Vulnerability scanners
+- System event logs
+- NetFlow records
+- Anti-malware packages
+
+#### Security Incident and Event Management (SIEM)
+
+- Security solution that collects information from diverse sources, analyzes it for signs of security incidents, and retains it for later use
+
+**The first reports of an incident may come from *external* sources!**
+
+**Threat intelligence solutions provide important strategic and tactical insights.**
+
+#### First Responders Must Act Quickly
+
+- Isolate affected systems!
+
+#### ! EXAM TIPS
+
+The highest priority of a first responder must be containing damage through isolation.
+
+
+
+### 6.4 Escalation and Notification
+
+#### Escalation and Notification Objectives
+
+- Evaluate incident severity based upon impact
+- Escalate response to an appropriate level
+- Notify management and other stakeholders
+
+#### Triaging Incidents
+
+- Low impact
+- Moderate impact
+- high impact
+
+##### Low-Impact Incidents
+
+- Have minimal potential to affect security
+- Are normally handled by first responders
+- Don't require after-hour response
+
+##### Moderate-Impact Incidents
+
+- Have significant potential to affect security
+- Trigger incident response team activation
+- Require prompt notification to management
+
+##### High-Impact Incidents
+
+- May cause critical damage to information or system
+- Justify an immediate, full response
+- Require immediate notification to senior management
+- Demand full mobilization of incident response team
+
+**First responders must have the ability to quickly activate a full incident response process.**
+
+
+
+### 6.5 Incident Mitigation
+
+**Control damage and loss to the organization through containment**
+
+#### Containment Strategy Evolution
+
+1. Damage potential
+2. Evidence preservation
+3. Service availability
+4. Resource requirements
+5. Expected effectiveness
+6. Solution timeframe
+
+**Balance business needs and security objectives.**
+
+**Attackers may detect containment actions.**
+
+This may cause the attacker to speed up activities, destroy evidence, or perform other actions that are detrimental to the incident response, or the organization's business. 
+
+#### Mitigation Ends with Stability
+
+- Business functioning without danger
+
+
+
+### 6.6 Eradication and Recovery
+
+**Remove effects of the incident and return to normal operations.**
+
+#### Technical Recovery Efforts
+
+- Rebuild compromised systems
+- Remove malware
+- Disable breached accounts
+- Restore corrupted or deleted data
+
+**Reconstitution corrects vulnerabilities.**
+
+#### Remediation Efforts
+
+- Applying security patches
+- Updating firewall rules
+- Implementing intrusion prevention
+- Strengthening access controls
+
+**Use a phased approach to recovery and reconstitution.**
+
+
+
+### 6.7 Lessons Learned and Reporting
+
+Once the incident response team returns the organization to a normal operating state all too often, the response effort ends without completing an important final step: conducting a Lessons Learned session and writing up the results in an incident report. 
+
+#### Lessons Learned
+
+- Provides incident responders with an opportunity to reflect on the incident response efforts and offer feedback that will improve the organization's response to future incidents
+- Use a trained facilitator
+
+Ideally, this facilitator should have played no role in the incident response, leaving him or her with no preconceived notions about the response. The facilitator should be a neutral party who simply helps guide the conversation. 
+
+- Time is of the essence
+
+#### Lessons Learned Questions
+
+- How well did staff and management perform?
+- Were documented procedures followed?
+- Were those procedures adequate?
+- Did any actions inhibit the recovery effort?
+- What would responders do differently next time?
+- How could information sharing improve?
+- What could prevent similar incidents?
+- What should the organization watch for?
+- What tools or resources are needed?
+
+**Create a report that includes lessons learned and recommendations.**
+
+
+
+### Chapter Quiz
+
+1. Which one of the following individuals would not normally be found on the incident response team?
+
+   A. CEO
+
+   B. human resources staff
+
+   C. legal counsel
+
+   D. information security professional
+
+2. During an incident response, what is the highest priority of first responders?
+
+   A. restoring operations
+
+   B. identifying the root cause
+
+   C. containing the damage
+
+   D. collect evidence
+
+
+
+Answers:
+
+1. <font color=red>CEO</font>
+2. containing the damage
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
 
 [2] [Security Threat and Controls](http://ccilearning.com/store-ca/wp-content/uploads/2015/03/CompTIA%20Security+%20Student-Sample.pdf)
+
+[3] [Computer Security Incident Handling Guide (NIST)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
+
 
 
 
