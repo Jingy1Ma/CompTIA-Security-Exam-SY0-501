@@ -866,9 +866,448 @@ Answers:
 
 
 
+## 5. Business Continuity and Disaster Recovery
+
+### 5.1 Business Continuity Planning
+
+#### Business Continuity Planning
+
+- A set of controls designed to keep a business running in the face of adversity, whether natural or man-made
+
+Business continuity is a core security concept because it is the primary control that supports the security objective of **availability**. 
+
+#### Defining BCP Scope
+
+- Business actives
+- Systems
+- Controls
+
+#### Business Impact Assessment (BIA)
+
+- Identifies and prioritizes risks
+
+#### Risk Assessment Factors
+
+- Impact on life and safety
+- Impact on property and finances
+- Impact on reputation
+
+**Risk assessments should include environmental and man-made threats from internal and external sources.**
+
+#### BIA Results
+
+| Risk                            | Annualized Loss Expectancy (ALE) |
+| ------------------------------- | -------------------------------- |
+| Hurricane damage to data center | \$145,000                        |
+| Fire in data center             | \$18,000                         |
+| Power outage                    | \$12,000                         |
+| Theft of equipment              | \$3,400                          |
+
+It makes sense to place the highest priority on addressing the risk at the top of the list, hurricane damage to the data center. But the organization must then make decisions about control implementation that factor in cost. For example, if a $50,000 flood prevention system would reduce the risk of hurricane damage to the data center by 50%, purchasing the system is clearly a good decision because it has an expected payback period of less than one year.
+
+
+
+### 5.2 Business Continuity Controls
+
+**Redundancy protects against the failure of a single component.**
+
+#### Single Point of Failure Analysis
+
+- Identifies and removes SPOFs
+
+##### Example
+
+![05_02_SPOF](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_Risk_Management/05_02_SPOF.png?raw=true)
+
+- A simple web server architecture has many single points of failure.
+
+- **Clustering** address the single point of failure at the the web server.
+
+- Address the single point of failure at the firewall through failover capability (a pair of **high-availability** firewalls)
+- **Redundancy** addresses the single point of failure at the network
+
+**SPOF analysis continues until the cost of addressing risks outweighs the benefits.**
+
+#### IT Contingency Scenario Examples
+
+- Sudden bankruptcy of a key vendor
+- Insufficient storage or compute capacity
+- Failure of utility service
+
+**Remember to perform succession planning for staff as well!**
+
+
+
+### 5.3 High Availability and Fault Tolerance
+
+#### High Availability (HA)
+
+- Uses multiple systems to protect against service failure
+
+#### Fault Tolerance (FT)
+
+- Makes a single system resilient against technical failures
+
+#### Load Balancing
+
+- Spreads demand across systems
+
+While they use similar technologies, load balancing and high availability are different goals. Load balancing uses multiple systems in an attempt to spread the burden of providing a service across those systems providing a scalable computing environment. 
+
+Most implementations of clustering and similar technologies are designed to achieve both high availability and load balancing but it is possible to have one without the other. 
+
+#### Common Points of Failure
+
+- Power supply
+- Storage media
+
+##### Power Supplies
+
+- Contain moving parts
+- Have high-failure rates
+- Can be redundant
+- May use multiple power sources
+
+#### Redundant Array of Inexpensive Disks (RAID)
+
+- Disk mirroring, RAID 1, stores the same data on two different disks
+- Disk striping with parity, RAID 5, uses 3 or more disks to store data and parity information
+
+![05_03_RAID](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_Risk_Management/05_03_RAID.png?raw=true)
+
+#### ! EXAM TIPS
+
+- Know that disk mirroring requires 2 disks while disk striping with parity requires 3
+- RAID is a fault tolerance technique, not a backup strategy!
+
+**Network Quality of Service (QoS) provides critical services with protected network capacity.**
+
+
+
+### 5.4 Disaster Recovery
+
+**Disaster Recovery** Disaster Recovery capabilities are designed to restore a business to normal operations as quickly as possible. Disaster Recovery is a subset of business continuity.
+
+#### Initial Response
+
+- Contain the damage caused by disaster
+- Recover whatever capabilities may be immediately restored
+- Include a variety of activities depending upon the nature of disaster
+
+**Employee responsibilities will change dramatically during disaster recovery.**
+
+#### Disaster Communications
+
+- Initial activation of the disaster recovery team
+- Regular status updates
+- Tactical communications
+
+**After the danger passes, the team shifts to assessment mode.**
+
+#### Order of Restoration
+
+- Should prioritize systems by criticality
+
+#### Recovery Time Object (RTO)
+
+- Maximum amount of time that it should take to recover a service after a disaster
+
+#### Recovery Point Objective (RPO)
+
+- Maximum time period from which data may be lost in the wake of a disaster
+
+Together, the RTO and RPO provide valuable information to disaster recovery planners. 
+
+**After developing a plan, responders restore services in an orderly fashion.**
+
+#### ! EXAM TIPS
+
+Disaster recovery efforts end only when the business is operating normally in its primary facility.
+
+**Team members should receive regular training on their DR responsibilities.**
+
+
+
+### 5.5 Backups
+
+Backups are perhaps the most important component of any disaster recovery plan.
+
+#### Backups
+
+- Provide a data "safety net"
+
+#### Backup Media
+
+- Tape backups
+- Disk-to-disk backups
+- Cloud backups
+
+#### Full Backups
+
+- Include a complete copy of all data
+
+#### Differential Backups
+
+- Include all data modified since the last full backup
+
+#### Incremental Backups
+
+- Include all data modified since the last full backup or incremental backup
+
+#### Snapshots
+
+- Capture system state at a moment in time
+
+#### ! EXAM TIPS
+
+Understand what backups need to be restored in the event of a disaster
+
+#### Scenario
+
+Job performs full backups every Sunday evening and differential backups every weekday evening. His system fails on Friday morning. What backups does he restore?
+
+1. Sunday's full backup
+2. Thursday's differential backup
+
+Job performs full backups every Sunday evening and **incremental** backups every weekday evening. His system fails on Friday morning. What backups does he restore?
+
+1. Sunday's full backup
+2. Monday, Tuesday, Wednesday, and Thursday incremental backups
+
+(Incremental backups are smaller than differential backups.)
+
+**Incremental backups use *less* space but require *greater recovery* time.**
+
+#### Media Rotation Strategies
+
+- Allow reuse of backup media
+
+**Most restoration requests are for recent backups.**
+
+#### Grandfather-Father-Son Rotation (GFS Approach)
+
+| Son 1    | Son 2     | Son 3    | Son 4      |
+| -------- | --------- | -------- | ---------- |
+| MON 10/1 | TUES 10/2 | WED 10/3 | THURS 10/4 |
+
+| Dad 1    | Dad 2     | Dad 3     | Dad 4     |
+| -------- | --------- | --------- | --------- |
+| FRI 10/5 | FRI 10/12 | FRI 10/19 | FRI 10/26 |
+
+| GF 1      | GF 2      | GF 3      | GF 4    |
+| --------- | --------- | --------- | ------- |
+| WED 10/31 | WED 11/30 | WED 12/31 | WE 1/31 |
+
+Once all of these sets have filled up, we're left in the situation where we can go back in time at different intervals. We can restore backups from any of the past five days, from Friday of the past four weeks, and from the last day of the past four months. We can do all of that with 12 sets of backup media. 
+
+Alternatively, if we had retained every day's backup media from the past four months, we'd have somewhere around 120 sets of tapes. That's 10 times as expensive. 
+
+Organizations can and do customize these schedules to meet their unique business needs. For example, one common twist on this grandfather-father-son approach is to use 12 grandfather sets, allowing the organization to restore data from the last day of any month within the past year.
+
+
+
+### 5.6 Disaster Recovery site
+
+**Disaster Recovery site** Provide alternate data processing
+
+#### Disaster Recovery Facility Types
+
+- Host site
+- Cold site
+- Warm site
+
+##### Hot Sites
+
+- Fully operational data centers
+- Stocked with equipment and data
+- Available at a moment's notice
+- Very expensive
+
+##### Cold Sites
+
+- Empty data centers
+- Stocked with core equipment, network, and environmental controls
+- Relatively inexpensive
+- Operational in weeks or months
+
+##### Warm Sites
+
+- Stocked with all necessary equipment and data
+- Not maintained in a parallel fashion
+- Similar in expense to hot sites
+- Available in hours or days
+
+**Store backups at an offsite location**
+
+Backups may be physically transported to the disaster recovery site on a periodic basis, or they may be transferred digitally using a process known as electronic vaulting. 
+
+**Alternate business processes add flexibility in the wake of a disaster.**
+
+For example, the organization might move to a paper based ordering process, if an electronic order management system will remain down for an extended period of time. 
+
+
+
+### 5.7 Geographic Disaster Recovery Considerations
+
+- Backups serve as the last line of defense for data protection.
+- Backups should be stored in data centers that are unlikely to be affected by the same disaster as the primary facility.
+- Redundant data centers should also be located geographically distant from facilities.
+- Cloud computing facilitates the use of geographically distant facilities.
+- Data storage locations may have legal implications.
+
+#### Data Sovereignty
+
+- Data is subject to the law of the jurisdiction where it's stored.
+
+
+
+### 5.8 Testing BC/DR Plans
+
+#### DR Testing Goals
+
+1. Validate that the plan functions correctly
+2. Identify necessary plan updates
+
+#### DR Test Types
+
+- Read-through
+- Walk-through
+- Simulation
+- Parallel test
+- Full interruption test
+
+##### Read-through (Checklist Review)
+
+- Ask each team member to review their role in the disaster recovery process and provide feed back.
+
+##### Walk-through (Tabletop Exercise)
+
+- Gather the team together for a formal review of the disaster recovery plan.
+
+##### Simulation
+
+- use a practice scenario to test the disaster recovery plan.
+
+The 3 test types we've discussed so far are all theoretical exercises. They talk about disaster recovery, but don't actually use any disaster recovery technology. 
+
+##### Parallel test
+
+- Activate the disaster recovery facility but do not switch operations there.
+
+##### Full interruption test
+
+- Switch primary operations to the alternate facility and can be very disruptive to business.
+
+**DR testing strategies often combine multiple types of tests.**
+
+
+
+### 5.9 After Action Reports
+
+- After action reports create a formal record of a disaster recovery (DR) or business continuity (BC) event.
+
+These reports are an important because they facilitate the recognition of lessons learned and allow the organization to continuously improve its business continuity and disaster recovery processes.
+
+- Conduct after action reviews after every BC or DR event, even those that are considered successful.
+- Begin the report with a brief executive summary.
+- Provide enough background to allow the reader to understand the context.
+- Answer all the key factual questions around the event
+- Include lessons learned during the response.
+- Conclude with clear next steps.
+
+
+
+### Chapter Quiz
+
+1. What goal of security is enhanced by a strong business continuity program?
+
+   A. confidentiality
+
+   B. non-repudiation
+
+   C. integrity
+
+   D. availability
+
+2. What type of control are we using if we supplement a single firewall with a second standby firewall ready to assume responsibility if the primary firewall fails?
+
+   A. component redundancy
+
+   B. load balancing
+
+   C. high availability
+
+   D. clustering
+
+3. What is the minimum number of disks required to perform RAID level 5?
+
+   A. 1
+
+   B. 2
+
+   C. 4
+
+   D. 3
+
+4. What disaster recovery metric provides the targeted amount of time to restore a service after a failure?
+
+   A. MTO
+
+   B. RPO
+
+   C. RTO
+
+   D. TLS
+
+5. What type of backup includes only those files that have changed since the most recent full or incremental backup?
+
+   A. full
+
+   B. incremental
+
+   C. partial
+
+   D. differential
+
+6. What type of disaster recovery site is able to be activated most quickly in the event of a disruption?
+
+   A. hot site
+
+   B. warm site
+
+   C. lukewarm site
+
+   D. cold site
+
+7. Which one of the following disaster recovery tests involves the actual activation of the DR site?
+
+   A. parallel test
+
+   B. simulation
+
+   C. walk-through
+
+   D. read-through
+
+
+
+Answers:
+
+1. availability
+2. <font color=red>high availability</font>
+3. **3**
+4. <font color=red>RTO</font>
+5. <font color=red>incremental</font>
+6. hot site
+7. parallel test
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
 
 [2] [Security Threat and Controls](http://ccilearning.com/store-ca/wp-content/uploads/2015/03/CompTIA%20Security+%20Student-Sample.pdf)
+
+
 
