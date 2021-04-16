@@ -663,6 +663,209 @@ Answers:
 
 
 
+## 4. Awareness and Training
+
+### 4.1 Security Education
+
+#### Security Training
+
+- Provides users with the knowledge they need to protect the organization's security
+
+#### Security Awareness
+
+- Keeps the lessons learned during security training
+
+#### Security Training Methods
+
+- Instruction in on-site classes
+- Integration with orientations
+- Education through online providers
+- Participation in vendor-provided classroom training
+
+**Customize training based upon user roles.**
+
+For example, employees handling credit card information should receive training on PCI DSS requirements. Human resources team members should be trained on handling personally identifiable information or PII. IT staff need specialized skills to implement security controls. 
+
+#### Role-Based Training
+
+- Data and system owners
+- System administrators and other privileged users
+- Normal users
+- Executives
+
+#### Training Frequency
+
+- Initial training for new employees
+- Update training for employees with new roles
+- Refresher training on an annual basis
+- Awareness efforts throughout the year
+
+**Review training materials regularly to ensure relevance.**
+
+#### Continuing Education
+
+- Reminds employees of security responsibilities
+
+
+
+### 4.2 Information Classification
+
+#### Data Classification Policies
+
+- Assign information into categories, known as classifications, that determines storage, handling and access requirements
+
+#### Assign Classifications Based Upon
+
+- Sensitivity of information
+- Criticality of information
+
+Classification schemes vary, but all basically try to group information into high, medium, and low sensitivity levels and differentiate between public and private information. 
+
+#### Classification Levels
+
+| Military Classification | Business Classification |
+| ----------------------- | ----------------------- |
+| Top Secret              | Highly Sensitive        |
+| Secret                  | Sensitive               |
+| Confidential            | Internal                |
+| Unclassified            | Public                  |
+
+**Classification guides other security decisions.**
+
+#### Labeling Requirements
+
+- Identify sensitive information
+
+**Securely dispose of information when no longer needed.**
+
+e.g. software: Darik's Boot and Nuke (DBAN); hardware: magnetic degaussers, device shredders
+
+
+
+### 4.3 Compliance Training
+
+#### Compliance Programs
+
+- Ensure that an organization's information security controls are consistent with the laws, regulations, and standards that govern the organization's activities
+- Include compliance obligations in security training
+
+#### Compliance Obligations
+
+- Laws
+  - Requirements passed by a government authority at the national or local level
+  - e.g. Graham-Leech-Bliley Act, or GLBA, affects security practices of financial institutions. 
+- Regulations
+  - Mandatory requirements but are not embodied in law
+  - e.g. HIPAA (Health Insurance Portability and Accountability Act) rules
+- Standards
+  - Detailed technical specifications
+  - PCIDSS (Payment Card Industry Data Security Standard)
+
+**Begin compliance efforts with a gap analysis.**
+
+
+
+### 4.4 User Habits
+
+- Include secure password practices in security education programs.
+- Clean desk policies and other data handling practices boost security.
+- Physical security training should include discussions of the dangers of tailgating.
+- Include BYOD policies in security training efforts.
+- Cover appropriate use of social media and peer-to-peer networks in security education.
+- Security training should cover acceptable uses of corporate IT resources and the consequences of policy violations.
+
+
+
+### 4.5 User-based Threats
+
+- Phishing uses spoofed messages to obtain information and convince users to perform risky actions.
+- Social engineering isn't limited to email. It can occur over the phone or in person as well.
+- New threats arise *every day*.
+
+
+
+### 4.6 Measuring Security Education
+
+#### Simulated Phishing
+
+- Directly measures user awareness
+
+#### Security Awareness Surveys
+
+- How well do the organization prepare you to deal with security threats?
+- Do you know your information security responsibilities?
+- Do you know where to report a security incident?
+
+**Measure how awareness changes over time.**
+
+**Change tactics based upon survey results.**
+
+
+
+### Chapter Quiz
+
+1. Which one of the following is not an example of security education?
+
+   A. briefings at team meetings
+
+   B. reminder posters in the hallway
+
+   C. online education
+
+   D. classroom instruction
+
+2. Which one of the following is the lowest level of classification in the government's classification scheme?
+
+   A. Public
+
+   B. Top Secret
+
+   C. Secret
+
+   D. Confidential
+
+3. Which one of the following regulatory schemes applies to healthcare providers in the United States?
+
+   A. GLBA
+
+   B. FERPA
+
+   C. PCI DSS
+
+   D. HIPAA
+
+4. What is the name of the practice where a user holds a door open for the individual following them into a building?
+
+   A. smurfing
+
+   B. politeness
+
+   C. shoulder surfing
+
+   D. tailgating
+
+5. What type of social engineering attack targets end users via email messages?
+
+   A. phishing
+
+   B. pharming
+
+   C. vishing
+
+   D. shoulder surfing
+
+
+
+Answers:
+
+1. **reminder posters in the hallway** (security awareness)
+2. Confidential
+3. HIPAA
+4. tailgating
+5. phishing
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
