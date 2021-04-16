@@ -539,6 +539,130 @@ Answer:
 
 
 
+## 3. Personnel Management
+
+### 3.1 Need to Know and Least Privilege
+
+#### Need to Know
+
+- Limits information access
+
+This need-to-know principle is commonly followed in military and government circles that handle classified information. 
+
+#### Least Privilege
+
+- Limits system permissions
+- Implementing least privilege can be cumbersome
+
+**Emergency access procedures reduce the business impact.**
+
+#### Privilege Aggregation (Privilege Creep)
+
+- Jeopardizes least privilege
+
+IT staff who remain in an organization for a long time, with a variety of different positions, may accumulate privileges over time that, in aggregate, violate the least privilege principle. **User account reviews** are a good control against privilege creep. The principles of need-to-know and least privilege form the core foundation of cyber security programs.
+
+
+
+### 3.2 Separation of Duties and Responsibilities
+
+#### Separation of Duties
+
+- No individual should possess two permissions that, in combination, allow them to perform a highly sensitive action.
+- Accounting groups often separate the responsibilities of creating new vendors and issuing payments
+- Information security professionals are often called on to implement separation of duties
+- IT teams often separate the privileges of writing code and deploying code into production
+
+#### Two-Person (Dual) Control
+
+- Requires the authorization of two separate individuals to carry out a sensitive action; also known as dual control
+- Missile launch facilities implement the concept of two-person control.
+- Checks that require two signatures are an example of two-person control
+- IT teams commonly use two-person control for sensitive tasks
+
+
+
+### 3.3 Security in the Hiring Process
+
+**Employees pose a significant threat to enterprise security, known as the "insider threat."**
+
+**Preemployment screening checks the background of potential employees.**
+
+#### Preemployment Screening
+
+- Criminal records check
+- Sex offender registry
+- Reference checks
+- Education and employment verification
+- Credit checks
+
+#### Employment Agreements
+
+- Should include nondisclosure agreements (NDAs)
+- Should discuss return of information and physical assets at termination
+
+#### Include Security Policies in Orientation Sessions
+
+
+
+### 3.4 Employee Termination Process
+
+- Every employee eventually leaves the organization.
+- Exit interview provide a chance to debrief departing employees.
+- Use exit interviews to remind employees of their NDA
+- Revoke access promptly, but not prematurely
+
+#### Retrieve Organization Property
+
+- Keys
+- Access badges
+- Laptops and mobile devices
+- Paper and electronic files
+
+
+
+### Chapter Quiz
+
+1. What security principle most directly applies to limiting information access?
+
+   A. least privilege
+
+   B. two person control
+
+   C. separation of duties
+
+   D. need to know
+
+2. What security principle requires two individuals to perform a sensitive action?
+
+   A. separation of duties
+
+   B. least privilege
+
+   C. two person control
+
+   D. need to know
+
+3. Which one of the following agreements is most directly designed to protect confidential information after an employee has left the organization?
+
+   A. SLA
+
+   B. BAA
+
+   C. NDA
+
+   D. Asset return
+
+
+
+Answers:
+
+1. need to know
+2. two person control
+3. NDA
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
