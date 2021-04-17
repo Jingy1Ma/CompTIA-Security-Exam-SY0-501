@@ -1966,6 +1966,324 @@ Answers:
 
 
 
+## 8. Data Security and Privacy
+
+### 8.1 Understanding Data Security
+
+#### Data at Rest
+
+- Data stored for later use on a hard drive, USB device, magnetic tape, cloud service, or other data storage environment
+
+Data at rest is vulnerable to theft if an attacker gains either physical or logical access to the storage media. This might be by stealing a hard drive or hacking into an operating system that has the drive mounted. 
+
+#### Data in Motion
+
+- Data being sent over a network between two systems
+
+It might be data moving from a storage location to a user's computer, or data that is simply being transmitted between two systems, such as a user entering their credit card number into a website or sending an email message. 
+
+Data in motion must be protected against eavesdropping attacks because this data often travels over public networks such as the internet. 
+
+#### Data Security Controls
+
+- Clear policies and procedures covering data use and security
+- Encryption to protect sensitive information
+- Access controls on stored data
+
+You can use file system access control lists to specify who may view, modify, or delete information stored on a device. 
+
+#### Big Data
+
+- Big data is the use of datasets much larger than those that may be handled by conventional data processing and analytic techniques.
+
+For example, big data rarely uses relational databases because of the significant overhead involved. Instead, big data storage and analysis uses specialized technology like the key value stores of NoSQL databases. 
+
+**Big Data Requires Special Security Considerations**
+
+
+
+### 8.2 Data Security Polices
+
+#### Data Security Policy Criteria
+
+- Foundational authority for data security efforts
+- Clear expectations for data security responsbilities
+- Guidance for requesting access to information
+- Process for granting policy exceptions
+
+#### Data Classification Policies
+
+- Describe security levels
+
+These classifications are assigned based upon both the sensitivity of information and the criticality of that information to the enterprise.
+
+#### Classification Levels
+
+| Military Classification | Business Classification |
+| ----------------------- | ----------------------- |
+| Top Secret              | Confidential            |
+| Secret                  | Proprietary             |
+| Confidential            | Private                 |
+| Unclassified            | Public                  |
+
+**Classification is used as the basis for other data handling requirements.**
+
+#### Data Storage Policies
+
+- Appropriate storage locations
+- Access control requirements
+- Encryption requirements
+
+#### Data Transmission Policies
+
+- Appropriate data transmissions
+- Encryption requirement
+- Acceptable transmission mechanism
+
+#### Data Lifecycle Policies
+
+- Describe end-of-life for data
+
+This is important, because information may retain sensitivity, even after the organization no longer requires it. 
+
+##### Data Retention Policies
+
+- Specify the minimum and/or maximum period that an organization will retain different data elements
+
+Data retention policies limit an organization's risk exposure by ensuring that data is kept for as long as it is needed, but no longer. 
+
+##### Data Disposal Policies
+
+- Describe proper techniques for destroying data that is no longer needed by the organization
+
+This is extremely important, because of data remnants issues. Simply deleting files or formatting a hard disc is not sufficient to remove all traces of that data from a device. 
+
+Depending upon the type of media used, this may include burning, shredding or pulping paper, and pulverizing, degaussing, purging, or wiping discs, flash drives, and other electronic media. These tools include software applications, such as Darik's Boot And Nuke (DBAN), otherwise known as DBAN, and hardware tools, such as magnetic degaussers and device shredders. 
+
+
+
+### 8.3 Data Security Roles
+
+#### Three Tier Model
+
+![08_03_3_Tier_Model](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/05_Risk_Management/08_03_3_Tier_Model.png?raw=true)
+
+##### Data Owners
+
+- Are business leaders with overall responsibility for data. They set policies and guidelines for their data sets.
+
+Practically speaking, most individuals who are senior enough to hold the position of data owner do not have the time available to get involved in the nitty gritty decisions of data governance. They usually delegate that responsibility to a Data Steward
+
+##### Data Stewards
+
+- Handle the day-to-day data governance activities. They are delegated responsibility by data owners
+
+##### Data Custodians
+
+- Actually store and process information and are often IT staff members.
+
+Technologists are rarely data owners or data stewards, but they are usually data custodians for almost all of the data in the organization, due to the nature of their jobs. 
+
+**Privacy officers are responsible for ensuring that the organization meets its privacy obligations.**
+
+
+
+### 8.4 Data Privacy
+
+#### Personally Identifiable Information (PII)
+
+- Records that may be associated with a specific individual
+
+PII might include extremely sensitive data such as credit reports and tax returns, or more mundane records such as movie viewing histories. 
+
+#### Protected Health Information (PHI)
+
+- Health records about an individual patient
+
+In many cases, PHI is regulated under the Health Insurance Portability and Accountability Act, HIPAA. 
+
+**Generally Accepted Privacy Principles (GAPP) outline 10 components of data privacy.**
+
+#### GAPP Developers
+
+- American Institute of Certified Public Accountants (AICPA)
+- Canadian Institute of Chartered Accountants (CICA)
+- Information System Audit and Control Association (ISACA)
+- Institute of Internal Auditors (IIA)
+
+##### 1. Management
+
+- Organization handling private information should have polices, procedures, and governance structures in place to protect privacy
+
+##### 2. Notice
+
+- Data subjects should received notice that their information is being collected and used, as well as access to the privacy policies and procedures followed by the organization.
+
+##### 3. Choice and Consent
+
+- The organization should inform data subjects of their options regarding the data they own and get consent from those individuals for the collection, storage, use, and sharing of that information.
+
+##### 4. Collection
+
+- The organization should only collect personal information for purposes disclosed in their privacy notice
+
+##### 5. Use, Retention, and Disposal
+
+- Organizations should only collect and use personal information for disclosed purposes and they should dispose of the data securely as soon as it is no longer needed for the disclosed purpose.
+
+##### 6. Access
+
+- Organizations should provide data subjects with the ability to review and update their personal information.
+
+##### 7. Disclosure to Third Parties
+
+- Organizations should only share information with third parties if that sharing is consistent with the purposes disclosed in privacy notices and they have the consent of the individual to share that information.
+
+##### 8. Security
+
+- The organization must secure private information against unauthorized access, either physically or logically.
+
+##### 9. Quality
+
+- The organization should take reasonable steps to ensure that the private information they maintain is accurate, complete, and relevant.
+
+##### 10. Monitoring and Enforcement
+
+- The organization should have a program in place to monitor compliance with its privacy policies and provide a dispute resolution mechanism.
+
+
+
+### 8.5 Limiting Data Collection
+
+**Notice and consent is just the first level of restriction on data collection.**
+
+**Never collect undisclosed information, even if it seems "incidental".**
+
+#### Minimize Information Collected
+
+- Delete unneeded information quickly
+
+For example, you might be using a web server that records more information in web access logs than you need for your disclosed analysis purposes. When that's the case, you still must disclose this collection to individuals because, after all, you are collecting the information. The difference is that if you don't have legitimate need to keep the information, you should remove unnecessary information from those records as quickly as possible, preferably through an automated process that doesn't require any human intervention. 
+
+**Ensure that your data collection practice are fair and lawful.**
+
+#### Monitor Third Parties
+
+- Verify their privacy practices
+
+In those cases you should take reasonable steps to ensure that the third party is collecting that information in accordance with privacy principles and that the third party has obtained prior permission to share it with you. 
+
+
+
+### 8.6 Privacy Assessment
+
+#### Privacy Threshold Analysis (PTA)
+
+- Evaluates the use of personal information to determine whether privacy controls are necessary
+
+When a system reaches the threshold specified in the PTA, organizations must complete a PIA that dives into deeper detail to ensure that the system meets privacy requirements. 
+
+#### Privacy Impact Assessment (PIA)
+
+- Evaluates the privacy controls used by IT system to determine whether they are sufficient
+
+The Privacy Threshold Assessment requires that agencies answer a series of questions about the types of information that the system will handle, how the system is connected to other systems and other technical and operational details.
+
+Example
+
+[PRIVACY THRESHOLD ANALYSIS (PTA) by Homeland Security](https://www.dhs.gov/xlibrary/assets/privacy/privacy_pta_template.pdf)
+
+#### PIA 3 Goals
+
+1. Ensures that PII handling meets all applicable requirements
+2. Identifies risks associated with handling PII within an IT system
+3. Examines privacy controls and recommends mitigations
+
+#### PIA Questions
+
+- What information is being collected?
+- Why is the information being collected?
+- What is the intended use of the information?
+- With whom will the information be shared?
+- What notice will be provided to individuals?
+- How will the information be secured?
+- Is the information subject to the Privacy Act?
+
+#### PIA Requirements
+
+1. Whenever a PTA requires the completion of a PIA
+2. Before developing or purchasing PII systems
+3. After any significant change to a PII system
+4. Every 3 years
+
+Example
+
+[Privacy Impact Assessment Template](https://www.dhs.gov/xlibrary/assets/privacy/privacy_pia_template.pdf)
+
+It is much more detailed than the PTA and requires detailed answers about the system and its privacy controls. 
+
+
+
+### Chapter Quiz
+
+1. Once an organization complies with GAPP, best practice says they should collect as much information as possible to provide good service, provided that they remain GAPP compliant.
+
+   A. TRUE
+
+   B. FALSE
+
+2. What technology is commonly used for Big Data datasets?
+
+   A. PostreSQL
+
+   B. NoSQL
+
+   C. MySQL
+
+   D. SQL Server
+
+3. Which one of the following is not a commonly-used business classification level?
+
+   A. Internal
+
+   B. Highly Sensitive
+
+   C. Top Secret
+
+   D. Sensitive
+
+4. What data security role is normally filled by a senior-level official who bears overall responsibility for the data?
+
+   A. data custodian
+
+   B. data guardian
+
+   C. data owner
+
+   D. data steward
+
+5. Which one of the following is not one of the GAPP principles?
+
+   A. collection
+
+   B. management
+
+   C. integrity
+
+   D. notice
+
+
+
+Answers:
+
+1. FALSE
+2. NoSQL
+3. Top Secret
+4. **data owner**
+5. **integrity**
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-5-risk-management
@@ -1973,5 +2291,9 @@ Answers:
 [2] [Security Threat and Controls](http://ccilearning.com/store-ca/wp-content/uploads/2015/03/CompTIA%20Security+%20Student-Sample.pdf)
 
 [3] [Computer Security Incident Handling Guide (NIST)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf)
+
+[4] [PRIVACY THRESHOLD ANALYSIS (PTA) by Homeland Security](https://www.dhs.gov/xlibrary/assets/privacy/privacy_pta_template.pdf)
+
+[5] [Privacy Impact Assessment Template](https://www.dhs.gov/xlibrary/assets/privacy/privacy_pia_template.pdf)
 
 
