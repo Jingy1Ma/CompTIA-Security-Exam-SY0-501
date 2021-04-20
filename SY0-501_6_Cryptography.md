@@ -64,7 +64,7 @@ We'll be focusing on
 - Larger groups require more symmetric keys
 - The number of symmetric keys required: $\frac{n(n-1)}{2}$ 
 
-![01_01_Symmetric1](C:\Users\JY\Desktop\Security+\Images\06_Cryptography\01_01_Symmetric1.PNG)
+![01_01_Symmetric1](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/01_01_Symmetric1.PNG?raw=true)
 
 ![01_01_Symmetric2](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/01_01_Symmetric2.PNG?raw=true)
 
@@ -365,7 +365,271 @@ Answers:
 
 
 
+## 2. Symmetric Cryptography
+
+### 2.1 Data Encryption Standard (DES)
+
+#### Data Encryption Standard (DES)
+
+- Designed by IBM in the 1970s
+- Intended to serve as federal encryption standard
+- Replaced untested algorithms used by agencies
+- Enhance interoperability of communications
+
+![02_01_DES](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/02_01_DES.png?raw=true)
+
+- DES uses an encryption operation called the Fesitel function of 16 rounds of encryption
+- Each F-box performs a combination of substitution and transposition operations
+- The Feistel function repeat 16 times in a single DES encryption operation!
+
+It takes 64 bits of plain text as input in the top and then runs it through an encryption operation known as the Feistel It uses the Feistel function 16 different times in order to produce the cipher text. 
+
+Each of these F boxes that implements the Feistel function takes half a block of input or 32 bits and combines it with a piece of the 56-bit encryption key. 
+
+Then the output of that function is broken up into eight segments and fed into eight different functions called S boxes, these yellow boxes labeled S1 through S8 that just appeared on the screen. S stands for Substitution and each one of these boxes contains a different substitution cipher. 
+
+The results of all of those substitutions are then combined back together again and fed into a P box. P stands for Permutation which is just another term for transposition. So the output of all of those S boxes is scrambled up to produce the cipher text. 
+
+**DES is no longer considered secure!**
+
+#### Key Facts about DES
+
+- Symmetric encryption algorithm
+- Block cipher operating on 64-bit blocks
+- Key length of 56 bits
+- Now considered insecure
+
+
+
+### 2.2 3DES
+
+#### Triple DES
+
+- Applied DES to plaintext 3 times with 3 keys: K1, K2, and K3
+
+![02_02_3DES](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/02_02_3DES.PNG?raw=true)
+
+#### DES Keying Options
+
+##### Keying Option 1
+
+- ${K1}\neq{K2}\neq{K3}$
+
+This is the strongest approach and results an encryption with an effective key strength of 112 bits. 
+
+##### Keying Option 2
+
+- $K1=K3,{K1}\neq{K2},{K2}\neq{K3}$
+
+This requires fewer keys, but reduces the strength of the algorithm from 112 bits down to 80 bits. 
+
+##### Keying Option 3
+
+- $K1=K2=K3$
+
+This emulates the standard DES algorithm and is just as insecure as that standard approach. It is included for backwards compatibility with DES, but is definitely not a good option. 
+
+#### ! EXAM TIPS
+
+Double DES is no more secure than standard DES, due to the meet-in-the-middle attack.
+
+**Triple DES is considered secure through 2030.**
+
+when used in keying mode one. 
+
+#### Key Facts about 3DES
+
+- Symmetric encryption algorithm
+- Block cipher operating on 64-bits blocks
+- Effective key length of 112 bits
+- Considered secure
+
+
+
+### 2.3 AES, Blowfish, and Twofish
+
+- The Rijndael algorithm won a competition to become the Advanced Encryption Standard (AES).
+- AES uses substitution and transposition
+
+It is widely used today in many different cryptographic applications ranging from web security to encrypted voice communications. 
+
+#### Key Facts about AES
+
+- Symmetric encryption algorithm
+- Block cipher operating on 128-bit blocks
+- Key length of 128, 192, or 256 bits
+- Considered secure
+
+#### Blowfish
+
+- Is a public domain algorithm
+- Designed as a DES replacement
+- Uses a Feistel network
+- Combines substitution and transposition
+
+#### Key Facts about Blowfish
+
+- Symmetric encryption algorithm
+- Block cipher operating on 64 bit blocks
+- Key length anywhere between 32 and 448 bits
+- Not considered secure
+
+#### Twofish
+
+- Designed as a DES replacement
+- Placed into the public domain
+- Uses a Feistel network
+- Combines substitution and transposition
+
+#### Key Facts about Twofish
+
+- Symmetric encryption algorithm
+- Block cipher operating on 128-bit blocks
+- Key length of 128, 192, and 256 bits
+- Considered secure
+
+
+
+### 2.4 RC4
+
+**RC4 was a trade secret from its invention in 1987 until its public disclosure in 1994.**
+
+#### RC4 and Network Encryption
+
+- Wired Equivalent Privacy (WEP)
+- Wi-Fi Protected Access (WPA)
+- Secure Sockets Layer (SSL)
+- Transport Layer Security (TLS)
+
+**RC4 uses a pseudorandom keystream.**
+
+This stream has many of the qualities of a random string, but it is not quite random because it is initialized using a selected encryption key. This makes it possible for both the sender and recipient of a message to use the same key to generate the same keystream. 
+
+**RC4 is no longer considered secure.**
+
+#### Key Facts about RC4
+
+- Symmetric encryption algorithm
+- Stream cipher
+- Variable length key between 40 bits and 2,048 bits
+- Not considered secure
+
+
+
+### 2.5 Cipher Modes
+
+**Cipher Mode** Describes how an algorithm encrypts and decrypts data
+
+#### Electronic Codebook (ECB) Mode
+
+Perhaps the most straightforward cipher mode. The algorithm simulates a digital codebook that provides an encrypted version of each possible input. 
+
+![02_05_ECB](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/02_05_ECB.png?raw=true)
+
+For example, if we have a message of 192 bits that we want to encrypt, and are using a 64-bit block cipher, the algorithm breaks the message up into 3 blocks and handles each of them completely independently. It takes the first block and uses the encryption algorithm to encrypt that block with the encryption key. That creates the first ciphertext block. It then moves on to the second block and encrypts it with the same key, and then repeats the same process for the third block. 
+
+**Encrypting the same block with the same key in ECB mode results in identical cipher text blocks.**
+
+This is the key disadvantage of this mode, as it makes cryptoanalysis easier. CBC seeks to resolve this disadvantage by making the encryption of a block dependent upon the encryption of all previous blocks.
+
+#### Cipher Block Chaining (CBC) Mode
+
+CBC feeds the previous encrypted block into the encryption of the next block. 
+
+![02_05_ECB](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/02_05_CBC.png?raw=true)
+
+We begin in the same way as ECB mode. Breaking our plaintext into blocks. We then combine the first block with an initialization vector using the exclusive or operation. This initialization vector is just to get us started. The algorithm then uses the encryption key to encrypt the XORed combination of the plaintext and the initialization vector to get the ciphertext block. Then, when we move on to the second block, instead of using the initialization vector, we XOR the second plaintext block with the first ciphertext block and then encrypt that combination to get the second ciphertext block. We then move on to the third plaintext block, where the second encrypted block is then combined with the third plaintext block, and encrypted to get the third ciphertext block. And the process continues on, until we run out plaintext blocks. 
+
+#### Counter Mode (CTR)
+
+![02_05_CTR](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/02_05_CTR.png?raw=true)
+
+
+
+It begins with a plaintext, and two values. A randomly generated value, known as a nonce. And a counter, that begins at zero, and increments during each encryption operation. The value created by the nonce and the counter is the encrypted with the encryption key, and the resulting value is XORed with the plaintext to get the cipher text. When we get to the second block, the counter value is incremented to one, and we repeat the previous operation to get the second ciphertext block. And we then do the same thing for the third block, with a counter value of two to get the final ciphertext block. 
+
+**Galois/Counter Mode (GCM) adds authentication capability.**
+
+Galois counter mode, or GCM, is a variant of counter mode that adds authentication to the cipher process. Supplementing the confidentiality capabilities of electronic codebook, cipher block chaining, and traditional counter mode.
+
+
+
+### 2.6 Steganography
+
+**Steganography** Hides data in large files
+
+- Steganography often uses innocent-looking high-resolution images
+- Slight modifications to image pixels may hide information
+- Images with embedded text may be posted in plain sight
+
+
+
+### Chapter Quiz
+
+1. What length encryption key does the Data Encryption Standard use?
+
+   A. 256 bits
+
+   B. 56 bits
+
+   C. 38 bits
+
+   D. 128 bits
+
+2. How many keys should be used with 3DES to achieve the greatest level of security?
+
+   A. 4
+
+   B. 2
+
+   C. 3
+
+   D. 1
+
+3. What basic cryptographic functions does the AES algorithm use to encrypt plaintext?
+
+   A. Transposition only
+
+   B. Both substitution and transposition
+
+   C. Substitution only
+
+   D. Neither substitution nor transposition
+
+4. What action can users take to overcome security flaws in RC4?
+
+   A. It is not possible to use RC4 securely
+
+   B. Use three rounds of encryption
+
+   C. Increase the key length
+
+   D. User two rounds of encryption
+
+5. Jasmine comes across a file sent out of her organization that she suspects contains proprietary trade secrets but appears to be an innocuous image. What technique might the sender have used to hide information in the image?
+
+   A. steganography
+
+   B. elliptic curves
+
+   C. polymorphism
+
+   D. rasterization
+
+
+
+
+
+Answers:
+
+1. **<font color=red>56 bits</font>**
+2. 3
+3. Both substitution and transposition
+4. It is not possible to use RC4 securely
+5. steganography
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-6-cryptography/
-
