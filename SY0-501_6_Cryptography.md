@@ -630,6 +630,184 @@ Answers:
 
 
 
+## 3. Asymmetric Cryptography
+
+### 3.1 Rivest-Shamir-Adleman (RSA)
+
+Asymmetric cryptography solves issues of scalability by giving each user a pair of keys for use in encryption and decryption operations. 
+
+#### ! EXAM TIPS
+
+Users create RSA key pairs using to large prime numbers.
+
+**User distributes the public key freely and keeps the private key secure.**
+
+#### RSA Keys
+
+- Sender encrypts a message using the recipient's public key
+- Recipient decrypts a message using the recipient's private key
+- Usually used to transfers symmetric keys instead of long messages
+- Patent is now expired
+
+The major drawback to the RSA algorithm is that it is fairly slow. Therefore, it is not normally used for exchanging long messages directly between communicating systems. Instead, RSA is often used to create an initial secure communications channel over which two systems exchange a symmetric key. The systems can then use that symmetric key to encrypt communications for the remainder of the session.
+
+#### Key Facts about RSA
+
+- Asymmetric encryption algorithm
+- Variable length key between 1,024 and 4,096
+- Considered secure
+
+Although there have been some published attacks against RSA, recent implementations of the algorithm are still considered secure when used with a sufficiently long key of at least 1,024 bits.
+
+
+
+### 3.2 PGP and GnuPG
+
+**Phil Zimmerman created Pretty Good Privacy (PGP) in 1991.**
+
+**PGP is widely available today through the OpenPGP standard.**
+
+#### PGP Function
+
+- Uses public and private keys
+- Combines both symmetric and asymmetric cryptography
+
+##### PGP Encryption
+
+![03_02_PGP_Encryption](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/03_02_PGP_Encryption.PNG?raw=true)
+
+The sender of a message has the original plain text and then generates a random symmetric encryption key. Next, the sender encrypts the message using that random symmetric key, and then encrypts the random key using the recipient's public key. The sender then transmits the encrypted message which is a combination of the encrypted data and the encrypted random key. 
+
+##### PGP Decryption
+
+![03_02_PGP_Decryption](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/03_02_PGP_Decryption.PNG?raw=true)
+
+When the recipient receives the encrypted message. First, the recipient decrypts the encrypted random key using the recipient's private key. This produces the random key created by the sender. Next, the recipient uses that random key to decrypt the encrypted message and retrieve the original message.
+
+- **PGP** Commercial product
+- **GnuPG** Available for free (New Privacy Guard)
+
+**PGP relies upon other encryption algorithms.**
+
+One important note to remember, PGP is not an encryption algorithm itself. It is a framework for using other encryption algorithms. 
+
+
+
+### 3.3 Elliptic Curve and Quantum Cryptography
+
+**Asymmetric cryptography is based upon the difficulty of solving complex math problems.**
+
+In the case of the RSA algorithm, the security of the algorithm depends upon the difficulty of factoring the product of two large prime numbers. 
+
+**Prime Number** Only divisible by themselves and 1
+
+**Finding a way to solve the prime factorization problem efficiently would break modern cryptography!**
+
+#### Elliptic Curve Cryptography (ECC)
+
+- Uses the EC discrete logarithm problem
+
+Does not depend upon the prime factorization problem. It uses a completely different problem known as the elliptic curve discrete logarithm problem.
+
+#### ! EXAM TIPS
+
+You won't need to know the details of ECC. Remember that it doesn't use prime factorization.
+
+#### Quantum Computing
+
+- Uses quantum mechanics principles
+
+It still mostly a theoretical field. But if it advances to the point where that theory becomes practical to implement, quantum cryptography may be able to defeat cryptographic algorithms that depend upon factoring large prime numbers. 
+
+**Elliptic curve cryptography can't protect against quantum attacks.**
+
+Elliptic curve approaches are even more susceptible to quantum attack than prime factorization algorithms.
+
+
+
+### 3.4 Tor and Perfect Forward Secrecy
+
+Tor is a software package that provides an anonymous, secure way for individuals to access the internet. Tor also enables access to anonymous websites that are commonly known as the dark web.
+
+#### Tor
+
+- The Onion Router (Tor) is a software package that uses encryption and relay nodes to facilitate anonymous Internet access
+
+#### Tor in Action
+
+![03_04_Tor_in_Action](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/03_04_Tor_in_Action.PNG?raw=true)
+
+Alice's Tor browser accesses a Tor directory server and loads a list of all of the Tor nodes currently available on the internet. This is a very long list because it includes every Tor node. Each of these nodes is an individual computer system whose owner has placed it at the service of the Tor network. The owner doesn't receive any compensation for this. He or she simply wants to contribute to providing anonymized web surfing. 
+
+Once Alice's browser has the list of nodes, it randomly selects a series of nodes, usually 3, that are used to route traffic to its final destination. Each node involved in the process only knows the identity of the node before and after it. So when Alice sends her request to node 1, node 1 knows that the request came from Alice, and it also knows that the next step in the process is to sent it to node 2, but it doesn't know that the Washington Post is the final destination. When node 2 receives the request, it knows that it came from node 1, and that it's headed next to node 3. But node 2 doesn't know Alice's identity, or the fact that the communication involves the Washington Post. When node 3 receives the message, it knows that the request came from node 2, and it knows that it needs to send the request on to the Washington Post. But node 3does not know that either Alice, or node 1was involved. 
+
+When the request does arrive at the Washington Post server, it looks just like any other request that the website receives, but it appears to have come from node 3, and it doesn't provide Alice's identity. A server simply responds with the webpage, and sends it to node 3, thinking that it's done with the communication. However, when node 3 receives the Washington Post's response, it goes ahead and follows the circuit back, sending the reply to node 2, who sends it on to node 1, who finally sends it back to Alice. 
+
+This preserves the anonymity of the communication, and enforces something known as perfect forward secrecy, or PFS. 
+
+#### Perfect Forward Secrecy
+
+- Hides nodes' identity from each other
+
+Perfect forward secrecy uses encryption to hide the details of the communication from the participants in the communication, ensuring that each node only knows the identity of the node immediately before, and after it in the process. 
+
+#### Request Chain
+
+![03_04_Request_Chain1](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/03_04_Request_Chain1.PNG?raw=true)
+
+![03_04_Request_Chain2](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/03_04_Request_Chain2.PNG?raw=true)
+
+Tor also provides the ability to have two-way anonymity, so that the user doesn't know the location of the website either. That's a function known as 'hidden sites' in Tor. 
+
+**Not everybody likes Tor!**
+
+Tor has its fans, but it also has its enemies. Privacy advocates praise Tor because it does allow completely anonymous activity online. Law enforcement officials do not like Tor very much, because that anonymity may be used to hide criminal activity. 
+
+
+
+### Chapter Quiz
+
+1. Alice would like to send a message to Bob using RSA encryption. What key should she use to encrypt the message?
+
+   A. Alice's private key
+
+   B. Bob's public key
+
+   C. shared secret key
+
+   D. Alice's public key
+
+2. What key is actually used to encrypt the contents of a message when using PGP?
+
+   A. randomly generated key
+
+   B. sender's public key
+
+   C. sender's private key
+
+   D. recipient's public key
+
+3. Which one of the following encryption approaches is most susceptible to a quantum computing attack?
+
+   A.  AES cryptography
+
+   B. elliptic curve cryptography
+
+   C. quantum cryptography
+
+   D. RSA cryptography
+
+
+
+Answers:
+
+1. Bob's public key
+2. randomly generated key
+3. elliptic curve cryptography
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-6-cryptography/
+
