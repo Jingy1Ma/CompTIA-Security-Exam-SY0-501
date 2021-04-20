@@ -807,6 +807,202 @@ Answers:
 
 
 
+## 4. Key Management
+
+### 4.1 Key exchange
+
+**Symmetric cryptography requires exchanging a shared secret key in advance.**
+
+#### Symmetric Cryptography
+
+![04_01_Symmetric](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/04_01_Symmetric.PNG?raw=true)
+
+#### Out-of-Band Key Exchange
+
+- Uses a different channel
+
+- Face-to-face meeting
+- Physical mail
+- Telephone call
+
+**Out-of-band key exchange is difficult and time consuming.**
+
+Alice and Bob might be separated by a great distance, making a physical meeting impractical. Sending a letter by physical mail takes a few days and attempting to read a lengthy encryption key over the phone is very difficult. 
+
+#### In-Band Key Exchange
+
+- Securely exchange keys digitally
+
+
+
+### 4.2 Diffie-Hellman
+
+**Ralph Merkle's work formed the basis of the Diffie-Hellman algorithm.**
+
+**Whitfield Diffie and Martin Hellman created the Diffie-Hellman key exchange (DHE) algorithm**
+
+#### Diffie-Hellman Example
+
+![04_02_Diffie_Hellman](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/04_02_Diffie_Hellman.PNG?raw=true)
+
+Now, let's say that Mal was watching all of the messages that Alice and Bob exchanged. She'd know that they started with the color yellow and she'd know that they exchanged the colors green and orange. She would not know either of the two secret colors that Alice and Bob selected, red and blue, or the common secret color brown because those were never sent over email. 
+
+![04_02_Diffie_Hellman2](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/04_02_Diffie_Hellman2.PNG?raw=true)
+
+- $p$ must be a prime number
+- $A=g^{a}mod(p)$
+- $B=g^{b}mode(p)$
+- $S=B^{a}mod(p)$
+- $S=A^{b}mod(p)$
+
+If Mal watched the entire communication between Alice and Bob, she wouldn't have enough information to reconstruct that key, just like she couldn't figure out that the shared secret color in the earlier example was brown. 
+
+**$p$ and $g$ must be large values to achieve strong security.**
+
+#### Elliptic Curve Diffie Hellman (ECDHE)
+
+- Uses elliptic curve problem
+
+ECDH uses a similar approach, but replaces the prime factorization difficulty with complexity drawn from the elliptic curve problem that I discussed earlier in the course. 
+
+#### Diffie-Hellman Groups
+
+| Group Number | Description                      | Security                        |
+| ------------ | -------------------------------- | ------------------------------- |
+| 1            | 768-bit group                    | <font color=red>INSECURE</font> |
+| 2            | 1024-bit group                   | <font color=red>INSECURE</font> |
+| 5            | 1536-bit group                   | <font color=red>INSECURE</font> |
+| 14           | 2048-bit group                   | SECURE                          |
+| 19           | 3072-bit group                   | SECURE                          |
+| 20           | 384-bit elliptic curve group     | SECURE                          |
+| 21           | 521-bit elliptic curve group     | SECURE                          |
+| 24           | 2048-bit group, 256-bit subgroup | SECURE                          |
+
+Diffie-Hellman algorithms use the concept of groups to describe key strength. There are two important things that you need to know
+
+1. The higher the group number, the more secure the use of Diffie-Hellman and second
+2. Group 14 is the lowest numbered group that is considered secure. You should not use Diffie-Hellman groups with numbers under 14.
+
+
+
+### 4.3 Key Escrow
+
+Strong encryption is very difficult to defeat, and this causes a problem for law enforcement and other government agencies, who feel that they have a right to access encrypted communications under certain circumstances, such as when they obtain a search warrant. That's where the concept of key escrow comes into play. 
+
+#### Encryption Key Escrow
+
+- Allows government access to keys
+
+In this case, government officials have proposed key escrow technologies that would provide law enforcement with access to encrypted information. The idea is that government agents would have to obtain a court order before accessing escrowed keys, thus protecting the privacy of other individuals. 
+
+While this may be a reasonable goal, there is not yet a reasonable way to implement this approach in a secure manner. 
+
+- The Clipper chip included technology that would allow government access to encrypted communications
+- Privacy advocates and industry firms fought strongly against the Clipper chip
+
+The Clipper chip caused a tremendous public controversy, as groups like the Electronic Frontier Foundation joined forces with security firms like RSA, to campaign publicly against the Clipper chip's government back door. 
+
+After further analysis of the Clipper chip's algorithm, security researchers discovered that it contained fundamental flaws, that would have prevented its secure use in the first place. 
+
+We're left in a difficult situation, with two competing interests. The government has a legitimate need to access information, when they have a legitimately issued warrant. On the other hand, consumers expect technology companies to build secure products that keep out all kinds of unwanted intruders. 
+
+#### Recovery Agents
+
+- Allow internal access to lost keys
+
+The recover agent possesses a master encryption key that may decrypt any information used by the organization. That key must be protected carefully, as it allows global access to all encrypted data in the organization.
+
+
+
+### 4.4 Key Stretching
+
+Many encryption technologies depend upon the ability to create an encryption key from a password in a way that remains strong. Key stretching technologies allow this to happen. 
+
+#### Key Stretching
+
+- Takes a relatively insecure value, such as a password, and uses mathematical techniques to strengthen it, making it harder to crack
+
+##### Salting
+
+- Adds a value to the encryption key to make it more complex
+
+##### Hashing
+
+- Adds time to the verification process by requiring more math
+
+This might be less than a second, but key stretching algorithms repeat this process hundreds or thousands of times to consume longer amounts of time. 
+
+**Verifying one key is fast, but guessing millions of keys is slow!**
+
+#### PBKDF2
+
+- Password-Based Key Derivation Function v2
+- Uses salting and hashing to stretch a key
+- Should be used at least 4,000 times
+
+#### Bcrypt
+
+- Key stretching with Blowfish
+
+It's based upon the Blowfish cipher and uses that algorithm's hashing approach combined with a salt to strengthen keys.
+
+
+
+### Chapter Quiz
+
+1. Which one of the following is an example of an in-band approach to key exchange?
+
+   A. U.S. mail
+
+   B. physical meeting
+
+   C. telephone call
+
+   D. Diffie-Hellman
+
+2. The difficulty of solving what mathematical problem provides the security underlying the Diffie-Hellman algorithm?
+
+   A. graph isomorphism
+
+   B. traveling salesman
+
+   C. prime factorization
+
+   D. elliptic curve
+
+3. In the early 1990s, the National Security Agency attempted to introduce key escrow using what failed technology?
+
+   A. Clipper chip
+
+   B. DES
+
+   C. Common certificates
+
+   D. Common criteria
+
+4. What algorithm uses the Blowfish cipher along with a salt to strengthen cryptographic keys?
+
+   A. Blowdart
+
+   B. PBKDF2
+
+   C. PBKDF1
+
+   D. Bcrypt
+
+
+
+
+
+Answers:
+
+1. Diffie-Hellman
+2. prime factorization
+3. Clipper chip
+4. Bcrypt
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-6-cryptography/
