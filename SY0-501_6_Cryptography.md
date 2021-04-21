@@ -1503,7 +1503,109 @@ Answers:
 
 
 
+## 6. Cryptanalytic Attacks
+
+### 6.1 Brute Force Attacks
+
+#### Brute Force Attacks
+
+- Repeatedly guess keys
+- Also known as known ciphertext attacks
+
+#### Simple Shift Cipher
+
+- With a shift of 1, As become Bs, Bs becomes Cs, etc.
+- With a shift of 3, As become Ds, Bs becomes Es, etc.
+- With a shift of 26, As become As, Bs becomes Bs, etc.
+- With a shift of 26, As become Bs, Bs becomes Cs, etc.
+
+In a situation like this, where there are only 25 possibilities, we say that the keyspace, or the list of all possible keys, is small. 
+
+#### Keyspace
+
+- The set of all possible encryption keys usable with an algorithm
+
+**Modern algorithms aren't susceptible to brute-force attacks.**
+
+#### Size of Keyspaces
+
+- 56-bit DES: 72,057,594,037, 927, 936 keys
+- 128-bit AES: $2^{128}$ keys
+- 256-bit AES: $2^{256}$ keys
+
+**Flawed algorithms may be vulnerable to brute-force attacks.**
+
+
+
+### 6.2 Knowledge-based Attacks
+
+#### Frequency Analysis
+
+- Detects patterns in ciphertext
+- The most common letters in English text are E, T, O, A, I and N
+- The most common diagraphs in English text are TH, HE, IN and ER
+
+#### ! EXAM TIPS
+
+You won't need to perform cryptanalysis on the exam. Just know the different techniques
+
+#### Known Plaintext Attack
+
+- Attacker has access to an unencrypted message
+
+#### Chosen Plaintext Attack
+
+- Attacker can create and encrypted message of his or her choice
+
+
+
+## 7. Cryptographic Applications
+
+### 7.1 Digital Rights Management
+
+#### Digital Rights Management (DRM)
+
+- Provides the owners of the intellectual property with the technical means to prevent the unauthorized use of their content through the use of encryption technology
+
+**Apple's FairPlay was an early example of DRM in the must industry.**
+
+But Apple later dropped this approach when Apple cofounder Steve Jobs made a very public statement that said, in part, 
+
+> If the big four music companies would license Apple their music without the requirement that it be protected with DRM, we would switch to selling only DRM-free music on our iTunes store.
+
+**Many subscription-based music services use DRM today.**
+
+Although Apple no longer uses FairPlay for music purchased on the iTunes store, Apple and many other subscription-based music services do use DRM technology to encrypt music downloaded for offline use. 
+
+Similar technologies use encryption to provide digital rights management for other entertainment media such as video games, eBooks, and similar content. 
+
+#### Business Applications of DRM
+
+- Protect trade secrets and other intellectual property
+- Limit redistribution of information
+- Revoke access after expiration date
+
+
+
+### 7.2 Specialized Use Cases
+
+- Some cryptographic applications require operation at extremely low power levels (e.g. satellite, remote sensor)
+- Smart cards are a common example of low power cryptography
+
+They must be able to securely communicate with smart card readers, but only using the energy that's either stored on the card or transferred to it by a magnetic field.
+
+- Specialized cryptographic hardware allows operation at low power levels.
+- Networked cryptography requires very low latency.
+- Dedicated cryptographic hardware operates at low latency.
+
+For example, a dedicated VPN concentrator may contain cryptographic hardware that implements encryption and decryption operations in a highly efficient way to maximize speed and minimize latency.
+
+- High resiliency requires the protection of encrypted data against loss.
+
+It exist when it is extremely important that data be preserved and not accidentally destroyed during an encryption operation. In cases where resiliency is extremely important, the easiest way to address the issue is for the sender of the data to retain a copy until the recipient confirms the successful receipt and decryption of the data.
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-6-cryptography/
-
