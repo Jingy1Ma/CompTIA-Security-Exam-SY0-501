@@ -1787,9 +1787,147 @@ Answers:
 
 
 
-## 6. Vulnerability Scanning and Penetration Testing
+## 6. Social Engineering Attacks
 
-### 6.1 Security assessment tools
+### 6.1 Social Engineering
+
+- Manipulating people into divulging information or performing an action that undermines security
+
+#### Social Engineering
+
+- Authority
+- Intimidation
+- Consensus
+- Scarcity
+- Urgency
+- Familiarity
+
+##### Authority and Trust
+
+- People defer to authority
+
+##### Intimidation
+
+- Scaring people
+
+##### Consensus/Social Proof
+
+- The herd mentality
+
+##### Scarcity
+
+- Getting the last one
+
+##### Urgency
+
+- Time is running out
+
+##### Familiarity/Liking
+
+- We say yes to people we like
+
+**Education is the solution.**
+
+
+
+### 6.2 Impersonation Attacks
+
+#### Spam
+
+- Unsolicited commercial email (UCE)
+
+#### Phishing
+
+- Stealing credentials
+
+#### Spear Phishing
+
+- Targeted attack
+
+#### Whaling
+
+- Targeted attacks on executives
+
+#### Pharming
+
+- Using fake websites
+
+#### Vishing
+
+- Voice phishing
+
+#### Spim
+
+- Instant messaging (IM) Spam
+
+#### Spoofing
+
+- Faking an identity
+
+
+
+### 6.3 Physical Social Engineering
+
+#### Shoulder Surfing
+
+- Be aware who's around you
+- Use special privacy filters on laptop screen
+
+#### Dumpster Diving
+
+- Shred everything
+
+#### Tailgating
+
+- Education
+
+
+
+#### Chapter Quiz
+
+1. A social engineer calls an administrative assistant in your organization and obtains her password by threatening her that her boss' account will be deleted if she does not provide the password to assist with troubleshooting. What type of attack is the social engineer using?
+
+   A. scarcity
+
+   B. social proof
+
+   C. liking
+
+   D. intimidation
+
+2. What type of phishing attack focuses specifically on senior executives of a targeted organization?
+
+   A. vishing
+
+   B. whaling
+
+   C. pharming
+
+   C. spear phishing
+
+3. What is the most effective tool to use against dumpster diving attacks?
+
+   A. encryption
+
+   B. screen guards
+
+   C. shredders
+
+   D. emanation controls
+
+
+
+Answers:
+
+1. intimidation
+2. <font color=red>whaling</font>
+3. shredders
+
+
+
+## 7. Vulnerability Scanning and Penetration Testing
+
+### 7.1 Security assessment tools
 
 Security professionals use a variety of assessment tools to help them assess the effectiveness of security controls. 
 
@@ -1843,7 +1981,7 @@ As a security plus professional, you should be familiar with the use of honeypot
 
 
 
-### 6.2 Scanning for vulnerabilities
+### 7.2 Scanning for vulnerabilities
 
 Security analysts must test for vulnerabilities because if they don't, hackers will. You're much better off if you discover an issue and correct it than if an attacker discovers it and exploits it. Fortunately, vulnerability assessment tools automate the process of vulnerability scanning. There are three major categories of these tools. 
 
@@ -1870,7 +2008,7 @@ Tools like Nmap and Nessus provide system administrators with important insight 
 
 
 
-### 6.3 Assessing threats
+### 7.3 Assessing threats
 
 Information security professionals tackle a wide variety of risks in their roles. These vary from earthquakes and tornadoes to hackers and viruses. The sheer quantity of forces aligned against you may sometimes be a little overwhelming. Fortunately, we have risk-assessment tools at our disposal that can help us prioritize our response. First, we need a common language. In everyday life, people often use the terms threat, vulnerability, and risk interchangeably. They are actually three different concepts.
 
@@ -1904,7 +2042,7 @@ Security professionals use likelihood and impact information to help prioritize 
 
 
 
-### 6.4 Threat assessment techniques
+### 7.4 Threat assessment techniques
 
 When you're ready to begin a security assessment program, where should you start? Let's take a look at 4 common ways to conduct a security assessment: baseline reporting, an attack surface review, code reviews, and architecture reviews. 
 
@@ -1937,7 +2075,7 @@ Well-designed security programs include a variety of assessment techniques that 
 
 
 
-### 6.5 Penetration testing
+### 7.5 Penetration testing
 
 Vulnerability testing merely probes systems for vulnerabilities. Those tests can be active reaching out and interacting with systems, but they are rarely dangerous because they don't typically complete an attack. Actually executing an attack is however, the best way to understand a system's vulnerabilities. 
 
@@ -1984,7 +2122,7 @@ Penetration tests are labor intensive for internal staff and expensive when usin
 
 
 
-### 6.6 Advanced vulnerability scanning
+### 7.6 Advanced vulnerability scanning
 
 #### Non-Intrusive Scanning
 
