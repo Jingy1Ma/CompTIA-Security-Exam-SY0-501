@@ -1003,6 +1003,506 @@ Answers:
 
 
 
+
+## 5. Public Key Infrastructure
+
+### 5.1 Trust Models
+
+#### Requirements for Key Exchange
+
+- The two parties must be confident that they are really communicating with each other and neither one is an imposter
+- The two parties must be confident that nobody is eavesdropping on the key exchange
+
+The Diffie-Hellman key exchange protocol helps us with preventing eavesdropping, but we still require some way to ensure that we're not communicating with an imposter.
+
+#### Asymmetric Cryptography
+
+- Users don't need to share their private keys.
+- Users can and should share their public key freely.
+- Eavesdropping protection isn't needed during the key exchange.
+- We still need to prevent imposters!
+
+#### Trust Models
+
+- Personal knowledge: cumbersome and difficult
+- Web of Trust (WOT)
+- Public Key Infrastructure (PKI)
+
+#### Web of Trust
+
+- Relies on indirect relationships
+- Participants digitally sign the public keys of people they know personally
+
+The Web of Trust recognizes that it simply isn't possible for you to personally meet everyone that you want to exchange messages with. While you might not know the person you wish to communicate with personally, you might know somebody who knows that person. Or perhaps you have a third-level connection where you know somebody who knows somebody who knows that person. 
+
+The Web of Trust takes advantage of this by using digital signatures to vouch for the public keys of individuals. Every participant signs the public keys of everyone they know when they verify that the public key belongs to that person. And then everyone in the system builds a list of the people they trust to vouch for others. 
+
+If this web becomes large enough, there is a reasonable expectation that indirect trust relationships will allow most people to communicate with most other people. 
+
+#### WOT Issues
+
+- Decentralized approach: difficult to manage
+- High barrier to entry
+- Requires technical knowledge
+
+For these reasons, the Web of Trust never really took off outside of the technical community. 
+
+**PKI builds upon the web of trust.**
+
+but introduces centralized authorities who can make the process easier. 
+
+
+
+### 5.2 PKI and Digital Certificates
+
+**PKI depends upon trusted certificate authorities (CAs)**
+
+instead of relying upon the peer-to-peer trust relationships
+
+#### Certificate Authorities (CAs)
+
+- Certificate authorities are trusted third-party organizations who verify the identity of individuals or organizations and then issue digital certificates containing both identity information and a copy the the subject's public key.
+
+The process is fairly similar to the one we use to issue government identification cards in the physical world. 
+
+1. The DMV asks you to prove your identity by providing multiple forms of identification
+2. After you prove your identity, the DMV issues you a certificate that allow you to prove your identity to third party
+
+- Digital certificates are the identity cards of the digital world.
+- After authenticating identity, the CA provides a digital certificate containing the public key.
+- Anyone receiving your digital certificate can verify its authenticity by checking the digital signature of the issuing CA.
+- Anyone trying to use your digital certificate illegitimately won't have your private key.
+
+That actually could happen very easily because your certificate is meant to be shared widely. It's not a problem however because the only thing that someone could do with that certificate is encrypt a message with your public key. As long as you keep your private key secret, the person who stole your digital certificate wouldn't be able to decrypt the message encrypted using that certificate so there isn't any loss of confidentiality. 
+
+
+
+### 5.3 Hash Functions
+
+#### Hash Functions
+
+- Hash Functions are one-way functions that transform a variable length input into a unique, fixed-length output
+
+**One-way functions can't be reversed.**
+
+**The output of a hash function will always be the same length, regardless of the input size.**
+
+**No two inputs to a hash function should produce the same ouput.**
+
+#### Hash Functions May Fail
+
+1. If they are reversible
+2. If they are not collision resistant (it makes it possible to forge digital signatures and digital certificates.)
+
+#### ! EXAM TIPS
+
+Know which hash functions are considered insecure and which remain secure today
+
+#### Message Digest 5 (MD5)
+
+- Ron Rivest created MD5 in 1991.
+- MD5 is the fifth in a series of hash functions.
+- Message digest is another term for hash.
+- MD5 produces 128-bit hashes.
+- MD5 is no longer secure.
+
+In 2013, three cryptanalysts discovered a technique that breaks MD5's collision resistance in less than a second on a store-bought computer. Therefore, MD5 is no longer considered secure and should not be used. However, many systems still rely upon MD5 for secure applications. That is a very bad idea. 
+
+#### Secure Hash Algorithm (SHA)
+
+- NIST created the SHA family as a government standard.
+
+##### SHA-1
+
+- Produces a 160-bit hash value
+- Contains security flaws that render it insecure
+
+##### SHA-2
+
+- Consists of a family of six hash functions
+- Produces output of 224, 256, 384, and 512 bits
+- Uses a mathematically similar approach to SHA-1 and MD5
+
+All the SHA-2 algorithms are mathematically similar to both SHA-1 and MD5, and are theoretically susceptible to the same flaws that broke those algorithms. However, there is no known attack against SHA-2 today, so it is still safe for use.
+
+##### SHA-3
+
+- Designed as an eventual replacement for SHA-2
+- Uses a completely different hash generation approach than SHA-2
+- Produces hash of user-selected fixed length
+
+Some academic researchers do not trust the SHA algorithms because of their origins within the US government, and specifically the involvement of the National Security Agency in the creation of the SHA-1 and SHA-2 algorithms. 
+
+#### RIPEMD
+
+- Primitive Evaluation Message Digest
+- Created as an alternative to government-sponsored hash functions
+- Produces 128, 160, 256, and 320-bit hashes
+- Contains flaws in the 128-bit version
+
+But the 160-bit version of RIPEMD is widely used today.
+
+There's no concept of similarity, it's either exactly right or completely wrong. That's part of the beauty and part of the challenge of working with hash functions. 
+
+#### HMAC
+
+- Hash-Based Message Authentication Code
+- Combines symmetric cryptography and hashing
+- Provides authentication and integrity
+- Create and verify message authentication code by using a secret key in conjunction with a hash function
+
+**Hash functions are used with asymmetric cryptography for digital signatures and digital certificates.**
+
+
+
+### 5.4 Digital Signatures
+
+**Digital signatures use asymmetric cryptography to achieve integrity, authentication, and non-repudiation.**
+
+#### What Signed Message Recipients Know
+
+1. The owner of the public key is the person who signed the message -> Authentication
+2. The message was not altered after being signed -> Integrity
+3. The recipient can prove these facts to a third party -> Non-repudiation
+
+#### What Digital Signatures Depend On
+
+1. Collison=resistant hash functions
+2. Asymmetric cryptography
+
+**Use private keys to create digital signatures**
+
+#### Digital Signature Example
+
+![05_04_Digital_Signature](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/05_04_Digital_Signature.png?raw=true)
+
+**Digitally signing the messages does not provide confidentiality.**
+
+In this example, anyone could read the message, not just Bob. If Alice wanted to be sure that only Bob could read the message, she could take the added step of encrypting the message with Bob's public key.
+
+
+
+### 5.5 Digital Signatures Standard
+
+The Digital Signature Standard is a US Federal government standard for appropriate digital signature algorithms. The standard is published by the National Institute for Standards in Technologist (NIST) and the current version of the standard came out in 2013. It's published as a Federal Information Processing Standard or FIPS number 186-4.
+
+#### Approved DSS Algorithms
+
+- Digital Signature Algorithm (DSA)
+- Rivest, Shamir, Adelman (RSA)
+- Elliptic Curve Digital Signature Algorithm (ECDSA)
+
+The Digital Signature Standard endorses the uses of RSA for digital signatures that are described in American National Standard X9.31 and Public Key Cryptography Standard, or PKCS number one. 
+
+The Digital Signature Standard endorses the use of ECDSA for digital signatures as described in American National Standard X9.62. 
+
+
+
+### 5.6 Create a Digital Certificate
+
+**Digital certificates use the X.509 standard.**
+
+Therefore, you might hear digital certificates referred to as X.509 certificates.
+
+#### Creating a Digital Certificate
+
+![05_06_Create_Digital_Certificate](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/05_06_Create_Digital_Certificate.PNG?raw=true)
+
+1. Alice creates a public private key pair for the encryption algorithm of her choice. 
+2. She then creates a message called a certificate signing request, or CSR, which contains Alice's public key as well as Alice's name and other identifying information such as an email address or a server name. Alice then sends the CSR to the CA of her choice. 
+3. This might be an independent organization that is trusted by many people around the world, or it may be a private certificate authority operated for use within her organization. If the CA is a third party, it is also known as the registration authority, or RA. 
+4. When the CA receives the CSR, it first takes whatever action is necessary to validate the identity of the requester. 
+5. Once the CA is satisfied that the sender is legitimate, it removes the public key from the certificate signing request and places it in the format of an X.509 certificate. 
+6. The CA then uses it's private key to place the CA's digital signature on the digital certificate and sends the certificate back to the requester. 
+7. The requester may then use that certificate and provide it to anyone who wishes to communicate with them. 
+8. A third party wishing to communicate with Alice can then verify that the certificate is valid by simply checking that the CA's digital signature on the certificate is valid. If the signature is correct, the third parties know that they can use the public key contained in the certificate to communicate with the person named on the certificate, Alice. 
+
+
+
+### 5.7 Revoke a Digital Certificate
+
+The security of digital certificates depends upon the security of the private key associated with that certificate. If the certificate owner's private key is compromised, the owner needs a way to revoke the digital certificate so that it can't be used to impersonate the owner later on. 
+
+#### Certificate Revocation List (CRL)
+
+- CAs provide a list of the serial numbers of revoked certificates
+
+Anyone accessing a digital certificate is responsible for download the CRL and verifying that the serial number is not included on that list before relying upon the public key contained within the certificate. This approach was inefficient because it often had time delays and consumed a lot of network bandwidth as everyone on the internet attempted to download CRLs everyday from every certificate authority and the lists themselves grew longer. 
+
+#### Online Certificate Status Protocol (OCSP)
+
+- CAs provide a real-time service that allows users to verify that a certificate is not revoked.
+
+**Most modern browsers implement OCSP.**
+
+One exception to this is Google Chrome, which uses Google's own proprietary approach for verifying certificates.
+
+
+
+### 5.8 Certificate Stapling
+
+Certificate stapling is an extension to the Online Certificate Status Protocol that relieves some of the burden placed upon certificate authorities by the original protocol. 
+
+**OCSP places a significant burden on the OCSP servers operated by certificate authorities (CAs).**
+
+#### Certificate Stapling
+
+- Reduces the CA's burden
+
+#### Standard OCSP
+
+![05_08_OCSP](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/05_08_OCSP.PNG?raw=true)
+
+When a user visits a website and initiates a secure connection, the website sends its certificate to the **end user** who would normally then be responsible for contacting the OCSP server to verify the certificate's validity. 
+
+#### OCSP Certificate Stapling
+
+![05_08_OCSP_Stapling](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/05_08_OCSP_Stapling.PNG?raw=true)
+
+With certificate stapling the **web server** contacts the OCSP server itself and receives a signed and time stamped response from the OCSP server, which it then attaches or staples to the digital certificate. 
+
+When the web server receives a request from an end user, it then sends that user the certificate with the stapled OCSP response. The user's browser then verifies that the certificate is authentic and also validates that the stapled OCSP response is genuine and recent. 
+
+That might sound like it's just as much a burden on the CA's server as if the user requested the validation, and it is. The savings come when the next user visits the website. The web server can simply reuse the stapled certificate without recontacting the OCSP server. As long as the time stamp is recent enough the user will accept the stapled certificate without needing to contact the CA's OCSP server again. 
+
+It's common to have stapled certificates with a validity period of 24 hours. That reduces the burden on the OCSP server from handling one request per user over the course of a day, which could be millions of requests, down to handling one request per certificate per day. That's a tremendous reduction. 
+
+
+
+### 5.9 Certificate Authorities
+
+#### Obtaining a Digital Certificate
+
+- Users verify the digital certificate's authenticity using the CA's public key
+
+![05_09_Obtain_Digital_Signature](https://github.com/Jingy1Ma/CompTIA-Security-Exam-SY0-501/blob/main/Images/06_Cryptography/05_09_Obtain_Digital_Signature.PNG?raw=true)
+
+n most cases, organizations choose to use a well-know certificate authority because the vast majority of users around the world will already be configured to trust that certificate authority.
+
+**You must pay a fee to the CA to obtain a trusted certificate.**
+
+Because of this, organizations sometimes take steps to reduce the number of certificates that they purchase. 
+
+#### Self-Signed Certificates
+
+- Issued by an internal CA
+
+In this approach, an organization sets up its own certificate authority and then uses it to generate its own certificates. These certificates aren't trusted by the outside world because they're not signed by a trusted certificate authority, but they can be used for internal purposes. Large organizations often setup their own CAs and then configure systems throughout the organization to trust the internal CA. They can then use this internal CA to issue their own certificates for free for internal websites and other uses. 
+
+Some organizations go a step further and have their own internal CA trusted by a third-party CA using a technique known as certificate chaining. 
+
+**Certificate chaining allows the use of intermediate CAs.**
+
+This allows the organization to issue their own certificates that are then trusted by external users because the CA that issued them, the organization's CA, is trusted by a third-party CA. That's the chain of trust. In this case, the internal CA is known as an intermediate CA. 
+
+#### Offline CAs
+
+- Protect sensitive root keys
+
+Another reason to use certificate chaining is to allow the use of offline certificate authorities. The root certificate of a CA is a very sensitive object. Therefore, the private key associated with a certificate is normally not kept on a system that is connected to a network. Instead, it is stored in an offline CA that is only used to sign the certificates of online intermediate CAs belonging to the same organization. These online CAs are then used to actually issue certificates to customers. This way the root certificate is carefully safeguarded and only used occasionally to certify a new online CA. 
+
+
+
+### 5.10 Certificate Subjects
+
+The most common use of certificates is to protect web servers, but certificates can also provide protection for other servers, individuals, and email addresses. 
+
+#### Certificate Subject
+
+- Owner of the public key
+
+#### ! EXAM TIPS
+
+You may find exam questions that discuss certificate object identifiers (OIDs)
+
+#### Certificate Subjects
+
+- **Servers** (web, SSH, file, or any other server requiring trusting connections.)
+- **Device** (SANs, routers, switches, VPNs, access points, etc..)
+- **Individuals** (names, email addresses)
+
+There are some attacks against certificates that involve creating a false certificate for a site. There's one more security feature that organizations can use to protect their certificates against fraud. 
+
+#### Certificate Pinning
+
+- Ties a certificate to a subject for period of time
+
+Certificate pinning is a technology that tells users of certificates that they should not expect a certificate to change over time. When a user receives a certificate from a certificate subject, they're also told to remember or pin that certificate for an extended period and report any changes to the certificate as a potential security issue.
+
+
+
+### 5.11 Certificate Types
+
+#### Root Certificates
+
+- Protect CA private keys
+
+These are the core certificates at the heart of a certificate authority, and are used as the very first certificate or the root of trust in chain certificates. 
+
+#### Wildcard Certificates
+
+- Match an entire domain
+- Commonly used for load balancers (and other devices that must match many different domain names.)
+
+Because of this, they also must be carefully secured. 
+
+**Wildcard Certificate Example**
+
+- *.linkedin.com
+  - www.linkedin.com
+  - mail.linkedin.com
+  - secure.linkedin.com
+- **Wildcard certificates match only one level deep**
+
+Using a wildcard certificate allows the device to impersonate all of the relevant sub-domains without administrators having to obtain and install individual certificates for each sub-domain. 
+
+**CAs issuing certificates are vouching for the certificate subject's identity.**
+
+#### Domain Validation (DV)
+
+- Verify domain ownership
+
+The lowest level of trust. 
+
+#### Organizational Validation (OV)
+
+- Verify business name
+
+The CA verifies not only that the certificate's subject owns the domain, but also that the name of the organization purchasing the certificate is valid. 
+
+#### Extended Validation (EV)
+
+- Require extensive investigation
+
+The highest level of trust. After receiving documentation from the certificate subject, before issuing an EV certificate, the CA performs an extensive investigation to verify the physical existence and legitimacy of the organization.
+
+### 5.12 Certificate Formats
+
+#### Distinguished Encoding Rules (DER)
+
+- Binary format
+- Use. DER, .CRT, and .CER file extensions
+
+#### PEM Certificates
+
+- Name comes from outdated Privacy Enhanced Mail (PEM) standard
+- ASCII text equivalents of DER certificates
+- Convert with openssl
+- Use .PEM and .CRT extensions
+
+#### ! EXAM TIPS
+
+.CRT files may be either DER binary certificates or PEM text certificates.
+
+#### Personal Information Exchange (PFX)
+
+- Binary format
+- Commonly used by Windows systems
+- Use .PFX and .P12 file extensions
+
+#### P7B Format
+
+- ASCII text equivalent of PFX certificates
+- Commonly used by Windows systems
+- Use .P7B file extension
+
+#### Certificate Formats
+
+| Binary Version | Binary File Extension | Text Version | Text File Extension |
+| -------------- | --------------------- | ------------ | ------------------- |
+| DER            | .DER, .CRT, .CER      | PEM          | .PEM, .CRT          |
+| PFX            | .PFX, .P12            | P7B          | .P7B                |
+
+ 
+
+#### Chapter Quiz
+
+1. Which one of the following is not a barrier to using the web of trust (WoT) approach?
+
+   A. decentralized approach
+
+   B. highly barrier to entry
+
+   C. use of weak encryption
+
+   D. technical knowledge required of users
+
+2. Who provides the digital signature on a digital certificate?
+
+   A. certificate owner
+
+   B. server using the certificate
+
+   C. certificate recipient
+
+   D. certificate authority
+
+3. Which one of the following is not a possible hash length from the SHA-2 function?
+
+   A. 512 bits
+
+   B. 256 bits
+
+   C. 128 bits
+
+   D. 224 bits
+
+4. Maloof would like to digitally sign a message that he is sending to Clementine. What key does he use the create the digital signature?
+
+   A. Clementine's private key
+
+   B. Clementine's public key
+
+   E. Maloof's public key
+
+   D. Maloof's private key
+
+5. What standard governs the structure and content of digital certificates?
+
+   A. 802.11ac
+
+   B. X.500
+
+   C. X.509
+
+   D. 802.1x
+
+6. Harold works for a certificate authority and wants to ensure that his organization is able to revoke digital certificates that it creates. What is the most effective method of revoking digital certificates?
+
+   A. Certificate Revocation Bulletins
+
+   B. Transport Layer Security
+
+   C. Online Certificate Status Protocol
+
+   D. Certificate Revocation Lists
+
+
+
+
+
+Answers:
+
+1. use of weak cryptography
+
+2. certificate authority
+
+3. <font color=red>128 bits</font>
+
+4. Maloof's private key
+
+5. X.509 
+
+   802.1x: port-based Network Access Control (PNAC)
+
+   802.11ac: wireless networking
+
+   X.500: computer networking standards covering electronic directory services
+
+6. Online Certificate Status Protocol
+
+
+
 ## Reference
 
 [1] https://www.linkedin.com/learning/comptia-security-plus-sy0-501-cert-prep-6-cryptography/
