@@ -22,7 +22,7 @@ B[FTP server] -->|TCP data connection: port 20|A[FTP client]
 
 
 
-Which of the port numbers listed below are used by FTP
+Which of the port numbers listed below are used by FTP over TLS/SSL?
 
 - [ ] 20
 - [ ] 989
@@ -245,7 +245,7 @@ C. 162
 
 D. 138
 
-<font color=white>162></font>
+<font color=white>162</font>
 
 
 
@@ -314,20 +314,6 @@ C. UDP port 68
 D. UDP port 69
 
 <font color=white>69</font>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
